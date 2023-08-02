@@ -1,0 +1,109 @@
+{
+  "editor.tabSize": 4,
+  "editor.renderWhitespace": "all",
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": true,
+  "workbench.statusBar.visible": true,
+  "editor.lineNumbers": "on",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+  "C_Cpp.vcFormat.space.pointerReferenceAlignment": "left",
+  "C_Cpp.clang_format_sortIncludes": false,
+  "C_Cpp.vcFormat.indent.namespaceContents": true,
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "red",
+      "backgroundColor": "rgba(0,0,0,0)"
+    },
+    {
+      "text": "HACK:",
+      "color": "#ff6600",
+      "backgroundColor": "rgba(0,0,0,0)"
+    },
+    {
+      "text": "NOTE:",
+      "color": "green",
+      "backgroundColor": "rgba(0,0,0,0)"
+    },
+    {
+      "text": "WARN",
+      "color": "yellow",
+      "backgroundColor": "rgba(0,0,0,0)"
+    }
+  ],
+  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cppCompilerPath": "g++",
+  "C_Cpp_Runner.debuggerPath": "gdb",
+  "C_Cpp_Runner.cStandard": "c99",
+  "C_Cpp_Runner.cppStandard": "c++11",
+  "C_Cpp_Runner.msvcBatchPath": "",
+  "C_Cpp_Runner.useMsvc": false,
+  "C_Cpp_Runner.warnings": [
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false,
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.includePaths": [
+    "${workspaceFolder}/libft/src/**",
+    "${workspaceFolder}/libft/src",
+    "${workspaceFolder}/libft"
+  ],
+  "C_Cpp_Runner.includeSearch": [
+    "*",
+    "**/*"
+  ],
+  "C_Cpp_Runner.excludeSearch": [
+    "**/build",
+    "**/build/**",
+    "**/.*",
+    "**/.*/**",
+    "**/.vscode",
+    "**/.vscode/**"
+  ],
+  "cmake.configureOnOpen": false,
+  "files.associations": {
+    "libft.h": "c",
+    "minishell.h": "c",
+    "list.h": "c",
+    "defines.h": "c",
+    "stdlib.h": "c",
+    "lex.h": "c",
+    "sstream": "c",
+    "locale": "c",
+    "ratio": "c",
+    "stdio.h": "c",
+    "string.h": "c",
+    "debug.h": "c",
+    "parser.h": "c",
+    "list": "c",
+    "__node_handle": "c",
+    "expand.h": "c",
+    "__bit_reference": "c",
+    "__functional_base": "c",
+    "algorithm": "c",
+    "atomic": "c",
+    "bitset": "c",
+    "chrono": "c",
+    "__memory": "c",
+    "functional": "c",
+    "iterator": "c",
+    "limits": "c",
+    "memory": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "vector": "c",
+    "execute.h": "c",
+    "init.h": "c",
+    "optional": "c",
+    "system_error": "c",
+    "kak": "c",
+    "termios.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
+}

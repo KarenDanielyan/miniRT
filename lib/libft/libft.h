@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/07/24 18:10:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:33:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,20 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /* Get next line */
 char		*get_next_line(int fd);
+
+/* Dynamic Arrays */
+typedef struct s_darray
+{
+	size_t	size;
+	size_t	nmemb;
+	size_t	capacity;
+	void	*content;
+}	t_darray;
+
+void		ft_darray_init(t_darray *arr, size_t elem_size, size_t capacity);
+void		ft_darray_pushback(t_darray *arr, void *content);
+void		*ft_darray_get(t_darray *arr, void *value, \
+	int (*cmp)(void *a, void *b));
+void		ft_darray_free(t_darray *arr);
+
 #endif

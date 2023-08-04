@@ -20,7 +20,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 
 SRCS		=	main.c \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
-				check_extension.c scan.c)
+				check_extension.c) #scan.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
@@ -33,7 +33,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -Wall -Wextra -Werror -D BUFFER_SIZE=100000
+CFLAGS		=	-g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf
 

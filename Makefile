@@ -31,7 +31,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-g -Wall -Wextra -Werror -D BUFFER_SIZE=100000
 
 INVOKE		=	libft printf
 

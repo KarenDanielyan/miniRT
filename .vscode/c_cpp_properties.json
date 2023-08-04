@@ -3,7 +3,10 @@
         {
             "name": "linux-gcc-x64",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/lib/libft",
+                "${workspaceFolder}/lib/printf/include",
+                "${workspaceFolder}/lib/mlx_linux"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c99",

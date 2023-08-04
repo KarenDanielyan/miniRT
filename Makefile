@@ -12,13 +12,15 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	
+SUBDIRS		=	scanner
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				) \
 				Makefile
 
-SRCS		=	main.c
+SRCS		=	main.c \
+				$(patsubst %.c, $(SRC)/scanner/%.c, \
+				check_extension.c scan.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

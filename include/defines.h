@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 20:46:45 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/04 20:46:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <libft.h>
+#ifndef DEFINES_H
+# define DEFINES_H
 
-#define ERROR_MSG "Error\n"
+/* Miscellaneous Defines */
+# define ERROR_MSG "Error\n"
+# define EXTENSION ".rt"
+# define DOT '.'
 
-int	main(int ac, char **av)
+typedef struct s_object	t_object;
+
+struct s_object
 {
-	long	thread_count;
+	int	dummy;
+};
 
-	if (ac != 2)
-	{
-		(void)av;
-		printf(ERROR_MSG);
-		return (EXIT_FAILURE);
-	}
-	thread_count = sysconf(_SC_NPROCESSORS_CONF);
-	printf("Number of threads on the current platform: %ld\n", thread_count);
-	return (0);
-}
+#endif

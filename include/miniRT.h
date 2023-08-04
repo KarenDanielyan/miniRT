@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 20:46:45 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/04 19:12:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <libft.h>
+#ifndef MINIRT_H
+# define MINIRT_H
 
-#define ERROR_MSG "Error\n"
+# include "defines.h"
+# include <libft.h>
+# include <ft_printf.h>
+# include <mlx.h>
 
-int	main(int ac, char **av)
-{
-	long	thread_count;
+void	scan(t_darray *nodes, char *filename);
 
-	if (ac != 2)
-	{
-		(void)av;
-		printf(ERROR_MSG);
-		return (EXIT_FAILURE);
-	}
-	thread_count = sysconf(_SC_NPROCESSORS_CONF);
-	printf("Number of threads on the current platform: %ld\n", thread_count);
-	return (0);
-}
+#endif

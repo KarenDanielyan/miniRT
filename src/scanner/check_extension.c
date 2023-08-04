@@ -6,15 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 18:24:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:46:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scanner.h"
 #include <libft.h>
-
-# define DOT '.'
-# define EXTENSION ".rt"
 
 /**
  * @brief	check_extension() checks whether the given file has

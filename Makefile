@@ -12,11 +12,11 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	scanner vec3
+SUBDIRS		=	scanner vec3 events
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
-				vec3.h) \
+				vec3.h color.h events.h) \
 				Makefile
 
 SRCS		=	main.c \
@@ -24,7 +24,9 @@ SRCS		=	main.c \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \
 				vec3.c operations.c \
-				vec3_get.c vec3_set.c vec3_utils.c)
+				vec3_get.c vec3_set.c vec3_utils.c) \
+				$(patsubst %.c, $(SRC)/events/%.c, \
+				on_destroy.c on_keypress.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

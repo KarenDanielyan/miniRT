@@ -12,15 +12,18 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	scanner
+SUBDIRS		=	scanner vec3
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
-				) \
+				defines.h miniRT.h scanner.h \
+				vec3.h) \
 				Makefile
 
 SRCS		=	main.c \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
-				check_extension.c) #scan.c)
+				check_extension.c) \
+				$(patsubst %.c, $(SRC)/vec3/%.c, \
+				vec3_utils.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

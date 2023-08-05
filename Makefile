@@ -23,7 +23,8 @@ SRCS		=	main.c \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \
-				vec3_utils.c)
+				vec3.c operations.c \
+				vec3_get.c vec3_set.c vec3_utils.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

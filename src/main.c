@@ -6,14 +6,15 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/05 00:34:05 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:56:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "vec3.h"
+#include "color.h"
 #include <stdio.h>
 #include <libft.h>
-#include <unistd.h>
 
 #define ERROR_MSG "Error\n"
 
@@ -42,15 +43,13 @@ int	main(int ac, char **av)
 		int	*line = ctl.image.data + i * 256;
 		while (j < 256)
 		{
-			double	r = (double)(j) / 255;
-			double	g = (double)(255 - i) / 255;
-			double	b = 0.25;
-			line[j] = (int)(r * 255.999) << 16 | (int)(g * 255.99) << 8 | (int)(b * 255.99);
+			set_color((line + j), vec3(j, (255 - i), 0.25 * 255.999));
 			j ++;
 		}
 		i ++;
+		usleep(5000);
+		mlx_put_image_to_window(ctl.mlx_ptr, ctl.win_ptr, ctl.image.mlx_image, 0, 0);
 	}
-	mlx_put_image_to_window(ctl.mlx_ptr, ctl.win_ptr, ctl.image.mlx_image, 0, 0);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }

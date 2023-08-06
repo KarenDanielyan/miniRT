@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	scanner vec3 events
+SUBDIRS		=	scanner vec3 events utils
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -20,6 +20,8 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				Makefile
 
 SRCS		=	main.c \
+				$(patsubst %.c, $(SRC)/utils/%.c, \
+				create_image.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 01:50:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/06 12:50:47 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@
 # include <mlx.h>
 
 void	scan(t_darray *nodes, char *filename);
+
+/* Utils */
+void	create_image(char *name, int *pixels, int w, int h);
 
 #endif

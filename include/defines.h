@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 22:29:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/06 12:57:28 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <libft.h>
 
 /* Miscellaneous Defines */
+# define RENDER_FILE "render.ppm"
 # define ERROR_MSG "Error\n"
 # define EXTENSION ".rt"
 # define DOT '.'

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   float_cmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 14:49:10 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/06 14:28:01 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/06 14:37:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "utils.h"
 
-# include "defines.h"
-# include "events.h"
-# include "utils.h"
-# include <libft.h>
-# include <ft_printf.h>
-# include <mlx.h>
+static inline float	difference(float a, float b)
+{
+	return (a - b);
+}
 
-void	scan(t_darray *nodes, char *filename);
-
-#endif
+bool	float_equal(float a, float b)
+{
+	if (difference(a, b) < EPSILON)
+		return (true);
+	return (false);
+}

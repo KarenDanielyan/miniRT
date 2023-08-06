@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 13:06:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:49:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ static void	graphical_hello_world(t_control *ctl)
 	int	j;
 	int	*line;
 
-	ctl->image.mlx_image = mlx_new_image(ctl->mlx_ptr, 256, 256);
-	ctl->image.data = (int *)mlx_get_data_addr(ctl->image.mlx_image, \
-		&ctl->image.bits_per_pixel, \
-		&ctl->image.size_line, &ctl->image.endian);
 	i = 0;
+	new_image(ctl->mlx_ptr, 256, 256, &ctl->image);
 	while (i < 256)
 	{
 		j = 0;

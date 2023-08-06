@@ -16,12 +16,12 @@ SUBDIRS		=	scanner vec3 events utils
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
-				vec3.h color.h events.h) \
+				vec3.h color.h events.h utils.h) \
 				Makefile
 
 SRCS		=	main.c \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
-				create_image.c) \
+				create_image.c new_image.c float_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \

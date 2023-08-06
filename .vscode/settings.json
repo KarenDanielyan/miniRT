@@ -74,7 +74,11 @@
     "defines.h": "c",
     "unistd.h": "c",
     "minirt.h": "c",
-    "events.h": "c"
+    "events.h": "c",
+    "stdint.h": "c",
+    "stdbool.h": "c",
+    "memory_resource": "c",
+    "utils.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

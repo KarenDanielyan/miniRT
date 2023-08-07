@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 14:43:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:14:30 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 # include <libft.h>
 # include <stdint.h>
 # include <stdbool.h>
+# include "vec3.h"
+# include "ray.h"
 
 /* Miscellaneous Defines */
+# define ASPECT_RATIO 16/9
+# define VP_TO_WIN 100
 # define RENDER_FILE "render.ppm"
 # define ERROR_MSG "Error\n"
 # define EXTENSION ".rt"
@@ -26,13 +30,44 @@
 /* Defines for floating-point operations */
 # define EPSILON 0.000001
 
-typedef struct s_object		t_object;
 typedef struct s_control	t_control;
+typedef struct s_object		t_object;
+typedef struct s_camera		t_camera;
+typedef struct s_vec3		t_point;
 typedef struct s_image		t_image;
+
+typedef enum e_type			t_type;
+
+typedef union u_value		t_value;
+
+enum	e_type
+{
+	CAMERA,
+	AMBIENT,
+	PLANE,
+	SPHERE
+};
+
+struct s_camera
+{
+	t_point		origin;
+	t_vec3		direction;
+	t_vec3		horizontal;
+	t_vec3		vertical;
+	t_vec3		lower_left_corner;
+	float		fov;
+	float		focal_length;
+};
+
+union u_value
+{
+	t_camera	camera;
+};
 
 struct s_object
 {
-	int	dummy;
+	t_type	type;
+	t_value	value;
 };
 
 struct s_image

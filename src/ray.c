@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/07 20:05:20 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/07 17:51:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "ray.h"
+#include "defines.h"
 
-# include "defines.h"
-# include "vec3.h"
-
-typedef struct s_vec3	t_color;
-
-static inline void	set_color(int *pixel, t_color color)
+void	new_ray(t_ray *self, t_point origin, t_vec3 direction)
 {
-	*pixel = (int)(get_x(&color) * 255.999) << 16 | (int)(get_y(&color) * 255.999) << 8 \
-		| (int)(get_z(&color) * 255.999);
+	self->direction = direction;
+	self->origin = origin;
 }
 
-#endif
+t_point	ray_at(t_ray *r, float t)
+{
+	t_vec3	tmp;
+
+	tmp = scale_vec3(t, &r->direction);
+	return (sum_vec3(&r->origin, &tmp));
+}

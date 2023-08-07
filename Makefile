@@ -16,10 +16,11 @@ SUBDIRS		=	scanner vec3 events utils
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
-				vec3.h color.h events.h utils.h) \
+				vec3.h color.h events.h utils.h \
+				ray.h) \
 				Makefile
 
-SRCS		=	main.c \
+SRCS		=	main.c ray.c \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
@@ -33,7 +34,7 @@ SRCS		=	main.c \
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
 				$(filter $(SRC)/$(dir)/%.c, $(SRCS)))) \
-				$(patsubst %.c, $(BUILD)/%.o, main.c)
+				$(patsubst %.c, $(BUILD)/%.o, main.c ray.c)
 
 # Compilation Options
 

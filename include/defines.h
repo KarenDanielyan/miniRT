@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 01:41:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:05:17 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "vec3.h"
 # include "ray.h"
 
+# define NAME "miniRT"
+
 /* Miscellaneous Defines */
 # define ASPECT_RATIO 16/9
 # define VP_TO_WIN 100
@@ -27,18 +29,39 @@
 # define EXTENSION ".rt"
 # define DOT '.'
 
+/* Color Pallete */
+# define BACKGROUND_C	0x301A4B
+# define INFO_C			0x3581B8
+# define STATUS_C		0xFE7F2D
+# define PLAIN_C		0xFCFAFA
+# define NEUTRAL_C		0x303A2B
+
 /* Defines for floating-point operations */
 # define EPSILON 0.000001
+
+/* Defines For UI */
+# define HEADER "miniRT"
+# define PREVIEW "Image Preview"
+
+# define INFO_WIDTH 300
+# define PREVIEW_HEIGHT 50
 
 typedef struct s_control	t_control;
 typedef struct s_object		t_object;
 typedef struct s_camera		t_camera;
-typedef struct s_vec3		t_point;
+typedef struct s_vec3		t_point3;
 typedef struct s_image		t_image;
+typedef struct s_point2		t_point2;
 
 typedef enum e_type			t_type;
 
 typedef union u_value		t_value;
+
+struct s_point2
+{
+	float	x;
+	float	y;
+};
 
 enum	e_type
 {
@@ -50,13 +73,13 @@ enum	e_type
 
 struct s_camera
 {
-	t_point		origin;
+	t_point3		origin;
 	t_vec3		direction;
 	t_vec3		viewport_u;
 	t_vec3		viewport_v;
 	t_vec3		pixel_delta_u;
 	t_vec3		pixel_delta_v;
-	t_point		upper_left;
+	t_point3		upper_left;
 	float		fov;
 	float		focal_length;
 };
@@ -87,8 +110,9 @@ struct s_control
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_darray	obj_arr;
-	t_image		image;
+	t_darray	world;
+	t_image		render;
+	t_image		ui;
 };
 
 #endif

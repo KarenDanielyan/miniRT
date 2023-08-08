@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	scanner vec3 events utils
+SUBDIRS		=	core scanner vec3 events utils
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -20,9 +20,11 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				ray.h) \
 				Makefile
 
-SRCS		=	main.c ray.c \
+SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
+				main.c ray.c ui.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
-				create_image.c new_image.c float_cmp.c) \
+				create_image.c new_image.c float_cmp.c \
+				draw_line.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \
@@ -33,8 +35,7 @@ SRCS		=	main.c ray.c \
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
-				$(filter $(SRC)/$(dir)/%.c, $(SRCS)))) \
-				$(patsubst %.c, $(BUILD)/%.o, main.c ray.c)
+				$(filter $(SRC)/$(dir)/%.c, $(SRCS))))
 
 # Compilation Options
 

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 18:40:53 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/08 16:47:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "ray.h"
+#include "defines.h"
 
-# include "defines.h"
-# include "events.h"
-# include "utils.h"
-# include <libft.h>
-# include <ft_printf.h>
-# include <mlx.h>
+void	new_ray(t_ray *self, t_point3 origin, t_vec3 direction)
+{
+	self->direction = direction;
+	self->origin = origin;
+}
 
-void	scan(t_darray *nodes, char *filename);
+t_point3	ray_at(t_ray *r, float t)
+{
+	t_vec3	tmp;
 
-/* Utils */
-void	draw_line(t_control *ctl, t_point2 from, t_point2 to);
-
-#endif
+	tmp = scale_vec3(t, &r->direction);
+	return (sum_vec3(&r->origin, &tmp));
+}

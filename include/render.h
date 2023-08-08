@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 14:54:35 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/08 16:24:52 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/08 16:25:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
-#include "defines.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-void	new_ray(t_ray *self, t_point origin, t_vec3 direction)
-{
-	self->direction = direction;
-	self->origin = origin;
-}
+# include "defines.h"
 
-t_point	ray_at(t_ray *r, float t)
-{
-	t_vec3	tmp;
-
-	tmp = scale_vec3(t, &r->direction);
-	return (sum_vec3(&r->origin, &tmp));
-}
+#endif

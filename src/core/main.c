@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 14:54:22 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:06:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <stdio.h>
 #include <libft.h>
 
-static void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h);
+void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h);
+void	init_ui(t_control *ctl, int width, int height);
 
-static void	camera_setup(t_camera *cam, int image_width, int image_height)
+void	camera_setup(t_camera *cam, int image_width, int image_height)
 {
 	float	viewport_height;
 	float	viewport_width;
@@ -40,7 +41,7 @@ static void	camera_setup(t_camera *cam, int image_width, int image_height)
 	cam->upper_left = subst_vec3(&cam->upper_left, &tmp);
 }
 
-t_vec3	get_ray_dir(t_camera *cam, t_point pix_origin, int i, int j)
+t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
 {
 	t_vec3	dir;
 	t_vec3	tmp;
@@ -80,44 +81,61 @@ int	main(void)
 	height = (int)(width / ((float)ASPECT_RATIO));
 	if (height < 1)
 		height = 1;
+	width += INFO_WIDTH;
+	height += PREVIEW_HEIGHT;
 	camera_setup(&cam, width, height);
-	printf("%f\n", M_PI);
 	ctl.mlx_ptr = mlx_init();
-	ctl.win_ptr = mlx_new_window(ctl.mlx_ptr, width, height, \
-		"Graphical Hello World");
-	graphical_hello_world(&ctl, &cam, width, height);
-	create_image("render.ppm", ctl.image.data, ctl.image.width, \
-		ctl.image.height);
+	ctl.win_ptr = mlx_new_window(ctl.mlx_ptr, width, height, NAME);
+	//graphical_hello_world(&ctl, &cam, width, height);
+	init_ui(&ctl, width, height);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }
 
-static void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h)
+void	init_ui(t_control *ctl, int width, int height)
+{
+	t_point2	from;
+	t_point2	to;
+
+	(void)width;
+	from.x = INFO_WIDTH;
+	from.y = 0;
+	to.x = INFO_WIDTH;
+	to.y = height;
+	draw_line(ctl, from, to);
+	from.x = INFO_WIDTH;
+	from.y = PREVIEW_HEIGHT;
+	to.x = width;
+	to.y = PREVIEW_HEIGHT;
+	draw_line(ctl, from, to);
+}
+
+void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h)
 {
 	int		i;
 	int		j;
 	t_ray	r;
-	t_point	pix_origin;
+	t_point3	pix_origin;
 
 	i = 0;
 	pix_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
 	pix_origin = shrink_vec3(2, &pix_origin);
 	pix_origin = sum_vec3(&cam->upper_left, &pix_origin);
-	new_image(ctl->mlx_ptr, w, h, &ctl->image);
+	new_image(ctl->mlx_ptr, w, h, &ctl->render);
 	while (i < h)
 	{
 		j = 0;
 		while (j < w)
 		{
 			new_ray(&r, cam->origin, get_ray_dir(cam, pix_origin, i, j));
-			set_color(((ctl->image.data + i * w) + j), ray_color(&r));
+			set_color(((ctl->render.data + i * w) + j), ray_color(&r));
 			j ++;
 		}
 		i ++;
 		usleep(2000);
 		mlx_put_image_to_window(ctl->mlx_ptr, \
-		ctl->win_ptr, ctl->image.mlx_image, 0, 0);
+		ctl->win_ptr, ctl->render.mlx_image, 0, 0);
 	}
 }

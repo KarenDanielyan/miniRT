@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/05 19:41:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/08 01:51:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,27 @@ t_vec3		unit_vector(t_vec3 v);
 
 /* Some utility inline functions */
 
-static inline t_vec3	sum_vec3(const t_vec3 *u, const t_vec3 *v)
+static inline t_vec3	sum_vec3(t_vec3 *u, t_vec3 *v)
 {
 	return (vec3(u->e[0] + v->e[0], u->e[1] + v->e[1], u->e[2] + v->e[2]));
 }
 
-static inline t_vec3	subst_vec3(const t_vec3 *u, const t_vec3 *v)
+static inline t_vec3	subst_vec3(t_vec3 *u, t_vec3 *v)
 {
 	return (vec3(u->e[0] - v->e[0], u->e[1] - v->e[1], u->e[2] - v->e[2]));
 }
 
-static inline t_vec3	mult_vec3(const t_vec3 *u, const t_vec3 *v)
+static inline t_vec3	mult_vec3(t_vec3 *u, t_vec3 *v)
 {
 	return (vec3(u->e[0] * v->e[0], u->e[1] * v->e[1], u->e[2] * v->e[2]));
 }
 
-static inline t_vec3	scale_vec3(float t, const t_vec3 *v)
+static inline t_vec3	scale_vec3(float t, t_vec3 *v)
 {
 	return (vec3(t * v->e[0], t * v->e[1], t * v->e[2]));
 }
 
-static inline t_vec3	shrink_vec3(float t, const t_vec3 *v)
+static inline t_vec3	shrink_vec3(float t, t_vec3 *v)
 {
 	return (scale_vec3(1 / t, v));
 }

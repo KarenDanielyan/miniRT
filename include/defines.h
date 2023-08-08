@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/07 19:14:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/08 01:41:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ struct s_camera
 {
 	t_point		origin;
 	t_vec3		direction;
-	t_vec3		horizontal;
-	t_vec3		vertical;
-	t_vec3		lower_left_corner;
+	t_vec3		viewport_u;
+	t_vec3		viewport_v;
+	t_vec3		pixel_delta_u;
+	t_vec3		pixel_delta_v;
+	t_point		upper_left;
 	float		fov;
 	float		focal_length;
 };

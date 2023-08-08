@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/07 22:23:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:54:22 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@
 #include <stdio.h>
 #include <libft.h>
 
-#define HEIGHT 360
-#define WIDTH HEIGHT * ASPECT_RATIO
+static void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h);
 
-static void	graphical_hello_world(t_control *ctl, t_camera *cam);
-
-static void	camera_setup(t_camera *cam)
+static void	camera_setup(t_camera *cam, int image_width, int image_height)
 {
 	float	viewport_height;
 	float	viewport_width;
@@ -29,32 +26,28 @@ static void	camera_setup(t_camera *cam)
 
 	cam->focal_length = 1.0;
 	viewport_height = 2.0;
-	viewport_width = ASPECT_RATIO * viewport_height;
-
+	viewport_width = viewport_height * (float)(image_width / image_height);
 	cam->origin = vec3(0, 0, 0);
-	cam->horizontal = vec3(viewport_width, 0, 0);
-	cam->vertical = vec3(0, viewport_height, 0);
-	tmp = shrink_vec3(2, &cam->horizontal);
-	tmp = subst_vec3(&cam->origin, &tmp);
-	cam->lower_left_corner = tmp;
-	tmp = shrink_vec3(2, &cam->vertical);
-	cam->lower_left_corner = subst_vec3(&cam->lower_left_corner, &tmp);
+	cam->viewport_u = vec3(viewport_width, 0, 0);
+	cam->viewport_v = vec3(0, -viewport_height, 0);
+	cam->pixel_delta_u = shrink_vec3(image_width, &cam->viewport_u);
+	cam->pixel_delta_v = shrink_vec3(image_height, &cam->viewport_v);
 	tmp = vec3(0, 0, cam->focal_length);
-	cam->lower_left_corner = subst_vec3(&cam->lower_left_corner, &tmp);
+	cam->upper_left = subst_vec3(&cam->origin, &tmp);
+	tmp = shrink_vec3(2, &cam->viewport_u);
+	cam->upper_left = subst_vec3(&cam->upper_left, &tmp);
+	tmp = shrink_vec3(2, &cam->viewport_v);
+	cam->upper_left = subst_vec3(&cam->upper_left, &tmp);
 }
 
-t_vec3	get_ray_dir(t_camera *cam, int i, int j)
+t_vec3	get_ray_dir(t_camera *cam, t_point pix_origin, int i, int j)
 {
 	t_vec3	dir;
 	t_vec3	tmp;
-	float	u;
-	float	v;
 
-	u = (float )j/(WIDTH - 1);
-	v = (float )i/(HEIGHT - 1);
-	tmp = scale_vec3(u, &cam->horizontal);
-	dir = sum_vec3(&cam->lower_left_corner, &tmp);
-	tmp = scale_vec3(v, &cam->vertical);
+	tmp = scale_vec3(i, &cam->pixel_delta_v);
+	dir = sum_vec3(&pix_origin, &tmp);
+	tmp = scale_vec3(j, &cam->pixel_delta_u);
 	dir = sum_vec3(&dir, &tmp);
 	dir = subst_vec3(&dir, &cam->origin);
 	return (dir);
@@ -76,50 +69,54 @@ t_color	ray_color(t_ray *ray)
 	return (blend);
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	t_control	ctl;
 	t_camera	cam;
+	int			width;
+	int			height;
 
-	if (ac != 2)
-	{
-		(void)av;
-		printf(ERROR_MSG);
-		return (EXIT_FAILURE);
-	}
-	camera_setup(&cam);
+	width = 640;
+	height = (int)(width / ((float)ASPECT_RATIO));
+	if (height < 1)
+		height = 1;
+	camera_setup(&cam, width, height);
 	printf("%f\n", M_PI);
 	ctl.mlx_ptr = mlx_init();
-	ctl.win_ptr = mlx_new_window(ctl.mlx_ptr, WIDTH, HEIGHT, \
+	ctl.win_ptr = mlx_new_window(ctl.mlx_ptr, width, height, \
 		"Graphical Hello World");
-	graphical_hello_world(&ctl, &cam);
+	graphical_hello_world(&ctl, &cam, width, height);
+	create_image("render.ppm", ctl.image.data, ctl.image.width, \
+		ctl.image.height);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }
 
-static void	graphical_hello_world(t_control *ctl, t_camera *cam)
+static void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h)
 {
 	int		i;
 	int		j;
-	int		*line;
 	t_ray	r;
+	t_point	pix_origin;
 
 	i = 0;
-	new_image(ctl->mlx_ptr, WIDTH, HEIGHT, &ctl->image);
-	while (i < HEIGHT)
+	pix_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
+	pix_origin = shrink_vec3(2, &pix_origin);
+	pix_origin = sum_vec3(&cam->upper_left, &pix_origin);
+	new_image(ctl->mlx_ptr, w, h, &ctl->image);
+	while (i < h)
 	{
 		j = 0;
-		line = ctl->image.data + i * WIDTH;
-		while (j < WIDTH)
+		while (j < w)
 		{
-			new_ray(&r, cam->origin, get_ray_dir(cam, i, j));
-			set_color((line + j), ray_color(&r));
+			new_ray(&r, cam->origin, get_ray_dir(cam, pix_origin, i, j));
+			set_color(((ctl->image.data + i * w) + j), ray_color(&r));
 			j ++;
 		}
 		i ++;
-		usleep(5000);
+		usleep(2000);
 		mlx_put_image_to_window(ctl->mlx_ptr, \
 		ctl->win_ptr, ctl->image.mlx_image, 0, 0);
 	}

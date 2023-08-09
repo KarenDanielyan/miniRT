@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 01:19:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 01:52:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <libft.h>
 # include <stdint.h>
 # include <stdbool.h>
+# include <pthread.h>
 # include "vec3.h"
 # include "ray.h"
 
@@ -132,13 +133,16 @@ struct s_ui
 
 struct s_control
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	int			win_u;
-	int			win_v;
-	t_darray	world;
-	t_image		render;
-	t_ui		ui;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	int				win_u;
+	int				win_v;
+	pthread_t		*pool;
+	pthread_mutex_t	qmux;
+	t_darray		job_q;
+	t_darray		world;
+	t_image			render;
+	t_ui			ui;
 };
 
 #endif

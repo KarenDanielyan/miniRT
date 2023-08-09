@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 18:40:53 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:47:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	scan(t_darray *nodes, char *filename);
 
 /* Utils */
 void	draw_line(t_control *ctl, t_point2 from, t_point2 to);
+void	fill_image(t_image *image, int color);
+void	prompt_next_line(t_control *ctl, char *str);
 
 #endif

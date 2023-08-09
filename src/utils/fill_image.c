@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   fill_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 01:19:07 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/09 15:17:05 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/10 01:09:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "miniRT.h"
 
-# include "defines.h"
-# include "vec3.h"
-
-typedef struct s_vec3	t_color;
-
-static inline void	set_color(int *pixel, t_color color)
+void	fill_image(t_image *image, int color)
 {
-	*pixel = (int)(get_x(&color) * 255.999) << 16 \
-		| (int)(get_y(&color) * 255.999) << 8 \
-		| (int)(get_z(&color) * 255.999);
-}
+	int	i;
+	int	j;
+	int	*line;
 
-#endif
+	i = 0;
+	while (i < image->height)
+	{
+		j = 0;
+		line = image->data + i * image->width;
+		while (j < image->width)
+		{
+			line[j] = color;
+			j ++;
+		}
+		i ++;
+	}
+}

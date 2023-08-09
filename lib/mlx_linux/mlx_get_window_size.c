@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:13:41 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/02 18:29:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:01:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mlx_get_window_size(void *mlx_ptr, void *win_ptr, int *w, int *h)
 
 	*w = -1;
 	*h = -1;
-	if (mlx_ptr && win)
+	if (mlx_ptr && win_ptr)
 	{
 		xvar = (t_xvar *)mlx_ptr;
 		win = (t_win_list *)win_ptr;

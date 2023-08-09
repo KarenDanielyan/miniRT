@@ -79,7 +79,8 @@
     "stdbool.h": "c",
     "memory_resource": "c",
     "utils.h": "c",
-    "vec3.h": "c"
+    "vec3.h": "c",
+    "stdio.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

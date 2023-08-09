@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 19:06:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 01:09:10 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include <stdio.h>
 #include <libft.h>
 
-void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h);
-void	init_ui(t_control *ctl, int width, int height);
+void	graphical_hello_world(t_control *ctl, t_camera *cam);
+void	init_ui(t_control *ctl);
 
 void	camera_setup(t_camera *cam, int image_width, int image_height)
 {
@@ -74,68 +74,41 @@ int	main(void)
 {
 	t_control	ctl;
 	t_camera	cam;
-	int			width;
-	int			height;
 
-	width = 640;
-	height = (int)(width / ((float)ASPECT_RATIO));
-	if (height < 1)
-		height = 1;
-	width += INFO_WIDTH;
-	height += PREVIEW_HEIGHT;
-	camera_setup(&cam, width, height);
-	ctl.mlx_ptr = mlx_init();
-	ctl.win_ptr = mlx_new_window(ctl.mlx_ptr, width, height, NAME);
-	//graphical_hello_world(&ctl, &cam, width, height);
-	init_ui(&ctl, width, height);
+	init_ui(&ctl);
+	camera_setup(&cam, ctl.win_u, ctl.win_v);
+	graphical_hello_world(&ctl, &cam);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }
 
-void	init_ui(t_control *ctl, int width, int height)
+void	graphical_hello_world(t_control *ctl, t_camera *cam)
 {
-	t_point2	from;
-	t_point2	to;
-
-	(void)width;
-	from.x = INFO_WIDTH;
-	from.y = 0;
-	to.x = INFO_WIDTH;
-	to.y = height;
-	draw_line(ctl, from, to);
-	from.x = INFO_WIDTH;
-	from.y = PREVIEW_HEIGHT;
-	to.x = width;
-	to.y = PREVIEW_HEIGHT;
-	draw_line(ctl, from, to);
-}
-
-void	graphical_hello_world(t_control *ctl, t_camera *cam, int w, int h)
-{
-	int		i;
-	int		j;
-	t_ray	r;
+	int			i;
+	int			j;
+	t_ray		r;
 	t_point3	pix_origin;
 
 	i = 0;
 	pix_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
 	pix_origin = shrink_vec3(2, &pix_origin);
 	pix_origin = sum_vec3(&cam->upper_left, &pix_origin);
-	new_image(ctl->mlx_ptr, w, h, &ctl->render);
-	while (i < h)
+	while (i < ctl->render.height)
 	{
 		j = 0;
-		while (j < w)
+		while (j < ctl->render.width)
 		{
 			new_ray(&r, cam->origin, get_ray_dir(cam, pix_origin, i, j));
-			set_color(((ctl->render.data + i * w) + j), ray_color(&r));
+			set_color(((ctl->render.data + i * ctl->render.width) + j), \
+				ray_color(&r));
 			j ++;
 		}
 		i ++;
-		usleep(2000);
+		usleep(5000);
 		mlx_put_image_to_window(ctl->mlx_ptr, \
-		ctl->win_ptr, ctl->render.mlx_image, 0, 0);
+		ctl->win_ptr, ctl->render.mlx_image, INFO_WIDTH + PREVIEW_OFFSET, \
+			PREVIEW_HEIGHT + PREVIEW_OFFSET);
 	}
 }

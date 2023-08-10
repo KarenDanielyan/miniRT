@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:38:27 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 01:09:22 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:50:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void	draw_borders(t_control *ctl)
 
 static void	init_background(t_control *ctl)
 {
+	new_image(ctl->mlx_ptr, INFO_WIDTH, ctl->win_v, &ctl->ui.info);
+	fill_image(&ctl->ui.info, BACKGROUND_C);
 	new_image(ctl->mlx_ptr, ctl->win_u, ctl->win_v, &ctl->ui.background);
 	fill_image(&ctl->ui.background, BACKGROUND_C);
 	new_image(ctl->mlx_ptr, ctl->win_u - INFO_WIDTH, \
@@ -71,14 +73,14 @@ static void	prompt_to_headers(t_control *ctl, char *str1, char *str2)
 	char	*nl_loc;
 
 	mlx_string_put(ctl->mlx_ptr, ctl->win_ptr, \
-		INFO_WIDTH + 20, 0.75 * PREVIEW_HEIGHT, STATUS_C, str1);
+		INFO_WIDTH + 20, 0.75 * PREVIEW_HEIGHT, HEADER_C, str1);
 	while (str2)
 	{
 		nl_loc = ft_strchr(str2, '\n');
 		if (!nl_loc)
 			nl_loc = ft_strchr(str2, 0);
 		tmp = ft_substr(str2, 0, (nl_loc - str2));
-		prompt_next_line(ctl, tmp);
+		prompt_next_line(ctl, HEADER_C, tmp);
 		free(tmp);
 		if (nl_loc != ft_strchr(str2, 0))
 			str2 = nl_loc + 1;
@@ -87,19 +89,29 @@ static void	prompt_to_headers(t_control *ctl, char *str1, char *str2)
 	}
 }
 
-void	prompt_next_line(t_control *ctl, char *str)
+void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 {
 	static int	offset_u;
 	static int	offset_v;
+	va_list		args;
+	char		*tmp;
 
+	va_start(args, str);
+	tmp = get_format_string(str, args);
+	printf("%p\n", tmp);
 	if (offset_v == 0)
 	{
 		offset_u = 10;
-		offset_v = 20;
+		offset_v = LINE_SIZE;
 	}
 	mlx_string_put(ctl->mlx_ptr, ctl->win_ptr, offset_u, offset_v, \
-		STATUS_C, str);
+		color, tmp);
 	offset_v += LINE_SIZE;
 	if (offset_v >= ctl->win_v)
-		offset_v = 20;
+	{
+		mlx_put_image_to_window(ctl->mlx_ptr, ctl->win_ptr, \
+			ctl->ui.info.mlx_image, 0, 0);
+		offset_v = LINE_SIZE;
+	}
+	free(tmp);
 }

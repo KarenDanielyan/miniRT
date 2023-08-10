@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 01:52:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:48:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 /* Color Pallete */
 # define BACKGROUND_C	0x153243
 # define INFO_C			0x284B63
-# define STATUS_C		0xFAFAFA //0x00FFFF//0xFE7F2D
+# define HEADER_C		0x00FF00
+# define STATUS_C		0x00FFFF //0xFAFAFA //0x00FFFF//0xFE7F2D
 # define PLAIN_C		0xFCFAFA
 # define NEUTRAL_C		0x000000
 
@@ -62,7 +63,7 @@
 # define MIN_HEIGHT 300
 # define MIN_WIDTH 300
 
-# define LINE_SIZE	10
+# define LINE_SIZE	15
 
 typedef struct s_control	t_control;
 typedef struct s_object		t_object;
@@ -70,7 +71,12 @@ typedef struct s_camera		t_camera;
 typedef struct s_vec3		t_point3;
 typedef struct s_image		t_image;
 typedef struct s_point2		t_point2;
+typedef struct s_job		t_job;
 typedef struct s_ui			t_ui;
+typedef struct s_thread		t_thread;
+
+typedef void				(*t_handler)(t_control *ctl);
+typedef void				(*t_compute)(t_control *ctl, t_point2 from, t_point2 to);
 
 typedef enum e_type			t_type;
 
@@ -129,6 +135,22 @@ struct s_ui
 {
 	t_image	background;
 	t_image	preview;
+	t_image	info;
+};
+
+struct s_thread
+{
+	int			id;
+	pthread_t	*thread;
+	t_control	*ctl;
+};
+
+struct s_job
+{
+	t_point2	from;
+	t_point2	to;
+	t_compute	job_func;
+	t_compute	shader;
 };
 
 struct s_control
@@ -137,7 +159,7 @@ struct s_control
 	void			*win_ptr;
 	int				win_u;
 	int				win_v;
-	pthread_t		*pool;
+	t_thread		*pool;
 	pthread_mutex_t	qmux;
 	t_darray		job_q;
 	t_darray		world;

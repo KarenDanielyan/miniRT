@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:38:27 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 18:50:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:30:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	prompt_to_headers(t_control *ctl, char *str1, char *str2);
 void	init_ui(t_control *ctl)
 {
 	ctl->mlx_ptr = mlx_init();
-	ctl->win_u = 640;
+	ctl->win_u = SCREEN_WIDTH;
 	ctl->win_v = (int)(ctl->win_u / ((float)ASPECT_RATIO));
+	new_image(ctl->mlx_ptr, ctl->win_u, ctl->win_v, &ctl->render);
 	if (ctl->win_v < MIN_HEIGHT)
 		ctl->win_v = MIN_HEIGHT;
 	if (ctl->win_u < MIN_WIDTH)
 		ctl->win_u = MIN_WIDTH;
-	new_image(ctl->mlx_ptr, ctl->win_u, ctl->win_v, &ctl->render);
 	ctl->win_u += INFO_WIDTH + 2 * PREVIEW_OFFSET;
 	ctl->win_v += PREVIEW_HEIGHT + 2 * PREVIEW_OFFSET;
 	ctl->win_ptr = mlx_new_window(ctl->mlx_ptr, ctl->win_u, ctl->win_v, NAME);
@@ -98,7 +98,6 @@ void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 
 	va_start(args, str);
 	tmp = get_format_string(str, args);
-	printf("%p\n", tmp);
 	if (offset_v == 0)
 	{
 		offset_u = 10;

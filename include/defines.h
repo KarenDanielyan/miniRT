@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 18:48:19 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:30:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
 
 # define NAME "miniRT"
 
-/* Miscellaneous Defines */
+/* Screen Properties */
+# define SCREEN_WIDTH 640
 # define ASPECT_RATIO 1.777777778
-# define VP_TO_WIN 100
+
+/* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
 # define ERROR_MSG "Error\n"
 # define EXTENSION ".rt"
@@ -66,17 +68,19 @@
 # define LINE_SIZE	15
 
 typedef struct s_control	t_control;
-typedef struct s_object		t_object;
 typedef struct s_camera		t_camera;
-typedef struct s_vec3		t_point3;
+typedef struct s_object		t_object;
 typedef struct s_image		t_image;
-typedef struct s_point2		t_point2;
 typedef struct s_job		t_job;
 typedef struct s_ui			t_ui;
+
+typedef struct s_vec3		t_point3;
+typedef struct s_point2		t_point2;
+
 typedef struct s_thread		t_thread;
 
-typedef void				(*t_handler)(t_control *ctl);
-typedef void				(*t_compute)(t_control *ctl, t_point2 from, t_point2 to);
+typedef void				(*t_handler)(t_control *ctl, t_point2 from, t_point2 to);
+typedef void				(*t_compute)(t_control *ctl, int *pixel);
 
 typedef enum e_type			t_type;
 
@@ -105,6 +109,7 @@ struct s_camera
 	t_vec3		pixel_delta_u;
 	t_vec3		pixel_delta_v;
 	t_point3	upper_left;
+	t_point3	pixel_origin;
 	float		fov;
 	float		focal_length;
 };
@@ -149,7 +154,7 @@ struct s_job
 {
 	t_point2	from;
 	t_point2	to;
-	t_compute	job_func;
+	t_handler	job_func;
 	t_compute	shader;
 };
 

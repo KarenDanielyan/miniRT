@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	core scanner vec3 events utils
+SUBDIRS		=	core scanner vec3 events utils renderer
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -21,7 +21,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c threadpool.c) \
+				main.c ray.c ui.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				draw_line.c fill_image.c \
@@ -32,7 +32,9 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3.c operations.c \
 				vec3_get.c vec3_set.c vec3_utils.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
-				on_destroy.c on_keypress.c)
+				on_destroy.c on_keypress.c) \
+				$(patsubst %.c, $(SRC)/renderer/%.c, \
+				threadpool.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

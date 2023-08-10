@@ -1,5 +1,6 @@
 miniRT
 miniRT_old
+Images/*.ppm
 build
 lib/libft/build
 lib/libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 20:30:05 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:00:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@
 
 # define LINE_SIZE	15
 
+# define MIN_SEGMENT_SIZE 4
+
 typedef struct s_control	t_control;
 typedef struct s_camera		t_camera;
 typedef struct s_object		t_object;
@@ -79,8 +81,9 @@ typedef struct s_point2		t_point2;
 
 typedef struct s_thread		t_thread;
 
-typedef void				(*t_handler)(t_control *ctl, t_point2 from, t_point2 to);
-typedef void				(*t_compute)(t_control *ctl, int *pixel);
+typedef void				(*t_handler)(t_control *ctl, t_camera *cam, t_job *job);
+typedef void				(*t_compute)(t_control *ctl, t_camera *cam, \
+	t_point2 loc, int *pixel);
 
 typedef enum e_type			t_type;
 
@@ -152,6 +155,7 @@ struct s_thread
 
 struct s_job
 {
+	bool		taken;
 	t_point2	from;
 	t_point2	to;
 	t_handler	job_func;
@@ -164,6 +168,8 @@ struct s_control
 	void			*win_ptr;
 	int				win_u;
 	int				win_v;
+	int				worker_c;
+	t_camera		cam;
 	t_thread		*pool;
 	pthread_mutex_t	qmux;
 	t_darray		job_q;

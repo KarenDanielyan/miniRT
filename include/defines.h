@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/16 00:00:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:06:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,19 @@
 * ***************************************** *"
 # define PREVIEW "Image Preview"
 
-# define INFO_WIDTH 300
-# define PREVIEW_HEIGHT 50
+
+# ifdef __APPLE__
+#  define INFO_WIDTH 350
+#  define PREVIEW_HEIGHT 50
+# elif __linux__
+#  define INFO_WIDTH 300
+#  define PREVIEW_HEIGHT 50
+# endif
+
+#  define MIN_HEIGHT 300
+#  define MIN_WIDTH 300
 # define PREVIEW_OFFSET 1
-
-# define MIN_HEIGHT 300
-# define MIN_WIDTH 300
-
 # define LINE_SIZE	15
-
 # define MIN_SEGMENT_SIZE 4
 
 typedef struct s_control	t_control;

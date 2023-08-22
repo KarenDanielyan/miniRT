@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:23:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/05 19:42:07 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:17:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	new_vec3(t_vec3 *v, float e1, float e2, float e3)
 {
 	v->e[0] = e1;
 	v->e[1] = e2;
-	v->e[3] = e3;
+	v->e[2] = e3;
 }
 
 t_vec3	vec3(float e1, float e2, float e3)

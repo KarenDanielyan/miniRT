@@ -14,3 +14,4 @@ lib/mlx_mac/test/*.o
 lib/mlx_mac/*.a
 lib/mlx_linux/*.o
 lib/mlx_mac/*.o
+lib/mlx_beta

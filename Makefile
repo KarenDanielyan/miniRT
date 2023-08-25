@@ -46,9 +46,9 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-g -fPIC -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
-INVOKE		=	libft printf
+INVOKE		=	libft printf mlx
 
 IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
 
@@ -56,15 +56,13 @@ LFLAGS		=	-Llib/libft -lft -Llib/printf -lftprintf -lm
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux
-	INVOKE	+=	mlx_linux
-	IFLAGS	+=	-I/usr/include -Ilib/mlx_linux
-	LFLAGS	+=	-Llib/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	IFLAGS	+=	-I/usr/include -I$(MLX)
+	LFLAGS	+=	-L$(MLX) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 endif
 ifeq ($(PLATFORM), Darwin)
-	MLX		=	lib/mlx_mac
-	INVOKE	+=	mlx_mac
-	IFLAGS	+=	-Ilib/mlx_mac
-	LFLAGS	+=	-Llib/mlx_mac -lmlx -framework OpenGL -framework AppKit
+	MLX		=	lib/mlx_beta
+	IFLAGS	+=	-I$(MLX)
+	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
 endif
 
 # Colors
@@ -116,12 +114,9 @@ fclean:		libft printf
 			@$(RM) $(NAME) $(NAME)_old
 			@echo "${GREEN}Done.${RESET}"
 
-mlx_linux:
-				@$(MAKE) $(MAKECMDGOALS) -C lib/mlx_linux
-
-mlx_mac:
-				@$(MAKE) $(MAKECMDGOALS) -C lib/mlx_mac
+mlx:
+				@$(MAKE) $(MAKECMDGOALS) -C $(MLX)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re libft printf mlx_linux mlx_mac wait_msg
+.PHONY:		all clean fclean re libft printf mlx wait_msg

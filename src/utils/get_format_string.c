@@ -6,11 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:57:25 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 18:43:56 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:38:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "ui.h"
 #include <ft_printf.h>
 #include <libft.h>
 #include <stdio.h>

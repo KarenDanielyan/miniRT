@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/22 18:06:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/26 21:07:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@
 # define EPSILON 0.000001
 
 /* Defines For UI */
+enum	e_uitype
+{
+	GUI,
+	CONSOLE
+};
+
 # define HEADER "\
 * **************** miniRT ***************** *\n\
 *                                           *\n\
@@ -60,15 +66,17 @@
 
 
 # ifdef __APPLE__
+#  define UI_MODE CONSOLE
 #  define INFO_WIDTH 350
 #  define PREVIEW_HEIGHT 50
 # elif __linux__
+#  define UI_MODE GUI
 #  define INFO_WIDTH 300
 #  define PREVIEW_HEIGHT 50
+#  define MIN_HEIGHT 300
+#  define MIN_WIDTH 400
 # endif
 
-#  define MIN_HEIGHT 300
-#  define MIN_WIDTH 300
 # define PREVIEW_OFFSET 1
 # define LINE_SIZE	15
 # define MIN_SEGMENT_SIZE 4
@@ -166,20 +174,35 @@ struct s_job
 	t_compute	shader;
 };
 
+# ifdef __linux__
 struct s_control
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				win_u;
 	int				win_v;
-	int				worker_c;
-	t_camera		cam;
-	t_thread		*pool;
 	pthread_mutex_t	qmux;
-	t_darray		job_q;
+	t_list			*job_q;
+	t_thread		*pool;
 	t_darray		world;
+	t_camera		cam;
 	t_image			render;
 	t_ui			ui;
 };
+# elif __APPLE
+struct s_control
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	int				win_u;
+	int				win_v;
+	pthread_mutex_t	qmux;
+	t_list			*job_q;
+	t_thread		*pool;
+	t_camera		cam;
+	t_darray		world;
+	t_image			render;
+};
+# endif
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 20:42:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:05:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 void	graphical_hello_world(t_control *ctl, t_camera *cam);
 void	camera_setup(t_camera *cam, int image_width, int image_height);
-void	init_ui(t_control *ctl);
 
 /**
  * Main logic:
@@ -41,6 +40,7 @@ int	main(void)
 	camera_setup(&cam, ctl.win_u, ctl.win_v);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
+	graphical_hello_world(&ctl, &cam);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }

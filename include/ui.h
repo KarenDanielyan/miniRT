@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ui.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/26 19:58:11 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/26 19:54:02 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/26 20:24:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef UI_H
+# define UI_H
 
 # include "defines.h"
-# include "events.h"
-# include "utils.h"
-# include <libft.h>
-# include <ft_printf.h>
-# include <mlx.h>
 
-void	scan(t_darray *nodes, char *filename);
+void	init_ui(t_control *ctl);
 
-/* Thread Pools */
-void	init_threadpool(t_control *ctl);
-
-/* Utils */
-void	draw_line(t_control *ctl, t_point2 from, t_point2 to);
-void	fill_image(t_image *image, int color);
-void	prompt_next_line(t_control *ctl, int color, char *str, ...);
+char	*get_format_string(char *str, va_list args);
 
 #endif

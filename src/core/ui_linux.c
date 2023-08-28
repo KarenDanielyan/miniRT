@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui.c                                               :+:      :+:    :+:   */
+/*   ui_linux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 19:38:27 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 20:30:56 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/26 20:02:09 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/26 20:41:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-#include <stdio.h>
+#ifdef __linux__
+# include "ui.h"
+# include "miniRT.h"
+# include <stdio.h>
 
 static void	draw_borders(t_control *ctl);
 static void	init_background(t_control *ctl);
@@ -114,3 +116,4 @@ void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 	}
 	free(tmp);
 }
+#endif

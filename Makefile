@@ -21,7 +21,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c) \
+				main.c ray.c ui_mac.c ui_linux.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				draw_line.c fill_image.c \

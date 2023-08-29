@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	core scanner vec3 events utils renderer
+SUBDIRS		=	core scanner vec3 events utils renderer debug
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -34,7 +34,9 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/renderer/%.c, \
-				threadpool.c)
+				threadpool.c tasks.c) \
+				$(patsubst %.c, $(SRC)/debug/%.c, \
+				basic_rays.c print_messages.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
@@ -60,7 +62,7 @@ ifeq ($(PLATFORM),Linux)
 	LFLAGS	+=	-L$(MLX) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 endif
 ifeq ($(PLATFORM), Darwin)
-	MLX		=	lib/mlx_beta
+	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
 endif

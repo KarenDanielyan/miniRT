@@ -82,7 +82,8 @@
     "vec3.h": "c",
     "stdio.h": "c",
     "helper.h": "c",
-    "mlx_int.h": "c"
+    "mlx_int.h": "c",
+    "debug.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/26 21:07:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/29 21:55:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <pthread.h>
+# include <stdarg.h>
 # include "vec3.h"
 # include "ray.h"
 
@@ -61,9 +62,8 @@ enum	e_uitype
 *                     #+#    #+#            *\n\
 *                    ###   ########.fr      *\n\
 *                                           *\n\
-* ***************************************** *"
+* ***************************************** *\n"
 # define PREVIEW "Image Preview"
-
 
 # ifdef __APPLE__
 #  define UI_MODE CONSOLE
@@ -93,7 +93,8 @@ typedef struct s_point2		t_point2;
 
 typedef struct s_thread		t_thread;
 
-typedef void				(*t_handler)(t_control *ctl, t_camera *cam, t_job *job);
+typedef void				(*t_handler)(t_control *ctl, t_camera *cam, \
+	t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_camera *cam, \
 	t_point2 loc, int *pixel);
 
@@ -167,7 +168,6 @@ struct s_thread
 
 struct s_job
 {
-	bool		taken;
 	t_point2	from;
 	t_point2	to;
 	t_handler	job_func;
@@ -175,6 +175,7 @@ struct s_job
 };
 
 # ifdef __linux__
+
 struct s_control
 {
 	void			*mlx_ptr;
@@ -189,13 +190,15 @@ struct s_control
 	t_image			render;
 	t_ui			ui;
 };
-# elif __APPLE
+# elif __APPLE__
+
 struct s_control
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				win_u;
 	int				win_v;
+	int				worker_c;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;

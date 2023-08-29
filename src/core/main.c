@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/26 20:05:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/29 21:02:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 void	graphical_hello_world(t_control *ctl, t_camera *cam);
 void	camera_setup(t_camera *cam, int image_width, int image_height);
+void	generate_tasks(t_control *ctl);
 
 /**
  * Main logic:
@@ -38,6 +39,8 @@ int	main(void)
 
 	init_ui(&ctl);
 	camera_setup(&cam, ctl.win_u, ctl.win_v);
+	ctl.worker_c = 5;
+	generate_tasks(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	graphical_hello_world(&ctl, &cam);
@@ -68,58 +71,4 @@ void	camera_setup(t_camera *cam, int image_width, int image_height)
 	cam->pixel_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
 	cam->pixel_origin = shrink_vec3(2, &cam->pixel_origin);
 	cam->pixel_origin = sum_vec3(&cam->upper_left, &cam->pixel_origin);
-}
-
-t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
-{
-	t_vec3	dir;
-	t_vec3	tmp;
-
-	tmp = scale_vec3(i, &cam->pixel_delta_v);
-	dir = sum_vec3(&pix_origin, &tmp);
-	tmp = scale_vec3(j, &cam->pixel_delta_u);
-	dir = sum_vec3(&dir, &tmp);
-	dir = subst_vec3(&dir, &cam->origin);
-	return (dir);
-}
-
-t_color	ray_color(t_ray *ray)
-{
-	t_color	start;
-	t_color	end;
-	t_color	blend;
-	float	t;
-
-	t = 0.5 * (get_y(&ray->direction) + 1.0);
-	start = vec3(1.0, 1.0, 1.0);
-	start = scale_vec3((1 - t), &start);
-	end = vec3(0.5, 0.7, 1.0);
-	end = scale_vec3(t, &end);
-	blend = sum_vec3(&start, &end);
-	return (blend);
-}
-
-void	graphical_hello_world(t_control *ctl, t_camera *cam)
-{
-	int			i;
-	int			j;
-	t_ray		r;
-
-	i = 0;
-	while (i < ctl->render.height)
-	{
-		j = 0;
-		while (j < ctl->render.width)
-		{
-			new_ray(&r, cam->origin, get_ray_dir(cam, cam->pixel_origin, i, j));
-			set_color(((ctl->render.data + i * ctl->render.width) + j), \
-				ray_color(&r));
-			j ++;
-		}
-		i ++;
-		usleep(5000);
-		mlx_put_image_to_window(ctl->mlx_ptr, \
-		ctl->win_ptr, ctl->render.mlx_image, INFO_WIDTH + PREVIEW_OFFSET, \
-			PREVIEW_HEIGHT + PREVIEW_OFFSET);
-	}
 }

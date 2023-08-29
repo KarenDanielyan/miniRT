@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/26 19:58:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:22:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <mlx.h>
 
 void	scan(t_darray *nodes, char *filename);
+
+void	init_ui(t_control *ctl);
 
 /* Thread Pools */
 void	init_threadpool(t_control *ctl);

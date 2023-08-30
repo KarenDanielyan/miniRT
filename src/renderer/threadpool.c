@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:58:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:41:03 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:50:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ static void	*listen(void *thread)
 		job->job_func(ctl, job);
 		free(job);
 	}
-	prompt_next_line(ctl, 0, "Thread [%d] finished execution after %ldms.\n", \
-		t->id, get_time(false));
+	prompt_next_line(ctl, 0, "Thread [%d] finished execution.\n", t->id);
 	return (NULL);
 }
 

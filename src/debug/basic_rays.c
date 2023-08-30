@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/29 14:17:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:46:22 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,28 @@ static t_color	ray_color(t_ray *ray)
 	return (blend);
 }
 
-void	graphical_hello_world(t_control *ctl, t_camera *cam)
+void	graphical_hello_world(t_control *ctl, t_job *job)
 {
 	int			i;
 	int			j;
 	t_ray		r;
 
-	i = 0;
-	while (i < ctl->render.height)
+	i = (int)(job->from.y);
+	while (i <= (int)(job->to.y))
 	{
-		j = 0;
-		while (j < ctl->render.width)
+		j = (int)(job->from.x);
+		while (j <= (int)(job->to.x))
 		{
-			new_ray(&r, cam->origin, get_ray_dir(cam, cam->pixel_origin, i, j));
+			new_ray(&r, ctl->cam.origin, \
+				get_ray_dir(&ctl->cam, ctl->cam.pixel_origin, i, j));
 			set_color(((ctl->render.data + i * ctl->render.width) + j), \
 				ray_color(&r));
 			j ++;
 		}
 		i ++;
-		mlx_put_image_to_window(ctl->mlx_ptr, \
-		ctl->win_ptr, ctl->render.mlx_image, 0, 0);
 	}
+	pthread_mutex_lock(&ctl->winmux);
+	mlx_put_image_to_window(ctl->mlx_ptr, \
+		ctl->win_ptr, ctl->render.mlx_image, INFO_WIDTH, PREVIEW_HEIGHT);
+	pthread_mutex_unlock(&ctl->winmux);
 }

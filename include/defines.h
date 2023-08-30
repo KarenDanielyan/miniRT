@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/29 21:55:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:21:52 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define SCREEN_WIDTH 640
-# define ASPECT_RATIO 1.777777778
+# define SCREEN_WIDTH 840
+# define ASPECT_RATIO 1.5
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
@@ -67,8 +67,8 @@ enum	e_uitype
 
 # ifdef __APPLE__
 #  define UI_MODE CONSOLE
-#  define INFO_WIDTH 350
-#  define PREVIEW_HEIGHT 50
+#  define INFO_WIDTH 0
+#  define PREVIEW_HEIGHT 0
 # elif __linux__
 #  define UI_MODE GUI
 #  define INFO_WIDTH 300
@@ -93,10 +93,9 @@ typedef struct s_point2		t_point2;
 
 typedef struct s_thread		t_thread;
 
-typedef void				(*t_handler)(t_control *ctl, t_camera *cam, \
-	t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_camera *cam, \
-	t_point2 loc, int *pixel);
+typedef void				(*t_handler)(t_control *ctl, t_job *job);
+typedef void				(*t_compute)(t_control *ctl, t_point2 loc, \
+	int *pixel);
 
 typedef enum e_type			t_type;
 
@@ -182,6 +181,8 @@ struct s_control
 	void			*win_ptr;
 	int				win_u;
 	int				win_v;
+	int				worker_c;
+	pthread_mutex_t	winmux;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;
@@ -199,6 +200,8 @@ struct s_control
 	int				win_u;
 	int				win_v;
 	int				worker_c;
+	pthread_mutex_t	pmux;
+	pthread_mutex_t	winmux;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;

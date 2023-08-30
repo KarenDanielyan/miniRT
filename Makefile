@@ -25,7 +25,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				draw_line.c fill_image.c \
-				get_format_string.c) \
+				get_format_string.c get_time.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \

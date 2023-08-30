@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 02:02:36 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/10 17:42:04 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:05:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ int	on_keypress(int key, t_control *ctl)
 
 static int	on_save(t_control *ctl)
 {
-	char	*tmp;
-
 	create_image(RENDER_FILE, ctl->render.data, \
 		ctl->render.width, ctl->render.height);
-	tmp = ft_strjoin("Render saved in ", RENDER_FILE);
-	prompt_next_line(ctl, STATUS_C, tmp);
-	free(tmp);
+	prompt_next_line(ctl, STATUS_C, "Render saved in %s\n", RENDER_FILE);
 	return (EXIT_SUCCESS);
 }

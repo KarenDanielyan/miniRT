@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 15:14:25 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/30 21:23:32 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/08/30 21:31:30 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "miniRT.h"
+#include <sys/time.h>
 
-# include "miniRT.h"
-# include "defines.h"
-# include "vec3.h"
-# include "color.h"
-# include "ray.h"
+typedef struct timeval	t_time;
 
-void	graphical_hello_world(t_control *ctl, t_job *job);
+uint64_t	get_time(bool to_init)
+{
+	static t_time	init;
+	t_time			current;
+	uint64_t		rv;
 
-void	print_tasks(t_control *ctl);
-
-#endif
+	if (to_init)
+		gettimeofday(&init, NULL);
+	gettimeofday(&current, NULL);
+	current.tv_sec -= init.tv_sec;
+	current.tv_usec -= init.tv_usec;
+	rv = current.tv_sec * 1000 + current.tv_usec / 1000;
+	return (rv);
+}

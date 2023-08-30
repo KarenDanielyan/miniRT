@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/29 21:02:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:46:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stdio.h>
 #include <libft.h>
 
-void	graphical_hello_world(t_control *ctl, t_camera *cam);
-void	camera_setup(t_camera *cam, int image_width, int image_height);
-void	generate_tasks(t_control *ctl);
+void		camera_setup(t_camera *cam, int image_width, int image_height);
+void		generate_tasks(t_control *ctl);
+static void	env_init(t_control *ctl);
 
 /**
  * Main logic:
@@ -35,15 +35,13 @@ void	generate_tasks(t_control *ctl);
 int	main(void)
 {
 	t_control	ctl;
-	t_camera	cam;
 
-	init_ui(&ctl);
-	camera_setup(&cam, ctl.win_u, ctl.win_v);
-	ctl.worker_c = 5;
+	env_init(&ctl);
 	generate_tasks(&ctl);
+	camera_setup(&ctl.cam, ctl.win_u, ctl.win_v);
+	workers_init(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
-	graphical_hello_world(&ctl, &cam);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
 }
@@ -71,4 +69,13 @@ void	camera_setup(t_camera *cam, int image_width, int image_height)
 	cam->pixel_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
 	cam->pixel_origin = shrink_vec3(2, &cam->pixel_origin);
 	cam->pixel_origin = sum_vec3(&cam->upper_left, &cam->pixel_origin);
+}
+
+static void	env_init(t_control *ctl)
+{
+	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
+	pthread_mutex_init(&ctl->qmux, NULL);
+	pthread_mutex_init(&ctl->winmux, NULL);
+	pthread_mutex_init(&ctl->pmux, NULL);
+	init_ui(ctl);
 }

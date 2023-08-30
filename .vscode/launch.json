@@ -5,19 +5,19 @@
       "name": "OSX Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/minishell",
+      "program": "${workspaceFolder}/miniRT",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [{ "name": "config", "value": "debug" }],
-      "externalConsole": true,
+      "externalConsole": false,
       "MIMode": "lldb"
     },
     {
       "name": "(Linux) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/minishell",
+      "program": "${workspaceFolder}/miniRT",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -31,10 +31,7 @@
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}/minishell",
-      "environment": [
-        {"name": "ABBB", "value": "among    us"}
-      ],
+      "program": "${workspaceFolder}/miniRT",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

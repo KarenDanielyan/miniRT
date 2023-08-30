@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:41:25 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:34:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
 			current.to.x = (i + 1) * delta->u - 1;
 			current.to.y = (j + 1) * delta->v - 1;
 			if (i == cut_count - 1)
-				current.to.x = r->width - 1;
+				current.to.x = r->width;
 			if (j == cut_count - 1)
-				current.to.y = r->height - 1;
+				current.to.y = r->height;
 			ft_darray_pushback(crops, &current);
 			j ++;
 		}

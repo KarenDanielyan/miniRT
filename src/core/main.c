@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:54:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:09:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,21 @@ void	camera_setup(t_camera *cam, int image_width, int image_height)
 	cam->pixel_origin = sum_vec3(&cam->upper_left, &cam->pixel_origin);
 }
 
+#ifdef __linux__
+
 static void	env_init(t_control *ctl)
 {
+	ctl->job_q = NULL;
+	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
+	pthread_mutex_init(&ctl->qmux, NULL);
+	pthread_mutex_init(&ctl->winmux, NULL);
+	init_ui(ctl);
+}
+#elif __APPLE__
+
+static void	env_init(t_control *ctl)
+{
+	ctl->job_q = NULL;
 	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
 	pthread_mutex_init(&ctl->qmux, NULL);
 	pthread_mutex_init(&ctl->winmux, NULL);
@@ -80,3 +93,4 @@ static void	env_init(t_control *ctl)
 		pthread_mutex_init(&ctl->pmux, NULL);
 	init_ui(ctl);
 }
+#endif

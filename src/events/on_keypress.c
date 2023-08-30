@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 02:02:36 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 20:05:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:28:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ static int	on_save(t_control *ctl)
 {
 	create_image(RENDER_FILE, ctl->render.data, \
 		ctl->render.width, ctl->render.height);
-	prompt_next_line(ctl, STATUS_C, "Render saved in %s\n", RENDER_FILE);
+	prompt_next_line(ctl, STATUS_C, "Render saved in %s", RENDER_FILE);
 	return (EXIT_SUCCESS);
 }

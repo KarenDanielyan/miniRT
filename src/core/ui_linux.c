@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:02:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:20:58 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:45:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 
 	va_start(args, str);
 	tmp = get_format_string(str, args);
+	pthread_mutex_lock(&ctl->winmux);
 	if (offset_v == 0)
 	{
 		offset_u = 10;
@@ -114,6 +115,7 @@ void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 			ctl->ui.info.mlx_image, 0, 0);
 		offset_v = LINE_SIZE;
 	}
+	pthread_mutex_unlock(&ctl->winmux);
 	free(tmp);
 }
 #endif

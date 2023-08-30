@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	core scanner vec3 events utils renderer debug
+SUBDIRS		=	core scanner vec3 events utils render debug
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -33,8 +33,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3_get.c vec3_set.c vec3_utils.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
-				$(patsubst %.c, $(SRC)/renderer/%.c, \
-				threadpool.c tasks.c) \
+				$(patsubst %.c, $(SRC)/render/%.c, \
+				threadpool.c tasks.c put_render.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
 				basic_rays.c print_messages.c)
 

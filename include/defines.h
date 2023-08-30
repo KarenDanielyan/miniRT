@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:21:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:21:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define SCREEN_WIDTH 840
+# define SCREEN_WIDTH 1280
 # define ASPECT_RATIO 1.5
 
 /* Miscellaneous Defines */

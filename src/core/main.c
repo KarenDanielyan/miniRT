@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:46:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:54:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	env_init(t_control *ctl)
 	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
 	pthread_mutex_init(&ctl->qmux, NULL);
 	pthread_mutex_init(&ctl->winmux, NULL);
-	pthread_mutex_init(&ctl->pmux, NULL);
+	if (UI_MODE == CONSOLE)
+		pthread_mutex_init(&ctl->pmux, NULL);
 	init_ui(ctl);
 }

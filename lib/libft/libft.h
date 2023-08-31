@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/22 18:23:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:49:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 
 int			ft_lstsize(t_list *lst);
+int			ft_lstcountif(t_list *lst, int (*cmp)(void *content));
 
 /* Dynamic Arrays */
 typedef struct s_darray

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:09:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:18:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(void)
 	env_init(&ctl);
 	generate_tasks(&ctl);
 	camera_setup(&ctl.cam, ctl.win_u, ctl.win_v);
-	workers_init(&ctl);
+	run(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);
@@ -89,8 +89,7 @@ static void	env_init(t_control *ctl)
 	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
 	pthread_mutex_init(&ctl->qmux, NULL);
 	pthread_mutex_init(&ctl->winmux, NULL);
-	if (UI_MODE == CONSOLE)
-		pthread_mutex_init(&ctl->pmux, NULL);
+	pthread_mutex_init(&ctl->pmux, NULL);
 	init_ui(ctl);
 }
 #endif

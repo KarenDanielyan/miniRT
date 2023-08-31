@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 22:12:29 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:31:17 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:56:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	put_render(t_control *ctl)
 
 void	put_render(t_control *ctl)
 {
-	(void)ctl;
-	;
+	pthread_mutex_lock(&ctl->winmux);
+	mlx_put_image_to_window(ctl->mlx_ptr, ctl->win_ptr, \
+		ctl->render.mlx_image, 0, 0);
+	pthread_mutex_unlock(&ctl->winmux);
 }
 
 #endif

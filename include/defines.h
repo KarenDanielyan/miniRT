@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:21:45 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:17:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,6 @@
 /* Defines for floating-point operations */
 # define EPSILON 0.000001
 
-/* Defines For UI */
-enum	e_uitype
-{
-	GUI,
-	CONSOLE
-};
-
 # define HEADER "\
 * **************** miniRT ***************** *\n\
 *                                           *\n\
@@ -66,20 +59,17 @@ enum	e_uitype
 # define PREVIEW "Image Preview"
 
 # ifdef __APPLE__
-#  define UI_MODE CONSOLE
 #  define INFO_WIDTH 0
 #  define PREVIEW_HEIGHT 0
 # elif __linux__
-#  define UI_MODE GUI
 #  define INFO_WIDTH 300
 #  define PREVIEW_HEIGHT 50
 #  define MIN_HEIGHT 300
 #  define MIN_WIDTH 400
+#  define PREVIEW_OFFSET 1
+#  define LINE_SIZE	15
 # endif
 
-# define PREVIEW_OFFSET 1
-# define LINE_SIZE	15
-# define MIN_SEGMENT_SIZE 4
 
 typedef struct s_control	t_control;
 typedef struct s_camera		t_camera;
@@ -167,6 +157,7 @@ struct s_thread
 
 struct s_job
 {
+	bool		busy;
 	t_point2	from;
 	t_point2	to;
 	t_handler	job_func;

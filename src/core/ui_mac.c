@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:02:48 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:20:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:54:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 	(void)color;
 	va_start(args, str);
 	tmp = get_format_string(str, args);
+	ft_strappend(&tmp, '\n');
 	pthread_mutex_lock(&ctl->pmux);
 	printf("\033[34m%s\033[0m", tmp);
 	pthread_mutex_unlock(&ctl->pmux);

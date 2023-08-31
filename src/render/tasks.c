@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:34:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:27:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define CROP_SCALE 4
+#define CROP_SCALE 50
 
 typedef struct s_task
 {
@@ -65,6 +65,7 @@ t_job	*new_job(t_task *task, \
 	job = (t_job *)ft_calloc(1, sizeof(t_job));
 	if (!job)
 		exit(EXIT_FAILURE);
+	job->busy = false;
 	job->from.x = task->from.x;
 	job->from.y = task->from.y;
 	job->to.x = task->to.x;
@@ -91,9 +92,9 @@ static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
 			current.to.x = (i + 1) * delta->u - 1;
 			current.to.y = (j + 1) * delta->v - 1;
 			if (i == cut_count - 1)
-				current.to.x = r->width;
+				current.to.x = r->width - 1;
 			if (j == cut_count - 1)
-				current.to.y = r->height;
+				current.to.y = r->height - 1;
 			ft_darray_pushback(crops, &current);
 			j ++;
 		}

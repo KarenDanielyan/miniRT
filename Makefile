@@ -25,7 +25,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				draw_line.c fill_image.c \
-				get_format_string.c get_time.c) \
+				get_format_string.c get_time.c \
+				progress_bar.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/vec3/%.c, \
@@ -34,7 +35,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/render/%.c, \
-				threadpool.c tasks.c put_render.c) \
+				tasks.c put_render.c \
+				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
 				basic_rays.c print_messages.c)
 

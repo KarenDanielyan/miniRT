@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:42:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:51:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	graphical_hello_world(t_control *ctl, t_job *job)
 	while (i <= (int)(job->to.y))
 	{
 		j = (int)(job->from.x);
-		while (j <= (int)(job->to.x) + 1)
+		while (j <= (int)(job->to.x))
 		{
 			new_ray(&r, ctl->cam.origin, \
 				get_ray_dir(&ctl->cam, ctl->cam.pixel_origin, i, j));

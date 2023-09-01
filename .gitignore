@@ -9,6 +9,7 @@ lib/printf/libftprintf.a
 lib/mlx_linux/obj
 lib/mlx_mac/obj
 lib/mlx_linux/test/*
+lib/mlx_linux/*.gen
 lib/mlx_linux/*.a
 lib/mlx_linux/test/*.o
 lib/mlx_mac/test/*.o

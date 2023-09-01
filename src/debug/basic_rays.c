@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 13:51:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:07:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,24 @@ static t_color	ray_color(t_ray *ray)
 	return (blend);
 }
 
+void	basic_shader(t_control *ctl, t_point2 *loc, int *pixel)
+{
+	t_ray	r;
+	int		i;
+	int		j;
+
+	i = (int)loc->y;
+	j = (int)loc->x;
+	new_ray(&r, ctl->cam.origin, \
+		get_ray_dir(&ctl->cam, ctl->cam.pixel_origin, i, j));
+	set_color(pixel, ray_color(&r));
+}
+
 void	graphical_hello_world(t_control *ctl, t_job *job)
 {
 	int			i;
 	int			j;
-	t_ray		r;
+	t_point2	loc;
 
 	i = (int)(job->from.y);
 	while (i <= (int)(job->to.y))
@@ -53,10 +66,10 @@ void	graphical_hello_world(t_control *ctl, t_job *job)
 		j = (int)(job->from.x);
 		while (j <= (int)(job->to.x))
 		{
-			new_ray(&r, ctl->cam.origin, \
-				get_ray_dir(&ctl->cam, ctl->cam.pixel_origin, i, j));
-			set_color(((ctl->render.data + i * ctl->render.width) + j), \
-				ray_color(&r));
+			loc.y = i;
+			loc.x = j;
+			job->shader(ctl, &loc, \
+				((ctl->render.data + i * ctl->render.width) + j));
 			j ++;
 		}
 		i ++;

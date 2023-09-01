@@ -6,17 +6,16 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:03:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 18:53:31 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:09:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include <stdio.h>
 
-
 #ifdef __APPLE__
 
-#define BAR_LEN 50
+# define BAR_LEN 50
 
 void	print_bar(t_control *ctl, int done)
 {
@@ -45,7 +44,7 @@ void	print_bar(t_control *ctl, int done)
 	char		*str;
 	int			num_chars;
 	int			i;
-	
+
 	i = -1;
 	num_chars = (done * BAR_LEN) / 100;
 	str = ft_itoa(done);

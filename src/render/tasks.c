@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 16:27:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:06:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	generate_tasks(t_control *ctl)
 	{
 		ft_lstadd_back(&ctl->job_q, \
 			ft_lstnew(new_job(((t_task *)(tasks.content) + i), \
-			&graphical_hello_world, NULL)));
+			&graphical_hello_world, &basic_shader)));
 		i ++;
 	}
 	pthread_mutex_unlock(&ctl->qmux);

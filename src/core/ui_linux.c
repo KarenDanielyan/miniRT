@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:02:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 20:40:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:09:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	prompt_to_headers(t_control *ctl, char *str1, char *str2)
 void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 {
 	int *const	offset_u = &ctl->ui.info_shift_u;
-	int	*const	offset_v = &ctl->ui.info_shift_v;
+	int *const	offset_v = &ctl->ui.info_shift_v;
 	va_list		args;
 	char		*tmp;
 

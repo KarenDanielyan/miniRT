@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   threadpool.c                                       :+:      :+:    :+:   */
+/*   worker.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 15:58:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 14:59:48by kdaniely         ###   ########.fr       */
+/*   Created: 2023/09/01 21:09:39 by kdaniely          #+#    #+#             */
+/*   Updated: 2023/09/01 21:09:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	run(t_control *ctl)
 	create_pool(ctl);
 	update(ctl);
 	cleanup(ctl);
-	prompt_next_line(ctl, STATUS_C, "Rendering finished after %ldms.", get_time(false));
+	prompt_next_line(ctl, STATUS_C, "Rendering finished after %ldms.", \
+		get_time(false));
 	put_render(ctl);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 18:57:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:10:16 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@
 #  define LINE_SIZE	15
 # endif
 
-
 typedef struct s_control	t_control;
 typedef struct s_camera		t_camera;
 typedef struct s_object		t_object;
@@ -84,7 +83,7 @@ typedef struct s_point2		t_point2;
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_point2 loc, \
+typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
 	int *pixel);
 
 typedef enum e_type			t_type;

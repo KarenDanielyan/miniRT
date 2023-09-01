@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 15:17:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:57:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define SCREEN_WIDTH 1280
+# define SCREEN_WIDTH 600
 # define ASPECT_RATIO 1.5
 
 /* Miscellaneous Defines */
@@ -143,6 +143,8 @@ struct s_image
 
 struct s_ui
 {
+	int		info_shift_u;
+	int		info_shift_v;
 	t_image	background;
 	t_image	preview;
 	t_image	info;

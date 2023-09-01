@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:50:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 20:20:41 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:53:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	update(t_control *ctl)
 			break ;
 		if (cur_avail != prev_avail)
 		{
-			print_bar(done);
+			print_bar(ctl, done);
 			put_render(ctl);
 		}
 		prev_avail = cur_avail;
 	}
-	print_bar(100);
-	printf("\n");
+	print_bar(ctl, 100);
+	prompt_next_line(ctl, 0, "");
 }
 
 int	job_available(void *j)

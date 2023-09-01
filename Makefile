@@ -67,6 +67,8 @@ ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
+# -L$(MLX) -lmlx_Darwin -L/opt/X11/lib -lX11 -lXext -lm -lz
+
 endif
 
 # Colors

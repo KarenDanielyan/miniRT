@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:50:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 20:08:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:40:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	*listen(void *thread)
 			break ;
 		job = tmp->content;
 		job->job_func(ctl, job);
+		usleep(50000);
 	}
 	return (NULL);
 }

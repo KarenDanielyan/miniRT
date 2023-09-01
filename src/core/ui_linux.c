@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:02:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 22:45:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:40:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	draw_borders(t_control *ctl)
 
 static void	init_background(t_control *ctl)
 {
+	ctl->ui.info_shift_u = 0;
+	ctl->ui.info_shift_v = 0;
 	new_image(ctl->mlx_ptr, INFO_WIDTH, ctl->win_v, &ctl->ui.info);
 	fill_image(&ctl->ui.info, BACKGROUND_C);
 	new_image(ctl->mlx_ptr, ctl->win_u, ctl->win_v, &ctl->ui.background);
@@ -93,27 +95,27 @@ static void	prompt_to_headers(t_control *ctl, char *str1, char *str2)
 
 void	prompt_next_line(t_control *ctl, int color, char *str, ...)
 {
-	static int	offset_u;
-	static int	offset_v;
+	int *const	offset_u = &ctl->ui.info_shift_u;
+	int	*const	offset_v = &ctl->ui.info_shift_v;
 	va_list		args;
 	char		*tmp;
 
 	va_start(args, str);
 	tmp = get_format_string(str, args);
 	pthread_mutex_lock(&ctl->winmux);
-	if (offset_v == 0)
+	if (*offset_v == 0)
 	{
-		offset_u = 10;
-		offset_v = LINE_SIZE;
+		*offset_u = 10;
+		*offset_v = LINE_SIZE;
 	}
-	mlx_string_put(ctl->mlx_ptr, ctl->win_ptr, offset_u, offset_v, \
+	mlx_string_put(ctl->mlx_ptr, ctl->win_ptr, *offset_u, *offset_v, \
 		color, tmp);
-	offset_v += LINE_SIZE;
-	if (offset_v >= ctl->win_v)
+	*offset_v += LINE_SIZE;
+	if (*offset_v >= ctl->win_v)
 	{
 		mlx_put_image_to_window(ctl->mlx_ptr, ctl->win_ptr, \
 			ctl->ui.info.mlx_image, 0, 0);
-		offset_v = LINE_SIZE;
+		*offset_v = LINE_SIZE;
 	}
 	pthread_mutex_unlock(&ctl->winmux);
 	free(tmp);

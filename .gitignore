@@ -8,10 +8,10 @@ lib/printf/build
 lib/printf/libftprintf.a
 lib/mlx_linux/obj
 lib/mlx_mac/obj
+lib/mlx_linux/test/*
 lib/mlx_linux/*.a
 lib/mlx_linux/test/*.o
 lib/mlx_mac/test/*.o
 lib/mlx_mac/*.a
 lib/mlx_linux/*.o
 lib/mlx_mac/*.o
-lib/mlx_beta

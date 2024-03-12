@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 16:32:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:41:30 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_job	*new_job(t_task *task, \
 	return (job);
 }
 
-static void	crop(t_darray *crops, t_image *r, t_task *delta, int cut_count)
+static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
 {
 	t_task	current;
 	int		i;
@@ -91,7 +91,7 @@ static void	crop(t_darray *crops, t_image *r, t_task *delta, int cut_count)
 
 static void	get_crops(t_darray *crops, t_image *r, int crop_c)
 {
-	t_task	delta;
+	t_point	delta;
 	int		cut_count;
 
 	ft_darray_init(crops, sizeof(t_task), crop_c);

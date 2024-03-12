@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 15:57:45 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:40:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ typedef enum e_type			t_type;
 
 typedef union u_value		t_value;
 
-struct s_task
-{
-	t_point2	from;
-	t_point2	to;
-};
-
 struct s_point
 {
 	int		u;
@@ -101,6 +95,12 @@ struct s_point2
 {
 	float	x;
 	float	y;
+};
+
+struct s_task
+{
+	struct s_point2	from;
+	struct s_point2	to;
 };
 
 enum	e_type

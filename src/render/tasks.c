@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 21:06:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:32:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@
 #include <math.h>
 
 #define CROP_SCALE 50
-
-typedef struct s_task
-{
-	t_point2	from;
-	t_point2	to;
-}	t_task;
-
-typedef struct s_point
-{
-	int		u;
-	int		v;
-}	t_point;
 
 static void	get_crops(t_darray *crops, t_image *r, int crop_c);
 t_job		*new_job(t_task *task, \
@@ -40,7 +28,6 @@ void	generate_tasks(t_control *ctl)
 	size_t		i;
 	int			crop_c;
 
-	(void)i;
 	img = &ctl->render;
 	crop_c = CROP_SCALE * ctl->worker_c;
 	get_crops(&tasks, img, crop_c);
@@ -75,7 +62,7 @@ t_job	*new_job(t_task *task, \
 	return (job);
 }
 
-static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
+static void	crop(t_darray *crops, t_image *r, t_task *delta, int cut_count)
 {
 	t_task	current;
 	int		i;
@@ -89,12 +76,12 @@ static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
 		{
 			current.from.x = i * delta->u;
 			current.from.y = j * delta->v;
-			current.to.x = (i + 1) * delta->u - 1;
-			current.to.y = (j + 1) * delta->v - 1;
+			current.to.x = (i + 1) * delta->u;
+			current.to.y = (j + 1) * delta->v;
 			if (i == cut_count - 1)
-				current.to.x = r->width - 1;
+				current.to.x = r->width;
 			if (j == cut_count - 1)
-				current.to.y = r->height - 1;
+				current.to.y = r->height;
 			ft_darray_pushback(crops, &current);
 			j ++;
 		}
@@ -104,7 +91,7 @@ static void	crop(t_darray *crops, t_image *r, t_point *delta, int cut_count)
 
 static void	get_crops(t_darray *crops, t_image *r, int crop_c)
 {
-	t_point	delta;
+	t_task	delta;
 	int		cut_count;
 
 	ft_darray_init(crops, sizeof(t_task), crop_c);

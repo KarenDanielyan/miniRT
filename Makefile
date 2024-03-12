@@ -17,15 +17,14 @@ SUBDIRS		=	core scanner vec3 events utils render debug
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
 				vec3.h color.h events.h utils.h \
-				ray.h) \
+				ray.h ui.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui_mac.c ui_linux.c) \
+				main.c ray.c ui.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
-				draw_line.c fill_image.c \
-				get_format_string.c get_time.c \
+				draw_line.c fill_image.c get_time.c \
 				progress_bar.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
@@ -50,7 +49,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -fPIC -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-g -fPIC -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 
@@ -67,7 +66,6 @@ ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
-# -L$(MLX) -lmlx_Darwin -L/opt/X11/lib -lX11 -lXext -lm -lz
 
 endif
 

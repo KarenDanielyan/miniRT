@@ -6,14 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 21:23:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/30 21:31:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:51:50 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include <sys/time.h>
-
-typedef struct timeval	t_time;
 
 uint64_t	get_time(bool to_init)
 {

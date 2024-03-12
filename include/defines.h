@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 21:10:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:57:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,12 @@
 * ***************************************** *\n"
 # define PREVIEW "Image Preview"
 
-# ifdef __APPLE__
-#  define INFO_WIDTH 0
-#  define PREVIEW_HEIGHT 0
-# elif __linux__
-#  define INFO_WIDTH 300
-#  define PREVIEW_HEIGHT 50
-#  define MIN_HEIGHT 300
-#  define MIN_WIDTH 400
-#  define PREVIEW_OFFSET 1
-#  define LINE_SIZE	15
-# endif
+# define INFO_WIDTH 0
+# define PREVIEW_HEIGHT 0
+
+typedef struct timeval	t_time;
+typedef struct s_task	t_task;
+typedef struct s_point	t_point;
 
 typedef struct s_control	t_control;
 typedef struct s_camera		t_camera;
@@ -89,6 +84,18 @@ typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
 typedef enum e_type			t_type;
 
 typedef union u_value		t_value;
+
+struct s_task
+{
+	t_point2	from;
+	t_point2	to;
+};
+
+struct s_point
+{
+	int		u;
+	int		v;
+};
 
 struct s_point2
 {
@@ -165,8 +172,6 @@ struct s_job
 	t_compute	shader;
 };
 
-# ifdef __linux__
-
 struct s_control
 {
 	void			*mlx_ptr;
@@ -174,26 +179,6 @@ struct s_control
 	int				win_u;
 	int				win_v;
 	int				worker_c;
-	pthread_mutex_t	winmux;
-	pthread_mutex_t	qmux;
-	t_list			*job_q;
-	t_thread		*pool;
-	t_darray		world;
-	t_camera		cam;
-	t_image			render;
-	t_ui			ui;
-};
-# elif __APPLE__
-
-struct s_control
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	int				win_u;
-	int				win_v;
-	int				worker_c;
-	pthread_mutex_t	pmux;
-	pthread_mutex_t	winmux;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;
@@ -201,6 +186,5 @@ struct s_control
 	t_darray		world;
 	t_image			render;
 };
-# endif
 
 #endif

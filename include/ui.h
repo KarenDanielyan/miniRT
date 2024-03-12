@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 19:54:02 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/26 20:24:40 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/07 01:10:47 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,5 @@
 # include "defines.h"
 
 void	init_ui(t_control *ctl);
-
-char	*get_format_string(char *str, va_list args);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 21:07:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:50:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
+#include <unistd.h>
 
 static t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
 {
@@ -61,10 +62,10 @@ void	graphical_hello_world(t_control *ctl, t_job *job)
 	t_point2	loc;
 
 	i = (int)(job->from.y);
-	while (i <= (int)(job->to.y))
+	while (i < (int)(job->to.y))
 	{
 		j = (int)(job->from.x);
-		while (j <= (int)(job->to.x))
+		while (j < (int)(job->to.x))
 		{
 			loc.y = i;
 			loc.x = j;

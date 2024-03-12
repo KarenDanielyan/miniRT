@@ -6,11 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/31 16:18:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:50:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "debug.h"
 #include "vec3.h"
 #include "color.h"
 #include <stdio.h>
@@ -71,25 +72,10 @@ void	camera_setup(t_camera *cam, int image_width, int image_height)
 	cam->pixel_origin = sum_vec3(&cam->upper_left, &cam->pixel_origin);
 }
 
-#ifdef __linux__
-
 static void	env_init(t_control *ctl)
 {
 	ctl->job_q = NULL;
 	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
 	pthread_mutex_init(&ctl->qmux, NULL);
-	pthread_mutex_init(&ctl->winmux, NULL);
 	init_ui(ctl);
 }
-#elif __APPLE__
-
-static void	env_init(t_control *ctl)
-{
-	ctl->job_q = NULL;
-	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
-	pthread_mutex_init(&ctl->qmux, NULL);
-	pthread_mutex_init(&ctl->winmux, NULL);
-	pthread_mutex_init(&ctl->pmux, NULL);
-	init_ui(ctl);
-}
-#endif

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 18:07:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:16:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@
 # define INFO_WIDTH 0
 # define PREVIEW_HEIGHT 0
 
-typedef struct timeval	t_time;
-typedef struct s_task	t_task;
-typedef struct s_point	t_point;
+typedef struct timeval		t_time;
+typedef struct s_task		t_task;
+typedef struct s_point		t_point;
 
 typedef struct s_hittable	t_hittable;
 typedef struct s_control	t_control;
@@ -128,7 +128,6 @@ struct s_camera
 /* TODO: Put Object Types */
 union u_object
 {
-
 };
 
 struct s_hittable

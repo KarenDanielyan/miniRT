@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 20:46:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:09:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	scan_prime(t_darray *arr, int fd)
 	void	*content;
 
 	str = NULL;
-	ft_darray_init(arr, sizeof(t_object), 100);
+	ft_darray_init(arr, sizeof(t_hittable), 100);
 	while (1)
 	{
 		str = get_next_line(fd);

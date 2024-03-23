@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 18:21:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:42:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ void		put_render(t_control *ctl);
 void		print_bar(t_control *ctl, int done);
 void		fill_image(t_image *image, int color);
 void		draw_line(t_control *ctl, t_point2 from, t_point2 to);
-void		prompt_next_line(t_control *ctl, int color, char *str, ...);
 
 #endif

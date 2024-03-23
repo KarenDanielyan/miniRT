@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 17:40:55 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:40:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@
 # define INFO_WIDTH 0
 # define PREVIEW_HEIGHT 0
 
-typedef struct timeval	t_time;
-typedef struct s_task	t_task;
-typedef struct s_point	t_point;
+typedef struct timeval		t_time;
+typedef struct s_task		t_task;
+typedef struct s_point		t_point;
 
+typedef struct s_hittable	t_hittable;
 typedef struct s_control	t_control;
 typedef struct s_camera		t_camera;
-typedef struct s_object		t_object;
 typedef struct s_image		t_image;
 typedef struct s_job		t_job;
 typedef struct s_ui			t_ui;
@@ -80,10 +80,11 @@ typedef struct s_thread		t_thread;
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
 	int *pixel);
+typedef int					(*t_hit)();
 
 typedef enum e_type			t_type;
 
-typedef union u_value		t_value;
+typedef union u_geometry	t_geometry;
 
 struct s_point
 {
@@ -105,8 +106,6 @@ struct s_task
 
 enum	e_type
 {
-	CAMERA,
-	AMBIENT,
 	PLANE,
 	SPHERE
 };
@@ -125,15 +124,15 @@ struct s_camera
 	float		focal_length;
 };
 
-union u_value
+union u_geometry
 {
-	t_camera	camera;
 };
 
-struct s_object
+struct s_hittable
 {
-	t_type	type;
-	t_value	value;
+	t_type		type;
+	t_hit		hit_function;
+	t_geometry	geometry;
 };
 
 struct s_image

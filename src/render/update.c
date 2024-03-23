@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:50:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/07 01:12:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:48:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	update(t_control *ctl)
 		if (cur_avail == 0)
 			break ;
 		if (cur_avail != prev_avail)
+		{
 			print_bar(ctl, done);
+			put_render(ctl);
+		}
 		prev_avail = cur_avail;
 	}
 	print_bar(ctl, 100);

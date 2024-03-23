@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	core scanner math events utils render debug
+SUBDIRS		=	core scanner math events utils job debug
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -33,7 +33,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3_get.c vec3_set.c vec3_utils.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
-				$(patsubst %.c, $(SRC)/render/%.c, \
+				$(patsubst %.c, $(SRC)/job/%.c, \
 				tasks.c put_render.c \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \

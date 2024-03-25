@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui.c                                               :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 20:02:48 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/25 16:58:28 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/03/25 16:36:35 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/03/25 17:01:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ui.h"
-#include "miniRT.h"
-#include <stdio.h>
+#ifndef CAMERA_H
+# define CAMERA_H
 
-void	init_ui(t_control *ctl)
+# include "defines.h"
+
+typedef struct s_vec3	t_point3;
+
+typedef struct s_camera
 {
-	ctl->mlx_ptr = mlx_init();
-	ctl->win_u = IMAGE_WIDTH;
-	ctl->win_v = IMAGE_HEIGHT;
-	new_image(ctl->mlx_ptr, ctl->win_u, ctl->win_v, &ctl->render);
-	ctl->win_ptr = mlx_new_window(ctl->mlx_ptr, ctl->win_u, ctl->win_v, NAME);
-	printf("\033[32m%s\033[0m\n", HEADER);
-}
+	t_point3	origin;
+	t_vec3		direction;
+	t_vec3		viewport_u;
+	t_vec3		viewport_v;
+	t_vec3		pixel_delta_u;
+	t_vec3		pixel_delta_v;
+	t_vec3		look_from;
+	t_vec3		look_at;
+	float		h_fov;
+	float		focal_length;
+}	t_camera;
+
+void	initialize_camera(t_camera *cam);
+
+#endif

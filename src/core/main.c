@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/23 23:02:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:53:16 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <libft.h>
 
-void		camera_setup(t_camera *cam, int image_width, int image_height);
 void		generate_tasks(t_control *ctl);
 static void	env_init(t_control *ctl);
 

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/23 22:40:55 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:24:12 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ struct s_camera
 
 union u_geometry
 {
+	/* TODO: Add geometry structures. */
 };
 
 struct s_hittable

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_get.c                                         :+:      :+:    :+:   */
+/*   vec3_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 19:30:07 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/05 19:41:50 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/05 19:32:18 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/03/23 22:50:25 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 
-float	get_x(t_vec3 *self)
+void	set_x(t_vec3 *v, float value)
 {
-	return (self->e[0]);
+	v->e[0] = value;
 }
 
-float	get_y(t_vec3 *self)
+void	set_y(t_vec3 *v, float value)
 {
-	return (self->e[1]);
+	v->e[1] = value;
 }
 
-float	get_z(t_vec3 *self)
+void	set_z(t_vec3 *v, float value)
 {
-	return (self->e[2]);
+	v->e[2] = value;
 }

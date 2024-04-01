@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   vec3_get.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 19:34:14 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/05 19:42:21 by kdaniely         ###   ########.fr       */
+/*   Created: 2023/08/05 19:30:07 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/03/23 22:50:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 
-t_vec3	vec3_neg(t_vec3 *self)
+float	get_x(t_vec3 *self)
 {
-	return (vec3(self->e[0] * -1,
-			self->e[1] * -1,
-			self->e[2] * -1));
+	return (self->e[0]);
 }
 
-void	vec3_sum(t_vec3 *self, t_vec3 *v)
+float	get_y(t_vec3 *self)
 {
-	self->e[0] += v->e[0];
-	self->e[1] += v->e[1];
-	self->e[2] += v->e[2];
+	return (self->e[1]);
 }
 
-void	vec3_mult(t_vec3 *self, const float t)
+float	get_z(t_vec3 *self)
 {
-	self->e[0] *= t;
-	self->e[1] *= t;
-	self->e[2] *= t;
-}
-
-void	vec3_div(t_vec3 *self, const float t)
-{
-	vec3_mult(self, (1 / t));
+	return (self->e[2]);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 18:16:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:25:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,11 @@ typedef struct s_thread		t_thread;
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
 	int *pixel);
+typedef int					(*t_hit)();
 
 typedef enum e_type			t_type;
 
-typedef union u_object		t_object;
+typedef union u_geometry	t_geometry;
 
 struct s_point
 {
@@ -105,8 +106,6 @@ struct s_task
 
 enum	e_type
 {
-	CAMERA,
-	AMBIENT,
 	PLANE,
 	SPHERE
 };
@@ -125,15 +124,16 @@ struct s_camera
 	float		focal_length;
 };
 
-/* TODO: Put Object Types */
-union u_object
+union u_geometry
 {
+	/* TODO: Add geometry structures. */
 };
 
 struct s_hittable
 {
 	t_type		type;
-	t_object	obj;
+	t_hit		hit_function;
+	t_geometry	geometry;
 };
 
 struct s_image

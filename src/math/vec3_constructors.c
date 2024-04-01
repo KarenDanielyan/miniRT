@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.c                                             :+:      :+:    :+:   */
+/*   vec3_constructors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:23:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/22 17:17:44 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:50:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,4 @@ t_vec3	vec3(float e1, float e2, float e3)
 	v.e[1] = e2;
 	v.e[2] = e3;
 	return (v);
-}
-
-float	vec3_length(t_vec3 *self)
-{
-	return (sqrt(vec3_length_squared(self)));
-}
-
-double	vec3_length_squared(t_vec3 *self)
-{
-	return (self->e[0] * self->e[0] + self->e[1] * self->e[1] \
-		+ self->e[2] * self->e[2]);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/25 16:53:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:19:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int	main(void)
 	t_control	ctl;
 
 	env_init(&ctl);
+	new_vec3(&ctl.cam.center, 0, 0, 0);
+	new_vec3(&ctl.cam.direction, 0, 0, -1);
+	ctl.cam.h_fov = 100;
+	generate_tasks(&ctl);
+	initialize_camera(&ctl.cam);
+	run(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);

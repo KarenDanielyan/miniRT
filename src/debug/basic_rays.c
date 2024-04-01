@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/23 22:46:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:21:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
 	dir = sum_vec3(&pix_origin, &tmp);
 	tmp = scale_vec3(j, &cam->pixel_delta_u);
 	dir = sum_vec3(&dir, &tmp);
-	dir = subst_vec3(&dir, &cam->origin);
+	dir = subst_vec3(&dir, &cam->center);
 	return (dir);
 }
 
@@ -50,8 +50,8 @@ void	basic_shader(t_control *ctl, t_point2 *loc, int *pixel)
 
 	i = (int)loc->y;
 	j = (int)loc->x;
-	new_ray(&r, ctl->cam.origin, \
-		get_ray_dir(&ctl->cam, ctl->cam.pixel_origin, i, j));
+	new_ray(&r, ctl->cam.center, \
+		get_ray_dir(&ctl->cam, ctl->cam.pixel_00, i, j));
 	set_color(pixel, ray_color(&r));
 }
 

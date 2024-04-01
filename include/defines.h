@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/25 16:57:22 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:29:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define IMAGE_HEIGHT	400
 
 /* Camera Properties */
-# define FOCAL_LENGTH	100
+# define FOCAL_LENGTH	1.0f
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
@@ -65,6 +65,8 @@ typedef struct s_ui			t_ui;
 typedef struct s_vec3		t_point3;
 typedef struct s_point2		t_point2;
 
+typedef struct s_matrix4	t_matrix4;
+
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
@@ -93,6 +95,13 @@ struct s_task
 	struct s_point2	from;
 	struct s_point2	to;
 };
+
+/* TODO: Figure out if I need matrix structure or not.
+struct	s_matrix44
+{
+	float		m[4][4];
+};
+*/
 
 enum	e_type
 {

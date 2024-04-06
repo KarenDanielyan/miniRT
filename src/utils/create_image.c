@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 12:46:05 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 13:06:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/06 18:18:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	create_image(char *name, int *pixels, int w, int h)
 		{
 			if (j != 0)
 				ft_dprintf(fd, "\t");
-			ft_dprintf(fd, "%d %d %d", (pixels[i * h + j] & 0xFFFFFF) >> 16, \
-				(pixels[i * h + j] & 0xFFFF) >> 8, pixels[i * h + j] & 0xFF);
+			ft_dprintf(fd, "%d %d %d", (pixels[i * w + j] & 0xFFFFFF) >> 16, \
+				(pixels[i * w + j] & 0xFFFF) >> 8, pixels[i * w + j] & 0xFF);
 			j ++;
 		}
 		ft_dprintf(fd, "\n");

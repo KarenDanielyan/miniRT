@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/01 17:21:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:07:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,21 @@ static t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
 
 static t_color	ray_color(t_ray *ray)
 {
-	t_color	start;
-	t_color	end;
-	t_color	blend;
-	float	t;
+	t_color	color;
 
-	t = 0.5 * (get_y(&ray->direction) + 1.0);
-	start = vec3(1.0, 1.0, 1.0);
-	start = scale_vec3((1 - t), &start);
-	end = vec3(0.5, 0.7, 1.0);
-	end = scale_vec3(t, &end);
-	blend = sum_vec3(&start, &end);
-	return (blend);
+	if (get_x(&ray->direction) < 0.0f)
+		set_x(&color, 0.0f);
+	else
+		set_x(&color, get_x(&ray->direction));
+	if (get_y(&ray->direction) < 0.0f)
+		set_y(&color, 0.0f);
+	else
+		set_y(&color, get_y(&ray->direction));
+	if (get_z(&ray->direction) < 0.0f)
+		set_z(&color, 0.0f);
+	else
+		set_z(&color, get_z(&ray->direction));
+	return (color);
 }
 
 void	basic_shader(t_control *ctl, t_point2 *loc, int *pixel)

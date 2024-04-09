@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/01 19:24:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:56:27 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,24 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <pthread.h>
-# include <stdarg.h>
 # include "vec3.h"
 # include "ray.h"
+# include "camera.h"
 
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define SCREEN_WIDTH 600
-# define ASPECT_RATIO 1.5
+# define IMAGE_WIDTH	600
+# define IMAGE_HEIGHT	400
+
+/* Camera Properties */
+# define FOCAL_LENGTH	1.0f
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
 # define ERROR_MSG "Error\n"
 # define EXTENSION ".rt"
 # define DOT '.'
-
-/* Color Pallete */
-# define BACKGROUND_C	0x153243
-# define INFO_C			0x284B63
-# define HEADER_C		0x00FF00
-# define STATUS_C		0x00FFFF //0xFAFAFA //0x00FFFF//0xFE7F2D
-# define PLAIN_C		0xFCFAFA
-# define NEUTRAL_C		0x000000
 
 /* Defines for floating-point operations */
 # define EPSILON 0.000001
@@ -56,10 +51,6 @@
 *                    ###   ########.fr      *\n\
 *                                           *\n\
 * ***************************************** *\n"
-# define PREVIEW "Image Preview"
-
-# define INFO_WIDTH 0
-# define PREVIEW_HEIGHT 0
 
 typedef struct timeval		t_time;
 typedef struct s_task		t_task;
@@ -67,7 +58,6 @@ typedef struct s_point		t_point;
 
 typedef struct s_hittable	t_hittable;
 typedef struct s_control	t_control;
-typedef struct s_camera		t_camera;
 typedef struct s_image		t_image;
 typedef struct s_job		t_job;
 typedef struct s_ui			t_ui;
@@ -75,16 +65,17 @@ typedef struct s_ui			t_ui;
 typedef struct s_vec3		t_point3;
 typedef struct s_point2		t_point2;
 
+typedef struct s_matrix4	t_matrix4;
+
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
-	int *pixel);
+typedef void				(*t_compute)(t_control *ctl, t_point2 *loc);
 typedef int					(*t_hit)();
 
 typedef enum e_type			t_type;
 
-typedef union u_geometry	t_geometry;
+typedef union u_shape		t_shape;
 
 struct s_point
 {
@@ -104,36 +95,29 @@ struct s_task
 	struct s_point2	to;
 };
 
+/* TODO: Figure out if I need matrix structure or not.
+struct	s_matrix44
+{
+	float		m[4][4];
+};
+*/
+
 enum	e_type
 {
 	PLANE,
 	SPHERE
 };
 
-struct s_camera
-{
-	t_point3	origin;
-	t_vec3		direction;
-	t_vec3		viewport_u;
-	t_vec3		viewport_v;
-	t_vec3		pixel_delta_u;
-	t_vec3		pixel_delta_v;
-	t_point3	upper_left;
-	t_point3	pixel_origin;
-	float		fov;
-	float		focal_length;
-};
-
-union u_geometry
+union u_shape
 {
 	/* TODO: Add geometry structures. */
 };
 
 struct s_hittable
 {
-	t_type		type;
-	t_hit		hit_function;
-	t_geometry	geometry;
+	t_type	type;
+	t_hit	hit_function;
+	t_shape	shape;
 };
 
 struct s_image
@@ -168,7 +152,6 @@ struct s_job
 	bool		busy;
 	t_point2	from;
 	t_point2	to;
-	t_handler	job_func;
 	t_compute	shader;
 };
 

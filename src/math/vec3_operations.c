@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:34:14 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/23 22:50:22 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:39:17 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ void	vec3_mult(t_vec3 *self, const float t)
 void	vec3_div(t_vec3 *self, const float t)
 {
 	vec3_mult(self, (1 / t));
+}
+
+void	vec3_normalize(t_vec3 *self)
+{
+	vec3_div(self, vec3_length(self));
 }

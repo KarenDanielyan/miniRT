@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_rays.c                                       :+:      :+:    :+:   */
+/*   ray_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:06 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 20:40:35 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/09 20:51:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include <unistd.h>
+#include "miniRT.h"
+#include "defines.h"
+#include "camera.h"
 
 static t_vec3	get_ray_dir(t_camera *cam, t_point3 pix_origin, int i, int j)
 {
@@ -42,7 +43,7 @@ t_color	ray_color(t_ray *ray)
 	return (c);
 }
 
-void	basic_shader(t_control *ctl, t_point2 *loc)
+void	ray_shader(t_control *ctl, t_point2 *loc)
 {
 	t_ray	r;
 	int		i;
@@ -53,25 +54,4 @@ void	basic_shader(t_control *ctl, t_point2 *loc)
 	new_ray(&r, ctl->cam.center, \
 		get_ray_dir(&ctl->cam, ctl->cam.pixel_00, i, j));
 	set_color(get_pixel(ctl, loc->y, loc->x), ray_color(&r));
-}
-
-void	graphical_hello_world(t_control *ctl, t_job *job)
-{
-	int			i;
-	int			j;
-	t_point2	loc;
-
-	i = (int)(job->from.y);
-	while (i < (int)(job->to.y))
-	{
-		j = (int)(job->from.x);
-		while (j < (int)(job->to.x))
-		{
-			loc.y = i;
-			loc.x = j;
-			job->shader(ctl, &loc);
-			j ++;
-		}
-		i ++;
-	}
 }

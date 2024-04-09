@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   matrix4.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 20:43:37 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/01 15:17:47 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/01 19:18:52 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef MATRIX4_H
+# define MATRIX4_H
 
-# include "miniRT.h"
 # include "defines.h"
-# include "vec3.h"
-# include "color.h"
-# include "ray.h"
 
-void	graphical_hello_world(t_control *ctl, t_job *job);
-void	basic_shader(t_control *ctl, t_point2 *loc);
-void	print_tasks(t_control *ctl);
+typedef struct s_matrix4
+{
+	float	e[4][4];
+}	t_matrix4;
+
+void	matrix44_new(t_matrix4	*self);
+
+void	matvec_mult(t_matrix4 *m, t_vec3 *vec, t_vec3 *result);
+
+void	apply_rotation(t_matrix4 *m, t_vec3 *vec, t_vec3 *result);
 
 #endif

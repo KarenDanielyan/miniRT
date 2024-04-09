@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 17:41:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/06 18:35:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ static void	get_crops(t_darray *crops, t_image *r, int crop_c)
 	cut_count = floor(sqrt(crop_c));
 	delta.u = r->width / cut_count;
 	delta.v = r->height / cut_count;
-	crop(crops, r, &delta, cut_count);
+	if (delta.u < 1 && delta.v < 1)
+		crop(crops, r, &delta, 1);
+	else
+		crop(crops, r, &delta, cut_count);
 }

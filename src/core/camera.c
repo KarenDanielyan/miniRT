@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/01 19:18:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/06 20:40:36 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ void	set_canvas_dimensions(t_camera *cam)
 	viewport_height = viewport_width / aspect_ratio;
 	new_vec3(&tmp, 0, -viewport_height, 0);
 	apply_rotation(&cam->camera_to_world, &tmp, &cam->viewport_v);
-	cam->pixel_delta_u = scale_vec3(1.0f / \
-		(float)IMAGE_WIDTH, &cam->viewport_u);
-	cam->pixel_delta_v = scale_vec3(1.0f / \
-		(float)IMAGE_HEIGHT, &cam->viewport_v);
+	cam->pixel_delta_u = shrink_vec3((float)IMAGE_WIDTH, &cam->viewport_u);
+	cam->pixel_delta_v = shrink_vec3((float)IMAGE_HEIGHT, &cam->viewport_v);
 }
 
 /* TODO: Add boundary conditions check: direction == v_up etc. */
@@ -67,7 +65,7 @@ void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 
 	v_up = vec3(0.0, 1.0, 0.0);
 	forward = vec3_neg(direction);
-	forward = unit_vector(forward);
+	vec3_normalize(&forward);
 	right = vec3_cross(&v_up, &forward);
 	up = vec3_cross(&forward, &right);
 	matrix44_new(T);

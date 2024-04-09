@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 18:45:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:31:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(void)
 	env_init(&ctl);
 	new_vec3(&ctl.cam.center, 0, 0, 0);
 	new_vec3(&ctl.cam.direction, 0, 0, -1);
-	ctl.cam.h_fov = 120;
+	ctl.cam.h_fov = 100;
 	generate_tasks(&ctl);
 	initialize_camera(&ctl.cam);
 	run(&ctl);

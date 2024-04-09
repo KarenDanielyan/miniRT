@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/06 20:29:04 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:43:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ typedef struct s_matrix4	t_matrix4;
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_point2 *loc, \
-	int *pixel);
+typedef void				(*t_compute)(t_control *ctl, t_point2 *loc);
 typedef int					(*t_hit)();
 
 typedef enum e_type			t_type;
@@ -152,7 +151,6 @@ struct s_job
 	bool		busy;
 	t_point2	from;
 	t_point2	to;
-	t_handler	job_func;
 	t_compute	shader;
 };
 

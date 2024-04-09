@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/06 20:40:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:29:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,25 @@ void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 	T->e[2][1] = get_y(&forward);
 	T->e[2][2] = get_z(&forward);
 	T->e[2][3] = get_z(origin);
+}
+
+void	render(t_control *ctl, t_job *job)
+{
+	int			i;
+	int			j;
+	t_point2	loc;
+
+	i = (int)(job->from.y);
+	while (i < (int)(job->to.y))
+	{
+		j = (int)(job->from.x);
+		while (j < (int)(job->to.x))
+		{
+			loc.y = i;
+			loc.x = j;
+			job->shader(ctl, &loc);
+			j ++;
+		}
+		i ++;
+	}
 }

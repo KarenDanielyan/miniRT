@@ -12,7 +12,7 @@ BUILD		=	build
 
 SRC			=	src
 
-SUBDIRS		=	core scanner math events utils job debug
+SUBDIRS		=	core scanner math events utils job debug shaders
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
@@ -38,7 +38,9 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				tasks.c put_render.c \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
-				basic_rays.c print_messages.c)
+				print_messages.c) \
+				$(patsubst %.c, $(SRC)/shaders/%.c, \
+				ray_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
@@ -50,7 +52,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -fPIC -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 

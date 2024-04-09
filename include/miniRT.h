@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/25 16:56:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:23:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void		run(t_control *ctl);
 
 /* Utils */
 uint64_t	get_time(bool to_init);
+
+static inline int	*get_pixel(t_control *ctl, int i, int j)
+{
+	return ((ctl->render.data + i * ctl->render.width) + j);
+}
 
 void		put_render(t_control *ctl);
 void		print_bar(t_control *ctl, int done);

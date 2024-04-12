@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 15:50:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:29:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <libft.h>
 
-void		camera_setup(t_camera *cam, int image_width, int image_height);
 void		generate_tasks(t_control *ctl);
 static void	env_init(t_control *ctl);
 
@@ -38,38 +37,16 @@ int	main(void)
 	t_control	ctl;
 
 	env_init(&ctl);
+	new_vec3(&ctl.cam.center, 0, 0, 0);
+	new_vec3(&ctl.cam.direction, 0, 0, -1);
+	ctl.cam.h_fov = 100;
 	generate_tasks(&ctl);
-	camera_setup(&ctl.cam, ctl.win_u, ctl.win_v);
+	initialize_camera(&ctl.cam);
 	run(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 	mlx_loop(ctl.mlx_ptr);
 	return (0);
-}
-
-void	camera_setup(t_camera *cam, int image_width, int image_height)
-{
-	float	viewport_height;
-	float	viewport_width;
-	t_vec3	tmp;
-
-	cam->focal_length = 1.0;
-	viewport_height = 2.0;
-	viewport_width = viewport_height * (float)(image_width / image_height);
-	cam->origin = vec3(0, 0, 0);
-	cam->viewport_u = vec3(viewport_width, 0, 0);
-	cam->viewport_v = vec3(0, -viewport_height, 0);
-	cam->pixel_delta_u = shrink_vec3(image_width, &cam->viewport_u);
-	cam->pixel_delta_v = shrink_vec3(image_height, &cam->viewport_v);
-	tmp = vec3(0, 0, cam->focal_length);
-	cam->upper_left = subst_vec3(&cam->origin, &tmp);
-	tmp = shrink_vec3(2, &cam->viewport_u);
-	cam->upper_left = subst_vec3(&cam->upper_left, &tmp);
-	tmp = shrink_vec3(2, &cam->viewport_v);
-	cam->upper_left = subst_vec3(&cam->upper_left, &tmp);
-	cam->pixel_origin = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
-	cam->pixel_origin = shrink_vec3(2, &cam->pixel_origin);
-	cam->pixel_origin = sum_vec3(&cam->upper_left, &cam->pixel_origin);
 }
 
 static void	env_init(t_control *ctl)

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 17:41:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:44:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #define CROP_SCALE 50
 
 static void	get_crops(t_darray *crops, t_image *r, int crop_c);
-t_job		*new_job(t_task *task, \
-	t_handler handler, t_compute shader);
+t_job		*new_job(t_task *task, t_compute shader);
 
 void	generate_tasks(t_control *ctl)
 {
@@ -36,16 +35,14 @@ void	generate_tasks(t_control *ctl)
 	while (i < tasks.nmemb)
 	{
 		ft_lstadd_back(&ctl->job_q, \
-			ft_lstnew(new_job(((t_task *)(tasks.content) + i), \
-			&graphical_hello_world, &basic_shader)));
+			ft_lstnew(new_job(((t_task *)(tasks.content) + i), &ray_shader)));
 		i ++;
 	}
 	pthread_mutex_unlock(&ctl->qmux);
 	ft_darray_free(&tasks);
 }
 
-t_job	*new_job(t_task *task, \
-	t_handler handler, t_compute shader)
+t_job	*new_job(t_task *task, t_compute shader)
 {
 	t_job	*job;
 
@@ -57,7 +54,6 @@ t_job	*new_job(t_task *task, \
 	job->from.y = task->from.y;
 	job->to.x = task->to.x;
 	job->to.y = task->to.y;
-	job->job_func = handler;
 	job->shader = shader;
 	return (job);
 }
@@ -98,5 +94,8 @@ static void	get_crops(t_darray *crops, t_image *r, int crop_c)
 	cut_count = floor(sqrt(crop_c));
 	delta.u = r->width / cut_count;
 	delta.v = r->height / cut_count;
-	crop(crops, r, &delta, cut_count);
+	if (delta.u < 1 && delta.v < 1)
+		crop(crops, r, &delta, 1);
+	else
+		crop(crops, r, &delta, cut_count);
 }

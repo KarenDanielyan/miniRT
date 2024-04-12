@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:09:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 15:47:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:23:22 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	run(t_control *ctl)
 	ft_printf("\033[34mRendering finished after %ldms.\n\033[0m", \
 		get_time(false));
 	put_render(ctl);
+	mlx_do_sync(ctl->mlx_ptr);
 }
 
 static void	create_pool(t_control *ctl)

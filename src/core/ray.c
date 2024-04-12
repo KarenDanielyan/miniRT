@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/08 16:47:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:57:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	new_ray(t_ray *self, t_point3 origin, t_vec3 direction)
 {
 	self->direction = direction;
 	self->origin = origin;
+}
+
+void	ray_new(t_ray *self, t_point3 from, t_point3 to)
+{
+	t_vec3	dir;
+
+	dir = subst_vec3(&to, &from);
+	vec3_normalize(&dir);
+	self->origin = from;
+	self->direction = dir;
 }
 
 t_point3	ray_at(t_ray *r, float t)

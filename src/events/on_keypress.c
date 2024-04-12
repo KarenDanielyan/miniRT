@@ -6,12 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 02:02:36 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/06 18:49:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:52:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "events.h"
 
 static int	on_save(t_control *ctl);
 

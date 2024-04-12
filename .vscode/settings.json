@@ -85,7 +85,9 @@
     "mlx_int.h": "c",
     "debug.h": "c",
     "string.h": "c",
-    "time.h": "c"
+    "time.h": "c",
+    "camera.h": "c",
+    "ray.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

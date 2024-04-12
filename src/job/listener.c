@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:50:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/09/01 21:08:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:20:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*listen(void *thread)
 		if (!tmp)
 			break ;
 		job = tmp->content;
-		job->job_func(ctl, job);
+		render(ctl, job);
 	}
 	return (NULL);
 }

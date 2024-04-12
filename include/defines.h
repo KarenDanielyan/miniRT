@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 20:56:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:55:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdbool.h>
 # include <pthread.h>
 # include "vec3.h"
-# include "ray.h"
-# include "camera.h"
 
 # define NAME "miniRT"
 
@@ -65,12 +63,14 @@ typedef struct s_ui			t_ui;
 typedef struct s_vec3		t_point3;
 typedef struct s_point2		t_point2;
 
+typedef struct s_ray		t_ray;
+
 typedef struct s_matrix4	t_matrix4;
 
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_point2 *loc);
+typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
 typedef int					(*t_hit)();
 
 typedef enum e_type			t_type;
@@ -95,12 +95,10 @@ struct s_task
 	struct s_point2	to;
 };
 
-/* TODO: Figure out if I need matrix structure or not.
-struct	s_matrix44
+struct	s_matrix4
 {
-	float		m[4][4];
+	float		e[4][4];
 };
-*/
 
 enum	e_type
 {
@@ -154,6 +152,26 @@ struct s_job
 	t_point2	to;
 	t_compute	shader;
 };
+
+struct s_ray
+{
+	t_point3	origin;
+	t_vec3		direction;
+};
+
+typedef struct s_camera
+{
+	t_point3	center;
+	t_point3	pixel_00;
+	t_vec3		direction;
+	t_vec3		viewport_u;
+	t_vec3		viewport_v;
+	t_vec3		pixel_delta_u;
+	t_vec3		pixel_delta_v;
+	t_matrix4	camera_to_world;
+	float		h_fov;
+	float		focal_length;
+}	t_camera;
 
 struct s_control
 {

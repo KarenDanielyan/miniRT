@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:17:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/01 19:18:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:30:50 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define MATRIX4_H
 
 # include "defines.h"
-
-typedef struct s_matrix4
-{
-	float	e[4][4];
-}	t_matrix4;
 
 void	matrix44_new(t_matrix4	*self);
 

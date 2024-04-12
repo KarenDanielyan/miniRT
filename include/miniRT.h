@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 19:23:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:55:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "defines.h"
+# include "camera.h"
 # include "events.h"
 # include "utils.h"
 # include <libft.h>

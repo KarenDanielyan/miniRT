@@ -6,13 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/09 19:29:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:56:28 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
-#include "camera.h"
-#include "matrix4.h"
+#include "miniRT.h"
 #include <math.h>
 
 void	set_canvas_dimensions(t_camera *cam);
@@ -83,11 +81,24 @@ void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 	T->e[2][3] = get_z(origin);
 }
 
+static t_vec3	get_ray_dir(t_camera *cam, int i, int j)
+{
+	t_vec3	dir;
+	t_vec3	tmp;
+
+	tmp = scale_vec3(i, &cam->pixel_delta_v);
+	dir = sum_vec3(&cam->pixel_00, &tmp);
+	tmp = scale_vec3(j, &cam->pixel_delta_u);
+	dir = sum_vec3(&dir, &tmp);
+	dir = subst_vec3(&dir, &cam->center);
+	return (dir);
+}
+
 void	render(t_control *ctl, t_job *job)
 {
 	int			i;
 	int			j;
-	t_point2	loc;
+	t_ray		r;
 
 	i = (int)(job->from.y);
 	while (i < (int)(job->to.y))
@@ -95,9 +106,8 @@ void	render(t_control *ctl, t_job *job)
 		j = (int)(job->from.x);
 		while (j < (int)(job->to.x))
 		{
-			loc.y = i;
-			loc.x = j;
-			job->shader(ctl, &loc);
+			ray_new(&r, ctl->cam.center, get_ray_dir(&ctl->cam, i, j));
+			job->shader(ctl, &r, get_pixel(ctl, i, j));
 			j ++;
 		}
 		i ++;

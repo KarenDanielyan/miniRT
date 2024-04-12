@@ -6,11 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/03/12 18:09:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:23:30 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scanner.h"
+#include "shapes.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <libft.h>

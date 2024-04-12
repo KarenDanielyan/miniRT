@@ -68,7 +68,7 @@ endif
 ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
-	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
+	LFLAGS	+=	-L$(MLX) -lmlx -framework OpenGL -framework AppKit
 endif
 
 # Colors

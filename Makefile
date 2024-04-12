@@ -16,7 +16,7 @@ SUBDIRS		=	core scanner math events utils job debug shaders
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
-				vec3.h color.h events.h utils.h \
+				vec3.h color.h utils.h \
 				ray.h ui.h camera.h matrix4.h) \
 				Makefile
 
@@ -52,7 +52,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 
@@ -69,7 +69,6 @@ ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-rpath -L$(MLX) -lmlx -framework OpenGL -framework AppKit
-
 endif
 
 # Colors

@@ -6,11 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 01:51:14 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/06 02:05:45 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:52:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "miniRT.h"
 #include <mlx.h>
 
 int	on_destroy(t_control *ctl)

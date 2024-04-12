@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix4.h                                          :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 15:17:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 21:06:09 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/12 19:06:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX4_H
-# define MATRIX4_H
+#ifndef SHAPES_H
+# define SHAPES_H
 
-# include "defines.h"
-# include "vec3.h"
+/* Here we define hittable objects and their structures. */
 
-typedef struct s_matrix4
+typedef struct s_hittable	t_hittable;
+typedef union u_shape		t_shape;
+
+enum	e_type
 {
-	float	e[4][4];
-}	t_matrix4;
+	PLANE,
+	SPHERE
+};
 
-void	matrix44_new(t_matrix4	*self);
+union u_shape
+{
+	/* TODO: Add geometry structures. */
+};
 
-void	matvec_mult(t_matrix4 *m, t_vec3 *vec, t_vec3 *result);
-
-void	apply_rotation(t_matrix4 *m, t_vec3 *vec, t_vec3 *result);
+struct s_hittable
+{
+	t_type	type;
+	t_hit	hit_function;
+	t_shape	shape;
+};
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:27:28 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/01 19:17:40 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:51:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defines.h"
+#include "matrix4.h"
 
 void	matrix44_new(t_matrix4	*self)
 {

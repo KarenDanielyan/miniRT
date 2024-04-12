@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 16:55:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:06:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <pthread.h>
-# include "vec3.h"
 
 # define NAME "miniRT"
 
@@ -40,10 +39,10 @@
 # define HEADER "\
 * **************** miniRT ***************** *\n\
 *                                           *\n\
-*  (c)2023               :::      ::::::::  *\n\
+*  (c)2024               :::      ::::::::  *\n\
 *                      :+:      :+:    :+:  *\n\
 *  By: kdaniely      +:+ +:+         +:+    *\n\
-*                  +#+  +:+       +#+       *\n\
+*      armhakob    +#+  +:+       +#+       *\n\
 *                 #+#+#+#+#+   +#+          *\n\
 *                     #+#    #+#            *\n\
 *                    ###   ########.fr      *\n\
@@ -54,7 +53,6 @@ typedef struct timeval		t_time;
 typedef struct s_task		t_task;
 typedef struct s_point		t_point;
 
-typedef struct s_hittable	t_hittable;
 typedef struct s_control	t_control;
 typedef struct s_image		t_image;
 typedef struct s_job		t_job;
@@ -73,10 +71,6 @@ typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
 typedef int					(*t_hit)();
 
-typedef enum e_type			t_type;
-
-typedef union u_shape		t_shape;
-
 struct s_point
 {
 	int		u;
@@ -87,105 +81,6 @@ struct s_point2
 {
 	float	x;
 	float	y;
-};
-
-struct s_task
-{
-	struct s_point2	from;
-	struct s_point2	to;
-};
-
-struct	s_matrix4
-{
-	float		e[4][4];
-};
-
-enum	e_type
-{
-	PLANE,
-	SPHERE
-};
-
-union u_shape
-{
-	/* TODO: Add geometry structures. */
-};
-
-struct s_hittable
-{
-	t_type	type;
-	t_hit	hit_function;
-	t_shape	shape;
-};
-
-struct s_image
-{
-	void	*mlx_image;
-	int		*data;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-};
-
-struct s_ui
-{
-	int		info_shift_u;
-	int		info_shift_v;
-	t_image	background;
-	t_image	preview;
-	t_image	info;
-};
-
-struct s_thread
-{
-	int			id;
-	pthread_t	*thread;
-	t_control	*ctl;
-};
-
-struct s_job
-{
-	bool		busy;
-	t_point2	from;
-	t_point2	to;
-	t_compute	shader;
-};
-
-struct s_ray
-{
-	t_point3	origin;
-	t_vec3		direction;
-};
-
-typedef struct s_camera
-{
-	t_point3	center;
-	t_point3	pixel_00;
-	t_vec3		direction;
-	t_vec3		viewport_u;
-	t_vec3		viewport_v;
-	t_vec3		pixel_delta_u;
-	t_vec3		pixel_delta_v;
-	t_matrix4	camera_to_world;
-	float		h_fov;
-	float		focal_length;
-}	t_camera;
-
-struct s_control
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	int				win_u;
-	int				win_v;
-	int				worker_c;
-	pthread_mutex_t	qmux;
-	t_list			*job_q;
-	t_thread		*pool;
-	t_camera		cam;
-	t_darray		world;
-	t_image			render;
 };
 
 #endif

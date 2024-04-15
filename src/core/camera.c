@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 16:56:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:29:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static t_vec3	get_ray_dir(t_camera *cam, int i, int j)
 	tmp = scale_vec3(j, &cam->pixel_delta_u);
 	dir = sum_vec3(&dir, &tmp);
 	dir = subst_vec3(&dir, &cam->center);
+	vec3_normalize(&dir);
 	return (dir);
 }
 

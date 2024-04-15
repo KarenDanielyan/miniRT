@@ -17,11 +17,12 @@ SUBDIRS		=	core scanner math events utils job debug shaders
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
 				vec3.h color.h utils.h \
-				ray.h ui.h camera.h matrix4.h) \
+				ray.h ui.h camera.h matrix4.h \
+				shapes.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c camera.c) \
+				main.c ray.c ui.c camera.c hit.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c \

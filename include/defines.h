@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 19:06:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:36:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
-typedef int					(*t_hit)();
+typedef float				(*t_hit)();
 
 struct s_point
 {

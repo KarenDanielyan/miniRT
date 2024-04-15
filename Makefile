@@ -41,7 +41,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
 				print_messages.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
-				ray_shader.c)
+				ray_shader.c skybox_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

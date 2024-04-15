@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 21:06:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/16 00:56:10 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void		init_ui(t_control *ctl);
 
 /* Thread Pools */
 void		run(t_control *ctl);
+
+/* Shaders */
+t_color		skybox_shader(t_ray *ray);
 
 /* Utils */
 uint64_t	get_time(bool to_init);

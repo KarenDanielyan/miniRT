@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_shader.c                                       :+:      :+:    :+:   */
+/*   skybox_shader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/16 01:01:32 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/15 20:47:58 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/16 00:56:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "defines.h"
-#include "camera.h"
 #include "shapes.h"
 
-void	ray_shader(t_control *ctl, t_ray *r, int *pixel)
+t_color	skybox_shader(t_ray *ray)
 {
-	t_color	color;
+	t_color	c;
+	t_vec3	uv;
+	float	a;
 
-	(void)ctl;
-	if (sphere_hit(vec3(0.0, 0.0, -1.0), 0.3, r) > 0.0)
-		color = vec3(1.0, 0.0, 0.0);
-	else
-		color = skybox_shader(r);
-	set_color(pixel, color);
+	uv = unit_vector(ray->direction);
+	a = 0.5 * (get_y(&uv) + 1.0);
+	c = vec3(1.0, 1.0, 1.0);
+	uv = vec3(0.5, 0.7, 1.0);
+	c = scale_vec3((1 - a), &c);
+	uv = scale_vec3(a, &uv);
+	c = sum_vec3(&c, &uv);
+	return (c);
 }

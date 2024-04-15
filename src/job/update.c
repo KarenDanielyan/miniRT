@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:50:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 18:17:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:38:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	update(t_control *ctl)
 		prev_avail = cur_avail;
 	}
 	print_bar(ctl, 100);
-	put_render(ctl);
 	ft_printf("\n");
 }
 

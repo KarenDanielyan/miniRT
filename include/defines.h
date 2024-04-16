@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/16 19:00:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 02:46:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 /* Screen Properties */
 # define IMAGE_WIDTH	600
-# define IMAGE_HEIGHT	600
+# define IMAGE_HEIGHT	400
 
 /* Camera Properties */
 # define FOCAL_LENGTH	1.0f

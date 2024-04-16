@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/16 02:58:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 02:50:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ float	sphere_hit(t_point3 center, float radius, t_ray *r)
 		t[0] = (-q.b + sqrt(q._d)) / (2 * q.a);
 		t[1] = (-q.b - sqrt(q._d)) / (2 * q.a);
 		if (t[0] > 0.0 || t[1] > 0.0)
-			return (1.0);
+			return (t[1]);
 	}
 	return (-1.0);
 }

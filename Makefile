@@ -53,7 +53,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 #-fsanitize=address
 
 INVOKE		=	libft printf mlx
 

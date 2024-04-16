@@ -18,3 +18,4 @@ lib/mlx_linux/*.o
 lib/mlx_mac/*.o
 lib/mlx_linux/test
 lib/mlx_mac/test
+test.ipynb

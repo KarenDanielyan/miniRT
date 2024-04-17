@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 02:46:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:35:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_ui			t_ui;
 
 typedef struct s_vec3		t_point3;
 typedef struct s_point2		t_point2;
+typedef struct s_tuple4f	t_tuple4f;
 
 typedef struct s_ray		t_ray;
 
@@ -81,6 +82,14 @@ struct s_point2
 {
 	float	x;
 	float	y;
+};
+
+struct s_tuple4f
+{
+	float	i;
+	float	j;
+	float	k;
+	float	w;
 };
 
 #endif

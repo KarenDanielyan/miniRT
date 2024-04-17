@@ -6,13 +6,13 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:52:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:16:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:42:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 
-t_color	normal_shader(t_ray *r, float t, t_sphere *sp)
+t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp)
 {
 	t_color		color;
 	t_point3	p;

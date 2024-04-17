@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:19:07 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 20:00:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ struct s_hitrecord
 	t_hittable	*hit;
 };
 
-
 struct s_hittable
 {
 	t_type	type;
@@ -75,7 +74,9 @@ void	*new_sphere(t_point3 center, float radius);
 
 /* Hit functions */
 
-float	hit_sphere(t_sphere *self, t_ray *r);
+bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr);
+
+float	hit_sphere(t_shape *self, t_ray *r);
 float	sphere_hit(t_point3 center, float radius, t_ray *r);
 
 #endif

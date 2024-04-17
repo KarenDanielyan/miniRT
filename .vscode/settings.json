@@ -87,7 +87,8 @@
     "string.h": "c",
     "time.h": "c",
     "camera.h": "c",
-    "ray.h": "c"
+    "ray.h": "c",
+    "shapes.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

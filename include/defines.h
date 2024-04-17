@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 21:20:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:35:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_ui			t_ui;
 
 typedef struct s_vec3		t_point3;
 typedef struct s_point2		t_point2;
+typedef struct s_tuple4f	t_tuple4f;
 
 typedef struct s_ray		t_ray;
 
@@ -69,7 +70,6 @@ typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
-typedef int					(*t_hit)();
 
 struct s_point
 {
@@ -81,6 +81,14 @@ struct s_point2
 {
 	float	x;
 	float	y;
+};
+
+struct s_tuple4f
+{
+	float	i;
+	float	j;
+	float	k;
+	float	w;
 };
 
 #endif

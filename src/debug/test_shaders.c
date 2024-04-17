@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   test_shaders.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:43:14 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/17 18:52:45 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/17 19:42:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "debug.h"
 
-# include "miniRT.h"
-# include "defines.h"
-# include "vec3.h"
-# include "color.h"
-# include "ray.h"
-# include "shapes.h"
+t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp)
+{
+	t_color		color;
+	t_point3	p;
 
-void	print_tasks(t_control *ctl);
-
-/* Test Shaders */
-
-t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp);
-
-#endif
+	p = ray_at(r, t);
+	color = unit_vector(subst_vec3(&p, &sp->center));
+	color = vec3(get_x(&color) + 1.0, \
+		get_y(&color) + 1.0, get_z(&color) + 1);
+	color = shrink_vec3(2, &color);
+	return (color);
+}

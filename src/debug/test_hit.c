@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_shader.c                                       :+:      :+:    :+:   */
+/*   test_hit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:44:40 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/17 17:47:14 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/17 17:48:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
-#include "miniRT.h"
-#include "defines.h"
-#include "camera.h"
 #include "shapes.h"
 
-void	ray_shader(t_control *ctl, t_ray *r, int *pixel)
-{
-	t_color		color;
-	t_hitrecord	hr;
+/* In this file we save hit function we implemented for debugging. */
 
-	(void)ctl;
-	if (hit_anything(r, &ctl->world, &hr) == false)
-		color = skybox_shader(r);
-	else
-	{
-		if (hr.hit->type == SPHERE)
-			color = normal_shpere_shader(r, hr.t, &hr.hit->shape.s);
-		else
-			color = skybox_shader(r);
-	}
-	set_color(pixel, color);
+float	sphere_hit(t_point3 center, float radius, t_ray *r)
+{
+	t_tuple4f	q;
+	t_vec3		o;
+
+	o = subst_vec3(&center, &r->origin);
+	q.i = vec3_length_squared(&r->direction);
+	q.j = vec3_dot(&r->direction, &o);
+	q.k = vec3_length_squared(&o) - (radius * radius);
+	q.w = q.j * q.j - q.i * q.k;
+	if (q.w < 0.0)
+		return (-1.0);
+	return ((q.j - sqrt(q.w)) / q.i);
 }

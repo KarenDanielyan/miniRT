@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:43:14 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/17 18:14:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "miniRT.h"
+#include "shapes.h"
 
-# include "miniRT.h"
-# include "defines.h"
-# include "vec3.h"
-# include "color.h"
-# include "ray.h"
-# include "shapes.h"
+void	*new_sphere(t_point3 center, float radius)
+{
+	t_sphere	*sp;
 
-void	print_tasks(t_control *ctl);
-
-/* Test Shaders */
-
-t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp);
-
-#endif
+	sp = ft_calloc(1, sizeof(t_sphere));
+	if (sp == NULL)
+	{
+		ft_printf("Fatal Error: Cannot allocate space.\n");
+		exit(EXIT_FAILURE);
+	}
+	sp->center = center;
+	sp->radius = radius;
+	return (sp);
+}

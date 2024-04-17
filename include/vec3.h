@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/06 18:52:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:28:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		vec3_div(t_vec3 *self, const float t);
 void		vec3_normalize(t_vec3 *self);
 
 float		vec3_length(t_vec3 *self);
-double		vec3_length_squared(t_vec3 *self);
+float		vec3_length_squared(t_vec3 *self);
 
 float		vec3_dot(const t_vec3 *u, const t_vec3 *v);
 t_vec3		vec3_cross(const t_vec3 *u, const t_vec3 *v);

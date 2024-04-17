@@ -17,11 +17,13 @@ SUBDIRS		=	core scanner math events utils job debug shaders
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
 				vec3.h color.h utils.h \
-				ray.h ui.h camera.h matrix4.h) \
+				ray.h ui.h camera.h matrix4.h \
+				shapes.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c camera.c) \
+				main.c ray.c ui.c camera.c hit.c \
+				hittable.c shapes.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c \
@@ -38,9 +40,10 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				tasks.c put_render.c \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
-				print_messages.c) \
+				print_messages.c test_hit.c \
+				test_shaders.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
-				ray_shader.c)
+				ray_shader.c skybox_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
@@ -52,7 +55,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 
@@ -69,6 +72,7 @@ ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-L$(MLX) -lmlx -framework OpenGL -framework AppKit
+
 endif
 
 # Colors

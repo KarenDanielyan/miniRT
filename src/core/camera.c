@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 16:56:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 02:11:52 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	initialize_camera(t_camera *cam)
 	t_point3	viewport_upperleft;
 	t_point3	temp;
 
+	vec3_normalize(&cam->direction);
 	look_at(&cam->center, &cam->direction, &cam->camera_to_world);
 	set_canvas_dimensions(cam);
-	temp = vec3_neg(&cam->direction);
-	temp = scale_vec3(cam->focal_length, &temp);
-	viewport_upperleft = subst_vec3(&cam->center, &temp);
+	temp = scale_vec3(cam->focal_length, &cam->direction);
+	viewport_upperleft = sum_vec3(&cam->center, &temp);
 	temp = shrink_vec3(2.0f, &cam->viewport_u);
 	viewport_upperleft = subst_vec3(&viewport_upperleft, &temp);
 	temp = shrink_vec3(2.0f, &cam->viewport_v);
@@ -62,23 +62,22 @@ void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 	t_vec3	right;
 
 	v_up = vec3(0.0, 1.0, 0.0);
-	forward = vec3_neg(direction);
-	vec3_normalize(&forward);
-	right = vec3_cross(&v_up, &forward);
-	up = vec3_cross(&forward, &right);
+	forward = unit_vector(vec3_neg(direction));
+	right = unit_vector(vec3_cross(&v_up, &forward));
+	up = unit_vector(vec3_cross(&forward, &right));
 	matrix44_new(T);
 	T->e[0][0] = get_x(&right);
-	T->e[0][1] = get_y(&right);
-	T->e[0][2] = get_z(&right);
-	T->e[0][3] = get_x(origin);
-	T->e[1][0] = get_x(&up);
+	T->e[1][0] = get_y(&right);
+	T->e[2][0] = get_z(&right);
+	T->e[3][0] = get_x(origin);
+	T->e[0][1] = get_x(&up);
 	T->e[1][1] = get_y(&up);
-	T->e[1][2] = get_z(&up);
-	T->e[1][3] = get_y(origin);
-	T->e[2][0] = get_x(&forward);
-	T->e[2][1] = get_y(&forward);
+	T->e[2][1] = get_z(&up);
+	T->e[3][1] = get_y(origin);
+	T->e[0][2] = get_x(&forward);
+	T->e[1][2] = get_y(&forward);
 	T->e[2][2] = get_z(&forward);
-	T->e[2][3] = get_z(origin);
+	T->e[3][2] = get_z(origin);
 }
 
 static t_vec3	get_ray_dir(t_camera *cam, int i, int j)
@@ -106,7 +105,7 @@ void	render(t_control *ctl, t_job *job)
 		j = (int)(job->from.x);
 		while (j < (int)(job->to.x))
 		{
-			ray_new(&r, ctl->cam.center, get_ray_dir(&ctl->cam, i, j));
+			new_ray(&r, ctl->cam.center, get_ray_dir(&ctl->cam, i, j));
 			job->shader(ctl, &r, get_pixel(ctl, i, j));
 			j ++;
 		}

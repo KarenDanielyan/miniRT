@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:15:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/08/04 16:32:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:25:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	*ft_darray_get(t_darray *arr, void *value, int (*cmp)(void *a, void *b))
 		}
 	}
 	return (NULL);
+}
+
+void	*ft_darray_get_by_index(t_darray *arr, int index)
+{
+	return (arr->content + (arr->size * index));
 }
 
 void	ft_darray_free(t_darray *arr)

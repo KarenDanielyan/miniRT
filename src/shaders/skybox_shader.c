@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   skybox_shader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:43:14 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/04/15 20:47:58 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/04/16 00:56:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "miniRT.h"
+#include "shapes.h"
 
-# include "miniRT.h"
-# include "defines.h"
-# include "vec3.h"
-# include "color.h"
-# include "ray.h"
-# include "shapes.h"
+t_color	skybox_shader(t_ray *ray)
+{
+	t_color	c;
+	t_vec3	uv;
+	float	a;
 
-void	print_tasks(t_control *ctl);
-
-/* Test Shaders */
-
-t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp);
-
-#endif
+	uv = unit_vector(ray->direction);
+	a = 0.5 * (get_y(&uv) + 1.0);
+	c = vec3(1.0, 1.0, 1.0);
+	uv = vec3(0.5, 0.7, 1.0);
+	c = scale_vec3((1 - a), &c);
+	uv = scale_vec3(a, &uv);
+	c = sum_vec3(&c, &uv);
+	return (c);
+}

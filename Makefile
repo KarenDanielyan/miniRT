@@ -55,7 +55,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -std=gnu99 -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 
@@ -72,6 +72,7 @@ ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
 	LFLAGS	+=	-L$(MLX) -lmlx -framework OpenGL -framework AppKit
+
 endif
 
 # Colors

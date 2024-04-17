@@ -25,6 +25,8 @@ typedef enum e_type			t_type;
 
 typedef struct s_sphere		t_sphere;
 
+typedef float				(*t_hit)(t_shape *self, t_ray *r);
+
 enum	e_type
 {
 	PLANE,
@@ -78,5 +80,6 @@ bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr);
 
 float	hit_sphere(t_shape *self, t_ray *r);
 float	sphere_hit(t_point3 center, float radius, t_ray *r);
+
 
 #endif

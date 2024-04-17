@@ -70,7 +70,6 @@ typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
 typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
-typedef float				(*t_hit)();
 
 struct s_point
 {

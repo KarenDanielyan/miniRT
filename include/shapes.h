@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/16 00:55:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:22:50 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ typedef struct s_sphere		t_sphere;
 enum	e_type
 {
 	PLANE,
-	SPHERE
+	SPHERE,
+	CYLINDER,
+	CONE,
+	CUBE,
+	NOTASHAPE
 };
 
 struct s_sphere
@@ -47,6 +51,12 @@ struct s_hittable
 	t_hit	hit;
 	t_shape	shape;
 };
+
+/* Constructors */
+
+void	*new_hittable(t_type type, t_hit hit, void *shape);
+
+void	*new_sphere(t_point3 center, float radius);
 
 /* Hit functions */
 

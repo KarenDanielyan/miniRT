@@ -40,7 +40,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				tasks.c put_render.c \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/debug/%.c, \
-				print_messages.c test_hit.c) \
+				print_messages.c test_hit.c \
+				test_shaders.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
 				ray_shader.c skybox_shader.c)
 

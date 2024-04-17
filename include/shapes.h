@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 18:22:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:19:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 /* Here we define hittable objects and their structures. */
 
 # include "defines.h"
+
+typedef struct s_hitrecord	t_hitrecord;
 
 typedef struct s_hittable	t_hittable;
 typedef union u_shape		t_shape;
@@ -44,6 +46,19 @@ union u_shape
 	/* TODO: Add geometry structures. */
 	t_sphere	s;
 };
+
+/**
+ * @brief This structure contains a record of a ray hitting an object.
+ * @details
+ * `t` contains data on where the ray hit the object.
+ * `obj` is the object we hit.
+ */
+struct s_hitrecord
+{
+	float		t;
+	t_hittable	*hit;
+};
+
 
 struct s_hittable
 {

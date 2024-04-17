@@ -18,7 +18,6 @@ int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
 {
   GC	gc;
 
-  XLockDisplay(xvar->display);
   gc = win->gc;
   if (img->gc)
     {
@@ -35,5 +34,4 @@ int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
 	    0,0,img->width,img->height,x,y);
   if (xvar->do_flush)
     XFlush(xvar->display);
-  XUnlockDisplay(xvar->display);
 }

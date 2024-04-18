@@ -23,7 +23,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c \
-				hittable.c shapes.c) \
+				hittable.c shapes.c trace.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c \

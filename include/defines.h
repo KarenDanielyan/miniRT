@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 16:35:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:20:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_matrix4	t_matrix4;
 typedef struct s_thread		t_thread;
 
 typedef void				(*t_handler)(t_control *ctl, t_job *job);
-typedef void				(*t_compute)(t_control *ctl, t_ray *r, int *pixel);
+typedef struct s_vec3		(*t_compute)(t_control *ctl, t_ray *r);
 
 struct s_point
 {

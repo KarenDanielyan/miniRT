@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 03:55:03 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:31:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "defines.h"
 #include "camera.h"
 #include "shapes.h"
-
 
 /**
  * @brief		Shader function for raytracing.
@@ -36,7 +35,7 @@
  * 				color = ambient + diffuse + specular.
  * 				```
  */
-void	ray_shader(t_control *ctl, t_ray *r, int *pixel)
+t_color	ray_shader(t_control *ctl, t_ray *r)
 {
 	t_color		color;
 	t_hitrecord	hr;
@@ -50,5 +49,5 @@ void	ray_shader(t_control *ctl, t_ray *r, int *pixel)
 		else
 			color = skybox_shader(r);
 	}
-	set_color(pixel, color);
+	return (color);
 }

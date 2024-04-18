@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:36:35 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 19:09:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:19:04 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ typedef struct s_camera
 
 void	initialize_camera(t_camera *cam);
 
-void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T);
-void	render(t_control *ctl, t_job *job);
-
-/* Shaders */
-void	ray_shader(t_control *ctl, t_ray *ray, int *pixel);
+void	trace(t_control *ctl, t_job *job);
 
 #endif

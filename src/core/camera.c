@@ -6,14 +6,15 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 02:11:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:34:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include <math.h>
 
-void	set_canvas_dimensions(t_camera *cam);
+static void	set_canvas_dimensions(t_camera *cam);
+static void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T);
 
 void	initialize_camera(t_camera *cam)
 {
@@ -34,7 +35,7 @@ void	initialize_camera(t_camera *cam)
 	cam->pixel_00 = sum_vec3(&viewport_upperleft, &temp);
 }
 
-void	set_canvas_dimensions(t_camera *cam)
+static void	set_canvas_dimensions(t_camera *cam)
 {
 	float	aspect_ratio;
 	float	viewport_width;
@@ -54,7 +55,7 @@ void	set_canvas_dimensions(t_camera *cam)
 }
 
 /* TODO: Add boundary conditions check: direction == v_up etc. */
-void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
+static void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 {
 	t_vec3	v_up;
 	t_vec3	forward;
@@ -78,37 +79,4 @@ void	look_at(t_point3 *origin, t_vec3 *direction, t_matrix4 *T)
 	T->e[1][2] = get_y(&forward);
 	T->e[2][2] = get_z(&forward);
 	T->e[3][2] = get_z(origin);
-}
-
-static t_vec3	get_ray_dir(t_camera *cam, int i, int j)
-{
-	t_vec3	dir;
-	t_vec3	tmp;
-
-	tmp = scale_vec3(i, &cam->pixel_delta_v);
-	dir = sum_vec3(&cam->pixel_00, &tmp);
-	tmp = scale_vec3(j, &cam->pixel_delta_u);
-	dir = sum_vec3(&dir, &tmp);
-	dir = subst_vec3(&dir, &cam->center);
-	return (dir);
-}
-
-void	render(t_control *ctl, t_job *job)
-{
-	int			i;
-	int			j;
-	t_ray		r;
-
-	i = (int)(job->from.y);
-	while (i < (int)(job->to.y))
-	{
-		j = (int)(job->from.x);
-		while (j < (int)(job->to.x))
-		{
-			new_ray(&r, ctl->cam.center, get_ray_dir(&ctl->cam, i, j));
-			job->shader(ctl, &r, get_pixel(ctl, i, j));
-			j ++;
-		}
-		i ++;
-	}
 }

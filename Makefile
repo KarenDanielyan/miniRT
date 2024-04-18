@@ -16,9 +16,8 @@ SUBDIRS		=	core scanner math events utils job debug shaders
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
-				vec3.h color.h utils.h \
-				ray.h ui.h camera.h matrix4.h \
-				shapes.h) \
+				vec3.h color.h ray.h ui.h \
+				camera.h matrix4.h shapes.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \

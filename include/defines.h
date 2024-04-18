@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 18:20:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:09:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <pthread.h>
 
 # define NAME "miniRT"
+
+# ifndef SSAA
+#  define SSAA 1
+#endif
 
 /* Screen Properties */
 # define IMAGE_WIDTH	600

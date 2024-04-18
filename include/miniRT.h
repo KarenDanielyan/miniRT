@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 19:09:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:55:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct s_control
 	int				win_u;
 	int				win_v;
 	int				worker_c;
+	uint32_t		rng_state;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;
@@ -65,6 +66,7 @@ struct s_control
 };
 
 /* Main Logic */
+
 void		scan(t_darray *nodes, char *filename);
 
 void		init_ui(t_control *ctl);
@@ -90,9 +92,11 @@ void	create_image(char *name, int *pixels, int w, int h);
 void	new_image(void *mlx_ptr, int width, int height, t_image *image);
 
 /* Floating point operations */
+
 bool	float_equal(float a, float b);
 
 /* Random Numbers */
+float	random_value(uint32_t *rng_state);
 
 /* Get the pixel in position [i,j]. */
 static inline int	*get_pixel(t_control *ctl, int i, int j)

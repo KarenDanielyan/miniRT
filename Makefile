@@ -26,7 +26,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c \
-				progress_bar.c) \
+				progress_bar.c rand.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
@@ -54,7 +54,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-fPIC -g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-o2 -fPIC -g -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
 INVOKE		=	libft printf mlx
 

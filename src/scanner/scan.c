@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 21:41:30 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:34:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "scanner.h"
 #include "shapes.h"
-#include <fcntl.h>
-// #include <stdio.h>
-// #include <libft.h>
-// #include <unistd.h>
 
 static void	scan_prime(t_control *ctl, t_darray *arr, int fd);
 
@@ -43,7 +39,7 @@ static void	scan_prime(t_control *ctl, t_darray *arr, int fd)
 	void	*content;
 
 	str = NULL;
-	ft_darray_init(arr, sizeof(t_hittable), 100);
+	ft_darray_init(arr, sizeof(t_hittable), 5);
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -53,31 +49,37 @@ static void	scan_prime(t_control *ctl, t_darray *arr, int fd)
 		if (!content && str[0] != 'C')
 		{
 			printf(ERROR_MSG);
+			free(str);
 			break ;
 		}
-		ft_darray_pushback(arr, content);
+		if (content)
+			ft_darray_pushback(arr, content);
 		free(content);
+		free(str);
 	}
 }
 
 void	*parse_object(t_control *ctl, char *line)
 {
 	char		**splitted;
-	splitted = ft_split(line, ' ');
+	void		*rv;
 
-	if (ft_strcmp(splitted[0], "A"))
+	rv = NULL;
+	splitted = ft_split(line, ' ');
+	if (!ft_strcmp(splitted[0], "A"))
 		printf("A");//TODO:
-	else if (ft_strcmp(splitted[0], "C"))
-		parse_camera(ctl, splitted);
-	else if (ft_strcmp(splitted[0], "L"))
+	else if (!ft_strcmp(splitted[0], "C"))
+		rv = parse_camera(ctl, splitted);
+	else if (!ft_strcmp(splitted[0], "L"))
 		printf("L");//TODO:
-	else if (ft_strcmp(splitted[0], "pl"))
+	else if (!ft_strcmp(splitted[0], "pl"))
 		printf("pl");//TODO:
-	else if (ft_strcmp(splitted[0], "sp"))
+	else if (!ft_strcmp(splitted[0], "sp"))
 		printf("sp");//TODO:
-	else if (ft_strcmp(splitted[0], "cy"))
+	else if (!ft_strcmp(splitted[0], "cy"))
 		printf("cy");//TODO:
-	else 
+	else
 		printf("Bad argument:");
-	return (NULL);
+	free_2d(splitted);
+	return (rv);
 }

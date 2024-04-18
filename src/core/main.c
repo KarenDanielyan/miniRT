@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 16:59:46 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:29:08 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,19 @@ static void	create_world(t_darray *world);
  *    NOTE: You can only save it once.
  * 8. Event handlers at the end.
 */
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_control	ctl;
 
+	if (ac != 2)
+	{
+		printf("Invalid number of arguments\n");
+		return (1);
+	}
 	env_init(&ctl);
-	// new_vec3(&ctl.cam.center, 0, 0, 0);
-	// new_vec3(&ctl.cam.direction, 0, 0, -1);
-	// ctl.cam.h_fov = 80;
-	//TODO: parse object
+	scan(&ctl, &ctl.world, av[1]);
 	create_world(&ctl.world);
 	generate_tasks(&ctl);
-	initialize_camera(&ctl.cam);
 	run(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);

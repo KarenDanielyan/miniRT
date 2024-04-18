@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 21:19:40 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:35:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <libft.h>
 # include <ft_printf.h>
 # include <mlx.h>
+# include <stdio.h>
 
 # include "defines.h"
 # include "camera.h"
@@ -66,7 +67,7 @@ struct s_control
 };
 
 /* */
-void		scan(t_darray *nodes, char *filename);
+char		scan(t_control *ctl, t_darray *nodes, char *filename);
 
 void		init_ui(t_control *ctl);
 

@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 16:37:50 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:21:19 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t size);
 int			ft_strlen_2d(char const **s);
 int64_t		ft_atol(const char *s);
 uint64_t	ft_atul(const char *s);
-double		ft_atof(char *str);
+float		ft_atof(char *str);
 
 /* Additional Functions */
 void		free_2d(char **s);

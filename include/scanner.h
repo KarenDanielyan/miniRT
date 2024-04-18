@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 12:09:24 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:40:31 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define SCANNER_H
 
 # include "defines.h"
+# include "miniRT.h"
+# include <unistd.h>
 
 int		check_extension(char *name);
 
-void	*parse_object(char *line);
-void	*parse_camera(char **splitted_arr, t_control *ctl);
+void	*parse_object(t_control *ctl, char *line);
+void	*parse_camera(t_control *ctl, char **splitted_arr);
 
 #endif

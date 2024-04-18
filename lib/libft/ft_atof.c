@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scanner.h                                          :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 12:09:24 by armhakob         ###   ########.fr       */
+/*   Created: 2024/04/18 16:26:18 by armhakob          #+#    #+#             */
+/*   Updated: 2024/04/18 16:36:36 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCANNER_H
-# define SCANNER_H
+#include "libft.h"
 
-# include "defines.h"
+double	ft_atof(char *str)
+{
+	double	res;
+	double	res2;
+	int		len;
 
-int		check_extension(char *name);
-
-void	*parse_object(char *line);
-void	*parse_camera(char **splitted_arr, t_control *ctl);
-
-#endif
+	res = (double)ft_atoi(str);
+	while (*str && *str != '.')
+		str++;
+	if (*str == '.')
+		str++;
+	res2 = (double)ft_atoi(str);
+	len = ft_strlen(str);
+	while (len--)
+		res2 /= 10;
+	if (res >= 10)
+		return (res + res2);
+	else
+		return (res + -res2);
+}

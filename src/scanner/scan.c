@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 21:23:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:55:18 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,35 @@ static void	scan_prime(t_darray *arr, int fd)
 		if (!str)
 			break ;
 		content = parse_object(str);
-		if (!content)
+		if (!content && str[0] != 'C')
 		{
 			printf(ERROR_MSG);
 			break ;
 		}
 		ft_darray_pushback(arr, content);
+		free(content);
 	}
+}
+
+void	*parse_object(char *line)
+{
+	t_control	*ctl;
+	char		**splitted;
+	splitted = ft_split(line, ' ');
+
+	if (ft_strcmp(splitted[0], "A"))
+		//TODO:
+	else if (ft_strcmp(splitted[0], "C"))
+		parse_camera(splitted, &ctl);
+	else if (ft_strcmp(splitted[0], "L"))
+		//TODO:
+	else if (ft_strcmp(splitted[0], "pl"))
+		//TODO:
+	else if (ft_strcmp(splitted[0], "sp"))
+		//TODO:
+	else if (ft_strcmp(splitted[0], "cy"))
+		//TODO:
+	else 
+		printf("Bad argument:");
+	return (NULL);
 }

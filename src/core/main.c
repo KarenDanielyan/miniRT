@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:59:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:59:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "debug.h"
 #include "vec3.h"
 #include "color.h"
+#include "scanner.h"
 #include <stdio.h>
 #include <libft.h>
 
@@ -38,10 +39,11 @@ int	main(void)
 	t_control	ctl;
 
 	env_init(&ctl);
-	new_vec3(&ctl.cam.center, 0, 0, 0);
-	new_vec3(&ctl.cam.direction, 0, 0, -1);
+	// new_vec3(&ctl.cam.center, 0, 0, 0);
+	// new_vec3(&ctl.cam.direction, 0, 0, -1);
+	// ctl.cam.h_fov = 80;
+	//TODO: parse object
 	create_world(&ctl.world);
-	ctl.cam.h_fov = 80;
 	generate_tasks(&ctl);
 	initialize_camera(&ctl.cam);
 	run(&ctl);

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 16:46:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:52:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "miniRT.h"
 # include "defines.h"
 # include "vec3.h"
-# include "color.h"
+# include "material.h"
 # include "ray.h"
 # include "shapes.h"
 

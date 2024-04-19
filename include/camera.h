@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:36:35 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 18:19:04 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:51:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "defines.h"
 # include "matrix4.h"
 # include "vec3.h"
-# include "color.h"
+# include "material.h"
 # include "ray.h"
 
 typedef struct s_camera

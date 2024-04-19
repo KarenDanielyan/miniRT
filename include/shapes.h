@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 16:24:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:53:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* Here we define hittable objects and their structures. */
 
 # include "defines.h"
+# include "ray.h"
 
 typedef struct s_hitrecord	t_hitrecord;
 

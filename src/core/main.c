@@ -6,14 +6,14 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 20:59:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:52:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "debug.h"
 #include "vec3.h"
-#include "color.h"
+#include "material.h"
 #include <stdio.h>
 #include <libft.h>
 

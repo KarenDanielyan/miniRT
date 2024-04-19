@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/16 03:28:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:00:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* This is the declaration of vec3 class. */
 
 # include <math.h>
+# include "defines.h"
 
 typedef struct s_vec3	t_vec3;
 
@@ -53,6 +54,9 @@ float		vec3_length_squared(t_vec3 *self);
 float		vec3_dot(const t_vec3 *u, const t_vec3 *v);
 t_vec3		vec3_cross(const t_vec3 *u, const t_vec3 *v);
 t_vec3		unit_vector(t_vec3 v);
+
+t_vec3		random_unit_vector(uint32_t *rng_state);
+t_vec3		random_hemisphere_vector(uint32_t *rng_state);
 
 /* Some utility inline functions */
 static inline t_vec3	sum_vec3(t_vec3 *u, t_vec3 *v)

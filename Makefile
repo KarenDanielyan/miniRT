@@ -22,7 +22,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c \
-				hittable.c shapes.c trace.c) \
+				hittable.c shapes.c trace.c normals.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c \
@@ -32,7 +32,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_get.c vec3_set.c vec3_utils.c \
-				matrix4.c) \
+				vec3_random.c matrix4.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \

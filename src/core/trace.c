@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:33:34 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 21:08:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:00:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ static t_color	super_sample(t_control *ctl, t_job *job, int i, int j)
 
 	k = 1;
 	new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, &ctl->rng_state, i, j));
-	color = job->shader(ctl, &r);
+	color = job->shader(ctl, &r, MAX_BOUNCE);
 	while (k < SSAA)
 	{
 		new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, &ctl->rng_state, i, j));
-		new_color = job->shader(ctl, &r);
+		new_color = job->shader(ctl, &r, MAX_BOUNCE);
 		color = sum_vec3(&color, &new_color);
 		k ++;
 	}

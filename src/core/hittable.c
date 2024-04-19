@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:27:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 16:44:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:13:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr)
 		}
 		i ++;
 	}
-	if (hr->t < 0.0)
-		return (false);
-	return (true);
+	if (hr->t > 0.001)
+	{
+		hr->normal = get_normal(&hr->at, hr->hit);
+		return (true);
+	}
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 19:09:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:24:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,16 @@ union u_shape
 struct s_hitrecord
 {
 	float		t;
+	t_point3	at;
 	t_hittable	*hit;
 };
 
 struct s_hittable
 {
-	t_type	type;
-	t_hit	hit;
-	t_shape	shape;
+	t_type		type;
+	t_hit		hit;
+	t_shape		shape;
+	t_material	material;
 };
 
 /* Constructors */

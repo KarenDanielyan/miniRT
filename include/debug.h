@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:49:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:43:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:46:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	print_tasks(t_control *ctl);
 
 /* Test Shaders */
 
-t_color	normal_shpere_shader(t_ray *r, float t, t_sphere *sp);
+t_color	normal_shpere_shader(t_point3 *hit_p, t_sphere *sp);
 
 #endif

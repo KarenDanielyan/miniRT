@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 21:09:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:49:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # ifndef SSAA
 #  define SSAA 1
-#endif
+# endif
 
 /* Screen Properties */
 # define IMAGE_WIDTH	600

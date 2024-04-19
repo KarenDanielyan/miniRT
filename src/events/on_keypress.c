@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 02:02:36 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/12 20:52:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 00:52:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ static int	on_save(t_control *ctl)
 {
 	create_image(RENDER_FILE, ctl->render.data, \
 		ctl->render.width, ctl->render.height);
-	ft_printf("\033[34mRender saved in %s\033[0m", RENDER_FILE);
+	ft_printf("\033[34mRender saved in %s\033[0m\n", RENDER_FILE);
 	return (EXIT_SUCCESS);
 }

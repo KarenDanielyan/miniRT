@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:27:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:54:35 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:44:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr)
 	{
 		current = ft_darray_get_by_index(world, i);
 		t = current->hit(&current->shape, r);
-		if (i == 0)
+		if (i == 0 || ((hr->t < 0.0 || t < hr->t) && t > 0.0))
 		{
 			hr->t = t;
-			hr->hit = current;
-		}
-		else if ((hr->t < 0.0 || t < hr->t) && t > 0.0)
-		{
-			hr->t = t;
+			hr->at = ray_at(r, t);
 			hr->hit = current;
 		}
 		i ++;

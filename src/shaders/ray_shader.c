@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 19:57:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:46:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r)
 	else
 	{
 		if (hr.hit->type == SPHERE)
-			color = normal_shpere_shader(r, hr.t, &hr.hit->shape.s);
+			color = normal_shpere_shader(&hr.at, &hr.hit->shape.s);
 		else
 			color = skybox_shader(r);
 	}

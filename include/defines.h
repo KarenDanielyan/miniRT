@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 21:15:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:55:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define IMAGE_WIDTH	600
-# define IMAGE_HEIGHT	400
+# define IMAGE_WIDTH	960
+# define IMAGE_HEIGHT	540
 
 /* Camera Properties */
 # define FOCAL_LENGTH	1.0f
@@ -32,12 +32,12 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 30
+#  define SSAA 100
 # endif
 
 /* Global Illumination */
 # ifndef GI
-#  define GI 1
+#  define GI 0
 # endif
 
 /* Miscellaneous Defines */

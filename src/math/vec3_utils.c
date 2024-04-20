@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:57:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 18:07:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:44:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vec3	unit_vector(t_vec3 v)
 
 float	vec3_length(t_vec3 *self)
 {
-	return (sqrtf(vec3_length_squared(self)));
+	return (sqrt(vec3_length_squared(self)));
 }
 
 float	vec3_length_squared(t_vec3 *self)

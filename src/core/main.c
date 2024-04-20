@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 17:52:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:35:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(void)
 	new_vec3(&ctl.cam.center, 0, 0, 0);
 	new_vec3(&ctl.cam.direction, 0, 0, -1);
 	create_world(&ctl.world);
-	ctl.cam.h_fov = 80;
+	ctl.cam.h_fov = 100;
 	generate_tasks(&ctl);
 	initialize_camera(&ctl.cam);
 	run(&ctl);
@@ -65,12 +65,12 @@ static void	create_world(t_darray *world)
 	void	*hittable;
 
 	ft_darray_init(world, sizeof(t_hittable), 5);
-	shape = new_sphere(vec3(-0.4, 0.2, -1.0), 0.2);
+	shape = new_sphere(vec3(0.0, -100.5, -1.0), 100);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
 	ft_darray_pushback(world, hittable);
 	free(shape);
 	free(hittable);
-	shape = new_sphere(vec3(0.0, 0.0, -1.0), 0.3);
+	shape = new_sphere(vec3(0.0, 0.0, -1.0), 0.5);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
 	ft_darray_pushback(world, hittable);
 	free(shape);

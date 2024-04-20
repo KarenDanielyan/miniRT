@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 21:00:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:41:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ bool		float_equal(float a, float b);
 /* Random Numbers */
 float		random_value(uint32_t *rng_state);
 float		normal_ditributed_value(uint32_t *rng_state);
+
+float		random_float(void);
 
 /* Get the pixel in position [i,j]. */
 static inline int	*get_pixel(t_control *ctl, int i, int j)

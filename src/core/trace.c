@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:33:34 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/21 01:44:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:03:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 static t_color	super_sample(t_control *ctl, t_job *job, int i, int j);
-static t_vec3	get_ray(t_camera *cam, uint32_t *rng_state, int i, int j);
+static t_vec3	get_ray(t_camera *cam, int i, int j);
 
 void	trace(t_control *ctl, t_job *job)
 {
@@ -36,7 +36,7 @@ void	trace(t_control *ctl, t_job *job)
 	}
 }
 
-static t_vec3	get_ray(t_camera *cam, uint32_t *rng_state, int i, int j)
+static t_vec3	get_ray(t_camera *cam, int i, int j)
 {
 	t_vec3		dir;
 	t_vec3		tmp;
@@ -46,8 +46,8 @@ static t_vec3	get_ray(t_camera *cam, uint32_t *rng_state, int i, int j)
 	box.y = 0;
 	if (SSAA > 1)
 	{
-		box.x = random_value(rng_state) - 0.5;
-		box.y = random_value(rng_state) - 0.5;
+		box.x = random_float() - 0.5;
+		box.y = random_float() - 0.5;
 	}
 	tmp = scale_vec3((i + box.y), &cam->pixel_delta_v);
 	dir = sum_vec3(&cam->pixel_00, &tmp);
@@ -65,14 +65,18 @@ static t_color	super_sample(t_control *ctl, t_job *job, int i, int j)
 	int			k;
 
 	k = 1;
-	new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, &ctl->rng_state, i, j));
+	new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, i, j));
 	color = job->shader(ctl, &r, MAX_BOUNCE);
 	while (k < SSAA)
 	{
-		new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, &ctl->rng_state, i, j));
+		new_ray(&r, ctl->cam.center, get_ray(&ctl->cam, i, j));
 		new_color = job->shader(ctl, &r, MAX_BOUNCE);
 		color = sum_vec3(&color, &new_color);
 		k ++;
 	}
-	return (shrink_vec3((float)SSAA, &color));
+	color = shrink_vec3((float)SSAA, &color);
+	return (vec3(\
+		clamp(get_x(&color), __FLT_EPSILON__, 0.9999), \
+		clamp(get_y(&color), __FLT_EPSILON__, 0.9999), \
+		clamp(get_z(&color), __FLT_EPSILON__, 0.9999)));
 }

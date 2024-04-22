@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/21 01:41:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:02:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ struct s_control
 	int				win_u;
 	int				win_v;
 	int				worker_c;
-	uint32_t		rng_state;
 	pthread_mutex_t	qmux;
 	t_list			*job_q;
 	t_thread		*pool;
@@ -95,9 +94,11 @@ void		new_image(void *mlx_ptr, int width, int height, t_image *image);
 
 bool		float_equal(float a, float b);
 
+float		clamp(float value, float min, float max);
+
 /* Random Numbers */
-float		random_value(uint32_t *rng_state);
-float		normal_ditributed_value(uint32_t *rng_state);
+float		random_float(void);
+float		normal_ditributed_value(void);
 
 float		random_float(void);
 

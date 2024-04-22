@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:04:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:33:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,38 @@ typedef struct s_vec3	t_vec3;
 /* WARN: Do not access the fields directrly. Use get/set functions */
 struct s_vec3
 {
-	float	e[3];
+	double	e[3];
 };
 
 /* Constructors */
-void		new_vec3(t_vec3 *v, float e1, float e2, float e3);
-t_vec3		vec3(float e1, float e2, float e3);
+void		new_vec3(t_vec3 *v, double e1, double e2, double e3);
+t_vec3		vec3(double e1, double e2, double e3);
 
 /* Properties */
-float		get_x(t_vec3 *self);
-float		get_y(t_vec3 *self);
-float		get_z(t_vec3 *self);
+double		get_x(t_vec3 *self);
+double		get_y(t_vec3 *self);
+double		get_z(t_vec3 *self);
 
-void		set_x(t_vec3 *v, float value);
-void		set_y(t_vec3 *v, float value);
-void		set_z(t_vec3 *v, float value);
+void		set_x(t_vec3 *v, double value);
+void		set_y(t_vec3 *v, double value);
+void		set_z(t_vec3 *v, double value);
 
 /* Class Methods */
 t_vec3		vec3_neg(t_vec3 *self);
 
 void		vec3_sum(t_vec3 *self, t_vec3 *v);
-void		vec3_mult(t_vec3 *self, const float t);
-void		vec3_div(t_vec3 *self, const float t);
+void		vec3_mult(t_vec3 *self, const double t);
+void		vec3_div(t_vec3 *self, const double t);
 void		vec3_normalize(t_vec3 *self);
 
-float		vec3_length(t_vec3 *self);
-float		vec3_length_squared(t_vec3 *self);
+double		vec3_length(t_vec3 *self);
+double		vec3_length_squared(t_vec3 *self);
 
-float		vec3_dot(const t_vec3 *u, const t_vec3 *v);
+double		vec3_dot(const t_vec3 *u, const t_vec3 *v);
 t_vec3		vec3_cross(const t_vec3 *u, const t_vec3 *v);
 t_vec3		unit_vector(t_vec3 v);
 
-t_vec3		random_unit_vector(void);
+t_vec3		random_vector(void);
 t_vec3		random_hemisphere_vector(void);
 
 /* Some utility inline functions */

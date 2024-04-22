@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:02:56 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:51:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ float		clamp(float value, float min, float max);
 
 /* Random Numbers */
 float		random_float(void);
-float		normal_ditributed_value(void);
 
-float		random_float(void);
+double		random_gaussian_value(void);
+double		random_double(void);
 
 /* Get the pixel in position [i,j]. */
 static inline int	*get_pixel(t_control *ctl, int i, int j)

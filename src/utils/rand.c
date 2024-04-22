@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:47:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:06:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:51:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@ float	random_float(void)
 	return ((float)buf / UINT32_MAX);
 }
 
-/* Normally distributed number with mean=0 and sd=1 */
-float	normal_ditributed_value(void)
+double	random_double(void)
 {
-	float	theta;
-	float	rho;
+	uint32_t	buf;
 
-	theta = 2 * M_PI * random_float();
-	rho = sqrt(-2 * log(random_float()));
+	getrandom(&buf, sizeof(buf), GRND_RANDOM);
+	return ((double)buf / UINT32_MAX);
+}
+
+/* Normally distributed number with mean=0 and sd=1 */
+double	random_gaussian_value(void)
+{
+	double	theta;
+	double	rho;
+
+	theta = 2 * M_PI * random_double();
+	rho = sqrt(-2 * log(random_double()));
 	return (rho * cos(theta));
 }

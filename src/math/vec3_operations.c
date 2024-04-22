@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:34:14 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/06 19:39:17 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:34:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	vec3_sum(t_vec3 *self, t_vec3 *v)
 	self->e[2] += v->e[2];
 }
 
-void	vec3_mult(t_vec3 *self, const float t)
+void	vec3_mult(t_vec3 *self, const double t)
 {
 	self->e[0] *= t;
 	self->e[1] *= t;
 	self->e[2] *= t;
 }
 
-void	vec3_div(t_vec3 *self, const float t)
+void	vec3_div(t_vec3 *self, const double t)
 {
 	vec3_mult(self, (1 / t));
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:51:35 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:17:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ float		clamp(float value, float min, float max);
 /* Random Numbers */
 float		random_float(void);
 
+double		random_double_in_range(double min, double max);
 double		random_gaussian_value(void);
 double		random_double(void);
 

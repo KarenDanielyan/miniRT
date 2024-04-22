@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:33:34 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:03:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:37:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static t_vec3	get_ray(t_camera *cam, int i, int j)
 	tmp = scale_vec3((j + box.x), &cam->pixel_delta_u);
 	dir = sum_vec3(&dir, &tmp);
 	dir = subst_vec3(&dir, &cam->center);
+	vec3_normalize(&dir);
 	return (dir);
 }
 
@@ -74,9 +75,5 @@ static t_color	super_sample(t_control *ctl, t_job *job, int i, int j)
 		color = sum_vec3(&color, &new_color);
 		k ++;
 	}
-	color = shrink_vec3((float)SSAA, &color);
-	return (vec3(\
-		clamp(get_x(&color), __FLT_EPSILON__, 0.9999), \
-		clamp(get_y(&color), __FLT_EPSILON__, 0.9999), \
-		clamp(get_z(&color), __FLT_EPSILON__, 0.9999)));
+	return (shrink_vec3((float)SSAA, &color));
 }

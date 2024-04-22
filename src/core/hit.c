@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/21 01:46:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:34:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ float	hit_sphere(t_shape *self, t_ray *r)
 	if (q.w < 0.0)
 		return (-1.0);
 	t = (q.j - sqrt(q.w)) / q.i;
-	if (t < 0)
+	if (t < __FLT_EPSILON__)
 		return ((q.j + sqrt(q.w)) / q.i);
 	return (t);
 }

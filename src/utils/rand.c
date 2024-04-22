@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:47:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:51:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:17:16 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,21 @@ float	random_float(void)
 	return ((float)buf / UINT32_MAX);
 }
 
+/* Random float [0; 1) */
 double	random_double(void)
 {
 	uint32_t	buf;
 
 	getrandom(&buf, sizeof(buf), GRND_RANDOM);
 	return ((double)buf / UINT32_MAX);
+}
+
+double	random_double_in_range(double min, double max)
+{
+	uint32_t	buf;
+
+	getrandom(&buf, sizeof(buf), GRND_RANDOM);
+	return (min + (max - min) * ((double)buf / UINT32_MAX));
 }
 
 /* Normally distributed number with mean=0 and sd=1 */

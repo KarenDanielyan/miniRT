@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/19 21:00:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:02:17 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ union u_shape
 struct s_hitrecord
 {
 	float		t;
+	t_ray		r;
 	t_point3	at;
 	t_vec3		normal;
 	t_hittable	*hit;
@@ -87,6 +88,6 @@ float	sphere_hit(t_point3 center, float radius, t_ray *r);
 
 /* Surfece Normals */
 
-t_vec3	get_normal(t_point3 *at, t_hittable *hit);
+t_vec3	get_normal(t_ray *r, t_point3 *at, t_hittable *hit);
 
 #endif

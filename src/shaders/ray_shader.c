@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:12:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:36:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
 	new_vec3(&gi, 0, 0, 0);
+	new_vec3(&di, 0, 0, 0);
 	if (hit_anything(r, &ctl->world, &hr) == false)
 		return (skybox_shader(r));
-	di = direct_illumination(ctl, &hr);
+	if (!GI)
+		di = direct_illumination(ctl, &hr);
 	if (GI)
 	{
 		gi = global_illumination(ctl, &hr, bounce);
 		vec3_mult(&gi, 0.5);
 	}
-	sum_vec3(&di, &gi);
-	return (gi);
+	return (sum_vec3(&di, &gi));
 }
 
 t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
@@ -72,9 +73,10 @@ t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce)
 	t_ray	r;
 	t_vec3	direction;
 
-	direction = random_hemisphere_vector();
-	if (vec3_dot(&direction, &hr->normal) < 0.0)
-		direction = vec3_neg(&direction);
+	direction = random_unit_vector();
+	direction = unit_vector(sum_vec3(&hr->normal, &direction));
+	if (vec3_dot(&hr->normal, &hr->r.direction) > 0.0)
+		vec3_mult(&direction, -1);
 	new_ray(&r, hr->at, direction);
 	return (ray_shader(ctl, &r, bounce - 1));
 }

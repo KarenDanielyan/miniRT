@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rand.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:47:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 18:17:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:48:56 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,27 @@
 #include <math.h>
 #include <sys/random.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+
+#ifdef __APPLE__
+
+float	random_float(void)
+{
+	return ((float)rand() / RAND_MAX);
+}
+
+double	random_double(void)
+{
+	return ((double)rand() / RAND_MAX);
+}
+
+double random_double_in_range(double min, double max)
+{
+	return (min + (max - min) * ((double)rand() / RAND_MAX));
+}
+
+#elif
 /* Random float [0;1) */
 float	random_float(void)
 {
@@ -40,6 +60,7 @@ double	random_double_in_range(double min, double max)
 	getrandom(&buf, sizeof(buf), GRND_RANDOM);
 	return (min + (max - min) * ((double)buf / UINT32_MAX));
 }
+#endif
 
 /* Normally distributed number with mean=0 and sd=1 */
 double	random_gaussian_value(void)

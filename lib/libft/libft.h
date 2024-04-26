@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:22:44 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:21:19 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t size);
 int			ft_strlen_2d(char const **s);
 int64_t		ft_atol(const char *s);
 uint64_t	ft_atul(const char *s);
+float		ft_atof(char *str);
 
 /* Additional Functions */
 void		free_2d(char **s);

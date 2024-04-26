@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/21 01:35:07 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:52:59 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "debug.h"
 #include "vec3.h"
 #include "material.h"
+#include "scanner.h"
 #include <stdio.h>
 #include <libft.h>
 
@@ -33,17 +34,19 @@ static void	create_world(t_darray *world);
  *    NOTE: You can only save it once.
  * 8. Event handlers at the end.
 */
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_control	ctl;
 
+	if (ac != 2)
+	{
+		printf("Invalid number of arguments\n");
+		return (1);
+	}
 	env_init(&ctl);
-	new_vec3(&ctl.cam.center, 0, 0, 0);
-	new_vec3(&ctl.cam.direction, 0, 0, -1);
+	scan(&ctl, &ctl.world, av[1]);
 	create_world(&ctl.world);
-	ctl.cam.h_fov = 100;
 	generate_tasks(&ctl);
-	initialize_camera(&ctl.cam);
 	run(&ctl);
 	mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 	mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);

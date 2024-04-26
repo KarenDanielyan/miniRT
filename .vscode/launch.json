@@ -27,7 +27,7 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": ["test.rt"],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "${workspaceFolder}",

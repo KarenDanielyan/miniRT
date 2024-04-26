@@ -6,7 +6,7 @@
 /*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:51:53 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:55:28 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "defines.h"
 # include "vec3.h"
 
-typedef struct s_vec3	t_color;
+typedef struct s_vec3		t_color;
+typedef struct s_material	t_material;
 
 static inline void	set_color(int *pixel, t_color color)
 {

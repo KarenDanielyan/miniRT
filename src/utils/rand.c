@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rand.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:47:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:48:56 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:01:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double random_double_in_range(double min, double max)
 	return (min + (max - min) * ((double)rand() / RAND_MAX));
 }
 
-#elif
+#elif __linux__
 /* Random float [0;1) */
 float	random_float(void)
 {

@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 21:21:19 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:24:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <math.h>
 # include <stdlib.h>
 # include <stdint.h>
 # include <unistd.h>
+# include <sys/random.h>
 # include "get_next_line.h"
 
 /* Glibc Functions */
@@ -75,6 +77,14 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+/* 42 Random API */
+
+float		ft_random_float(void);
+
+double		ft_random_double(void);
+double		ft_random_double_in_range(double min, double max);
+double		ft_random_gaussian_value(void);
 
 /* Get next line */
 char		*get_next_line(int fd);

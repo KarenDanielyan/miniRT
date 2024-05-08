@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 20:36:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:28:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce)
 	t_vec3	direction;
 
 	direction = random_unit_vector();
-	direction = unit_vector(sum_vec3(&hr->normal, &direction));
+	direction = sum_vec3(&hr->normal, &direction);
 	if (vec3_dot(&hr->normal, &hr->r.direction) > 0.0)
 		vec3_mult(&direction, -1);
 	new_ray(&r, hr->at, direction);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:52:11 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:26:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,6 @@ void		new_image(void *mlx_ptr, int width, int height, t_image *image);
 bool		float_equal(float a, float b);
 
 float		clamp(float value, float min, float max);
-
-/* Random Numbers */
-float		random_float(void);
-
-double		random_double_in_range(double min, double max);
-double		random_gaussian_value(void);
-double		random_double(void);
 
 /* Get the pixel in position [i,j]. */
 static inline int	*get_pixel(t_control *ctl, int i, int j)

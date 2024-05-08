@@ -1,4 +1,4 @@
-NAME		=	libft.a
+NAME		=	libft
 
 DEP			= 	libft.h get_next_line.h Makefile
 
@@ -12,7 +12,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g3 -Wall -Wextra -Werror -o2
+CFLAGS		=	-Wall -Wextra -Werror
 
 AR			=	ar rcs
 
@@ -30,7 +30,8 @@ all:		$(NAME)
 
 $(NAME):	$(BUILD) $(OBJS)
 				@echo "${GREEN}Building Libft...${RESET}"
-				@$(AR) $(NAME) $(OBJS)
+				@$(AR) $(NAME).a $(OBJS)
+				@gcc -shared -o $(NAME).so $(OBJS)
 				@echo "${GREEN}Done.${RESET}"
 
 $(BUILD):

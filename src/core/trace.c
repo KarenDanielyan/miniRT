@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:33:34 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/23 16:06:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:14:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static t_vec3	get_ray(t_camera *cam, int i, int j)
 	box.y = 0;
 	if (SSAA > 1)
 	{
-		box.x = random_float() - 0.5;
-		box.y = random_float() - 0.5;
+		box.x = ft_random_float() - 0.5;
+		box.y = ft_random_float() - 0.5;
 	}
 	tmp = scale_vec3((i + box.y), &cam->pixel_delta_v);
 	dir = sum_vec3(&cam->pixel_00, &tmp);

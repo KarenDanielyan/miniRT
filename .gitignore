@@ -3,7 +3,7 @@ miniRT_old
 Images/*.ppm
 build
 lib/libft/build
-lib/libft/libft.a
+lib/libft/libft.*
 lib/printf/build
 lib/printf/libftprintf.a
 lib/mlx_linux/obj

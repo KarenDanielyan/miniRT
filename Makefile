@@ -60,7 +60,7 @@ INVOKE		=	libft printf mlx
 
 IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
 
-LFLAGS		=	-Llib/libft -lft -Llib/printf -lftprintf -lm
+LFLAGS		=	-Llib/libft -l:libft.a -Llib/printf -lftprintf -lm
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux

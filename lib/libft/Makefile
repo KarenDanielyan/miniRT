@@ -1,4 +1,4 @@
-NAME		=	libft
+NAME		=	libft.a
 
 DEP			= 	libft.h get_next_line.h Makefile
 
@@ -30,12 +30,16 @@ all:		$(NAME)
 
 $(NAME):	$(BUILD) $(OBJS)
 				@echo "${GREEN}Building Libft...${RESET}"
-				@$(AR) $(NAME).a $(OBJS)
-				@gcc -shared -o $(NAME).so $(OBJS)
+				@$(AR) $(NAME) $(OBJS)
 				@echo "${GREEN}Done.${RESET}"
 
 $(BUILD):
 			@mkdir $(BUILD)
+
+shared:		$(BUILD) $(OBJS)
+				@echo "${GREEN}Building Shared Libft...${RESET}"
+				@$(CC) -shared -o libft.so $(OBJS)
+				@echo "${GREEN}Done.${RESET}"
 
 clean:		
 				@echo "${YELLOW}Cleaning build${RESET}"

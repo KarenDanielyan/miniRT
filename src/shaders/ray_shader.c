@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 18:55:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 01:12:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "shapes.h"
 
 static t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
-static t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce);
+static t_color	global_illumination(t_control *ctl, \
+	t_hitrecord *hr, int bounce);
 
 /**
  * @brief		Shader function for raytracing.
@@ -44,17 +45,21 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	t_color		gi;
 	t_hitrecord	hr;
 
-	new_vec3(&gi, 0, 0, 0);
+	if (bounce <= 0)
+		return (vec3(0, 0, 0));
+	di = skybox_shader(r);
 	new_vec3(&di, 0, 0, 0);
-	if (hit_anything(r, &ctl->world, &hr) == false || bounce <= 0)
-		return (skybox_shader(r));
-	di = direct_illumination(ctl, &hr);
-	if (GI)
+	new_vec3(&gi, 0, 0, 0);
+	if (hit_anything(r, &ctl->world, &hr))
 	{
-		gi = global_illumination(ctl, &hr, bounce);
-		vec3_mult(&gi, 0.5);
+		di = direct_illumination(ctl, &hr);
+		if (GI)
+		{
+			gi = global_illumination(ctl, &hr, bounce);
+			gi = vec3_scalar_mult(&gi, &hr.hit->material.color);
+		}
 	}
-	return (sum_vec3(&di, &gi));
+	return (vec3_lerp(&di, &gi, 0.7));
 }
 
 /**
@@ -66,7 +71,19 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
  */
 t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
 {
-	return (diffuse_shader(ctl, hr));
+	t_color	ambient;
+	t_color	diffuse;
+	t_color	specular;
+	t_color	res;
+
+	ambient = vec3(1.0, 1.0, 1.0);
+	ambient = vec3_scalar_mult(&hr->hit->material.color, &ambient);
+	ambient = scale_vec3(0.1, &ambient);
+	diffuse = diffuse_shader(ctl, hr);
+	specular = vec3(0.0, 0.0, 0.0);
+	res = sum_vec3(&ambient, &diffuse);
+	res = sum_vec3(&res, &specular);
+	return (res);
 }
 
 t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce)

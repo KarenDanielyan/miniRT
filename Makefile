@@ -31,7 +31,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				check_extension.c scan.c parse_objects.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
-				vec3_get.c vec3_set.c vec3_utils.c \
+				vec3_operations_2.c vec3_get.c \
+				vec3_set.c vec3_utils.c \
 				vec3_random.c matrix4.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \

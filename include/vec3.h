@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 20:26:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:26:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_vec3		unit_vector(t_vec3 v);
 
 t_vec3		random_vector(void);
 t_vec3		random_unit_vector(void);
-t_vec3		random_hemisphere_vector(void);
+t_vec3		random_sphere_vector(void);
+t_vec3		random_hemisphere_vector(t_vec3 *normal);
 
 /* Some utility inline functions */
 static inline t_vec3	sum_vec3(t_vec3 *u, t_vec3 *v)

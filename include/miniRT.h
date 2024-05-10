@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/07 16:26:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:50:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "defines.h"
 # include "camera.h"
 # include "ui.h"
+# include "shapes.h"
 
 /* Type definitions */
 typedef struct s_control	t_control;
@@ -76,6 +77,8 @@ void		run(t_control *ctl);
 
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 
+t_color		diffuse_shader(t_control *ctl, t_hitrecord *hr);
+
 t_color		skybox_shader(t_ray *ray);
 
 /* Utils */
@@ -95,6 +98,7 @@ void		new_image(void *mlx_ptr, int width, int height, t_image *image);
 bool		float_equal(float a, float b);
 
 float		clamp(float value, float min, float max);
+double		clamp_d(double value, double min, double max);
 
 /* Get the pixel in position [i,j]. */
 static inline int	*get_pixel(t_control *ctl, int i, int j)

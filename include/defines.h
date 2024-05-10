@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/23 16:01:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:23:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 # define NAME "miniRT"
 
 /* Screen Properties */
-# define IMAGE_WIDTH	600
-# define IMAGE_HEIGHT	400
+# define IMAGE_WIDTH	800
+# define IMAGE_HEIGHT	450
 
 /* Camera Properties */
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 50
+# define MAX_BOUNCE 10
 
 /* Anti-alsiasing */
 # ifndef SSAA

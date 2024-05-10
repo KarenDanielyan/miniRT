@@ -12,7 +12,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-g3 -Wall -Wextra -Werror
 
 AR			=	ar rcs
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:52:59 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:01:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	create_world(t_darray *world)
 	void	*shape;
 	void	*hittable;
 
-	ft_darray_init(world, sizeof(t_hittable), 5);
 	shape = new_sphere(vec3(0.0, -100.5, -1.0), 100);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
 	ft_darray_pushback(world, hittable);

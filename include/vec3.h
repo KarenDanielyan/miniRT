@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:57:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 18:26:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:53:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ double		vec3_length(t_vec3 *self);
 double		vec3_length_squared(t_vec3 *self);
 
 double		vec3_dot(const t_vec3 *u, const t_vec3 *v);
-t_vec3		vec3_cross(const t_vec3 *u, const t_vec3 *v);
+
 t_vec3		unit_vector(t_vec3 v);
+t_vec3		vec3_cross(const t_vec3 *u, const t_vec3 *v);
+t_vec3		vec3_scalar_mult(const t_vec3 *u, const t_vec3 *v);
+t_vec3		vec3_lerp(const t_vec3 *u, const t_vec3 *v, double t);
 
 t_vec3		random_vector(void);
 t_vec3		random_unit_vector(void);

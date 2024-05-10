@@ -6,23 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:57:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 17:34:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:17:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
-
-double	vec3_dot(const t_vec3 *u, const t_vec3 *v)
-{
-	return (u->e[0] * v->e[0] + u->e[1] * v->e[1] + u->e[2] * v->e[2]);
-}
-
-t_vec3	vec3_cross(const t_vec3 *u, const t_vec3 *v)
-{
-	return (vec3(u->e[1] * v->e[2] - u->e[2] * v->e[1], \
-				u->e[2] * v->e[0] - u->e[0] * v->e[2], \
-				u->e[0] * v->e[1] - u->e[1] * v->e[0]));
-}
 
 t_vec3	unit_vector(t_vec3 v)
 {
@@ -38,4 +26,9 @@ double	vec3_length_squared(t_vec3 *self)
 {
 	return (self->e[0] * self->e[0] + self->e[1] * self->e[1] \
 		+ self->e[2] * self->e[2]);
+}
+
+void	vec3_normalize(t_vec3 *self)
+{
+	vec3_div(self, vec3_length(self));
 }

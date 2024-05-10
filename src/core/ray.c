@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 17:33:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 01:05:04 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	new_ray(t_ray *self, t_point3 origin, t_vec3 direction)
 {
 	self->direction = direction;
+	vec3_normalize(&self->direction);
 	self->origin = origin;
 }
 

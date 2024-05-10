@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:27:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 19:55:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:42:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,27 @@ void	*new_hittable(t_type type, t_hit hit, void *shape)
 
 bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr)
 {
-	size_t		i;
 	t_hittable	*current;
-	float		t;
+	bool		hit_anything;
+	size_t		i;
+	double		t;
 
 	i = 0;
+	hr->t = __FLT_MAX__;
+	hit_anything = false;
 	while (i < world->nmemb)
 	{
 		current = ft_darray_get_by_index(world, i);
-		t = current->hit(&current->shape, r);
-		if (i == 0 || ((hr->t < 0.0 || t < hr->t) && t > 0.0))
+		if (current->hit(&current->shape, r, &t) && (t < hr->t && t > 0.0))
 		{
+			hit_anything = true;
 			hr->t = t;
 			hr->r = *r;
 			hr->at = ray_at(r, t);
 			hr->hit = current;
+			hr->normal = get_normal(r, &hr->at, hr->hit);
 		}
 		i ++;
 	}
-	if (hr->t > __FLT_EPSILON__)
-	{
-		hr->normal = get_normal(r, &hr->at, hr->hit);
-		return (true);
-	}
-	return (false);
+	return (hit_anything);
 }

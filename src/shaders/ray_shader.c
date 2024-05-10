@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/07 16:28:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:55:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "camera.h"
 #include "shapes.h"
 
-t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
-t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce);
+static t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
+static t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce);
 
 /**
  * @brief		Shader function for raytracing.
@@ -44,14 +44,11 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	t_color		gi;
 	t_hitrecord	hr;
 
-	if (bounce <= 0)
-		return (vec3(0, 0, 0));
 	new_vec3(&gi, 0, 0, 0);
 	new_vec3(&di, 0, 0, 0);
-	if (hit_anything(r, &ctl->world, &hr) == false)
+	if (hit_anything(r, &ctl->world, &hr) == false || bounce <= 0)
 		return (skybox_shader(r));
-	if (!GI)
-		di = direct_illumination(ctl, &hr);
+	di = direct_illumination(ctl, &hr);
 	if (GI)
 	{
 		gi = global_illumination(ctl, &hr, bounce);
@@ -60,12 +57,16 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	return (sum_vec3(&di, &gi));
 }
 
+/**
+ * @brief			Shader function for direct illumination.
+ * 
+ * @param ctl		Control Structure.
+ * @param hr		Hir record.
+ * @return t_color	Color conponent from the direct illumination.
+ */
 t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
 {
-	(void)ctl;
-	if (hr->hit->type == SPHERE)
-		return (normal_shpere_shader(&hr->at, &hr->hit->shape.s));
-	return (vec3(0.0, 0.0, 0.0));
+	return (diffuse_shader(ctl, hr));
 }
 
 t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce)
@@ -73,10 +74,8 @@ t_color	global_illumination(t_control *ctl, t_hitrecord *hr, int bounce)
 	t_ray	r;
 	t_vec3	direction;
 
-	direction = random_unit_vector();
+	direction = random_sphere_vector();
 	direction = sum_vec3(&hr->normal, &direction);
-	if (vec3_dot(&hr->normal, &hr->r.direction) > 0.0)
-		vec3_mult(&direction, -1);
-	new_ray(&r, hr->at, direction);
+	new_ray(&r, hr->at, unit_vector(direction));
 	return (ray_shader(ctl, &r, bounce - 1));
 }

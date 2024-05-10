@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:52:21 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:50:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
-
-# include "defines.h"
 
 /* Here we define hittable objects and their structures. */
 
@@ -28,7 +26,7 @@ typedef enum e_type			t_type;
 
 typedef struct s_sphere		t_sphere;
 
-typedef float				(*t_hit)(t_shape *self, t_ray *r);
+typedef bool				(*t_hit)(t_shape *self, t_ray *r, double *t);
 
 enum	e_type
 {
@@ -60,7 +58,7 @@ union u_shape
  */
 struct s_hitrecord
 {
-	float		t;
+	double		t;
 	t_ray		r;
 	t_point3	at;
 	t_vec3		normal;
@@ -85,8 +83,7 @@ void	*new_sphere(t_point3 center, float radius);
 
 bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr);
 
-float	hit_sphere(t_shape *self, t_ray *r);
-float	sphere_hit(t_point3 center, float radius, t_ray *r);
+bool	hit_sphere(t_shape *self, t_ray *r, double *t);
 
 /* Surfece Normals */
 

@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   diffuse_shader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 01:09:07 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 17:33:25 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/05/10 18:58:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "miniRT.h"
 
-# include "defines.h"
-# include "vec3.h"
-
-typedef struct s_ray
+struct s_light
 {
-	t_point3	origin;
-	t_vec3		direction;
-}	t_ray;
+	t_point3	position;
+	t_color		color;
+}
 
-void		new_ray(t_ray *self, t_point3 origin, t_vec3 direction);
-void		new_ray_from_to(t_ray *self, t_point3 from, t_point3 to);
+t_color		diffuse_shader(t_control *ctl, t_hitrecord *hr)
+{
+	t_color		color;
+	struct s_light	l;
 
-t_point3	ray_at(t_ray *r, double t);
-
-#endif
+	(void)ctl;
+	l.position = vec3(-5, 100, -5);
+	l.color = vec3(1.0, 1.0, 1.0);
+	color = vec3(0, 0, 0);
+	if (hr->hit->type == SPHERE)
+	{
+		
+	}
+	return (color);
+}

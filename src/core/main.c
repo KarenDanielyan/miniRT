@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 19:01:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:12:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ static void	create_world(t_darray *world)
 
 	shape = new_sphere(vec3(0.0, -100.5, -1.0), 100);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
+	((t_hittable *)hittable)->material.color = vec3(1, 0, 0);
 	ft_darray_pushback(world, hittable);
 	free(shape);
 	free(hittable);
 	shape = new_sphere(vec3(0.0, 0.0, -1.0), 0.5);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
+	((t_hittable *)hittable)->material.color = vec3(1, 1, 0);
 	ft_darray_pushback(world, hittable);
 	free(shape);
 	free(hittable);

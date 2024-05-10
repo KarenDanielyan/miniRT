@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/26 20:55:28 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/11 01:14:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
 # include "defines.h"
 # include "vec3.h"
@@ -28,7 +28,7 @@ static inline void	set_color(int *pixel, t_color color)
 
 struct s_material
 {
-	t_color color;
+	t_color	color;
 };
 
 #endif

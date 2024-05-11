@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/18 22:34:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:26:22 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 #include "scanner.h"
 #include "shapes.h"
 
-static void	scan_prime(t_control *ctl, t_darray *arr, int fd);
+static void	scan_prime(t_control *ctl, int fd);
+static void	*parse_object(t_control *ctl, char *line);
 
-char	scan(t_control *ctl, t_darray *arr, char *filename)
+char	scan(t_control *ctl, char *filename)
 {
 	int	fd;
 
-	if (check_extension(filename) == EXIT_SUCCESS)
+	if (check_extension(filename) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
 	{
-		fd = open(filename, O_RDONLY);
-		if (fd < 0)
-		{
-			printf(ERROR_MSG);
-			return (EXIT_FAILURE);
-		}
-		scan_prime(ctl, arr, fd);
+		printf(ERROR_MSG);
+		return (EXIT_FAILURE);
 	}
+	scan_prime(ctl, fd);
 	return (EXIT_SUCCESS);
 }
 
-static void	scan_prime(t_control *ctl, t_darray *arr, int fd)
+static void	scan_prime(t_control *ctl, int fd)
 {
 	char	*str;
 	void	*content;
 
 	str = NULL;
-	ft_darray_init(arr, sizeof(t_hittable), 5);
-	while (1)
+	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
+	while (true)
 	{
 		str = get_next_line(fd);
 		if (!str)
@@ -53,33 +53,51 @@ static void	scan_prime(t_control *ctl, t_darray *arr, int fd)
 			break ;
 		}
 		if (content)
-			ft_darray_pushback(arr, content);
+			ft_darray_pushback(&ctl->world, content);
 		free(content);
 		free(str);
 	}
 }
 
-void	*parse_object(t_control *ctl, char *line)
+static t_list	*get_tokens(char *line)
 {
-	char		**splitted;
-	void		*rv;
+	t_list	*head;
+	char	*tmp;
 
+	tmp = NULL;
+	head = NULL;
+	while (*line)
+	{
+		while (*line && ft_iswhitespace(*line))
+			line++;
+		while (*line && !ft_iswhitespace(*line))
+			ft_strappend(&tmp, *line++);
+		if (tmp)
+			ft_lstadd_back(&head, ft_lstnew(tmp));
+		tmp = NULL;
+	}
+	return (head);
+}
+
+/* TODO: Add comment feature (Usage: # Here is your comment. )*/
+static void	*parse_object(t_control *ctl, char *line)
+{
+	void		*rv;
+	t_list		*tokens;
+
+	(void)ctl;
 	rv = NULL;
-	splitted = ft_split(line, ' ');
-	if (!ft_strcmp(splitted[0], "A"))
-		printf("A");//TODO:
-	else if (!ft_strcmp(splitted[0], "C"))
-		rv = parse_camera(ctl, splitted);
-	else if (!ft_strcmp(splitted[0], "L"))
-		printf("L");//TODO:
-	else if (!ft_strcmp(splitted[0], "pl"))
-		printf("pl");//TODO:
-	else if (!ft_strcmp(splitted[0], "sp"))
-		printf("sp");//TODO:
-	else if (!ft_strcmp(splitted[0], "cy"))
-		printf("cy");//TODO:
+	tokens = get_tokens(line);
+	if (!ft_strcmp((char *)(tokens->content), "C"))
+		rv = parse_camera(ctl, tokens);
+	else if (!ft_strcmp((char *)(tokens->content), "A"))
+		rv = NULL;
+	else if (!ft_strcmp((char *)(tokens->content), "sp"))
+		rv = NULL;
+	else if (!ft_strcmp((char *)(tokens->content), "L"))
+		rv = NULL;
 	else
-		printf("Bad argument:");
-	free_2d(splitted);
+		printf("%s%s%s", RED, ERR_BADARG, RESET);
+	ft_lstclear(&tokens, &free);
 	return (rv);
 }

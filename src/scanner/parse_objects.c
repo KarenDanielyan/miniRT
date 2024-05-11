@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:19:13 by armhakob          #+#    #+#             */
-/*   Updated: 2024/04/18 22:29:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:26:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 #include "miniRT.h"
 
 //TODO: error managment and pretty printing
-void	*parse_camera(t_control *ctl, char **splitted_arr)
+void	*parse_camera(t_control *ctl, t_list *tokens)
 {
 	char	**point_view;
 	char	**vector_orientation;
 
-	if (ft_strlen_2d((const char **)splitted_arr) != 4)
+	if (ft_lstsize(tokens) != 4)
 	{
-		printf("Invalid number of arguments, expected 4...");
+		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
 		return (NULL);
 	}
-	point_view = ft_split(splitted_arr[1], ',');
-	vector_orientation = ft_split(splitted_arr[2], ',');
+	point_view = ft_split(ft_lst_get_by_index(tokens, 1)->content, ',');
+	vector_orientation = ft_split(ft_lst_get_by_index(tokens, 2)->content, ',');
 	new_vec3(&ctl->cam.center, \
 		ft_atof(point_view[0]), ft_atof(point_view[1]), ft_atof(point_view[2]));
 	new_vec3(&ctl->cam.direction, \
 		ft_atof(vector_orientation[0]), ft_atof(vector_orientation[1]), \
 		ft_atof(vector_orientation[2]));
-	ctl->cam.h_fov = ft_atof(splitted_arr[3]);
+	ctl->cam.h_fov = ft_atof(ft_lst_get_by_index(tokens, 3)->content);
 	initialize_camera(&ctl->cam);
 	free_2d(point_view);
 	free_2d(vector_orientation);

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 14:22:47 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:51:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ struct s_control
 	t_thread		*pool;
 	t_camera		cam;
 	t_darray		world;
+	t_darray		lights;
 	t_image			render;
 };
 

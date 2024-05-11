@@ -6,29 +6,23 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 01:13:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:22:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-struct s_light
-{
-	t_point3	position;
-	t_color		color;
-};
-
 t_color	diffuse_shader(t_control *ctl, t_hitrecord *hr)
 {
-	struct s_light	l;
-	t_hitrecord		tmp_hr;
-	t_color			color;
-	t_ray			r;
+	t_light		l;
+	t_hitrecord	tmp_hr;
+	t_color		color;
+	t_ray		r;
 
-	l.position = vec3(-1, 0, 0);
+	l.pos = vec3(-1, 0, 0);
 	l.color = vec3(1.0, 1.0, 1.0);
 	color = vec3(0.0, 0.0, 0.0);
-	new_ray(&r, l.position, subst_vec3(&hr->at, &l.position));
+	new_ray(&r, l.pos, subst_vec3(&hr->at, &l.pos));
 	if (hit_anything(&r, &ctl->world, &tmp_hr) && tmp_hr.hit == hr->hit)
 	{
 		r.direction = vec3_neg(&r.direction);

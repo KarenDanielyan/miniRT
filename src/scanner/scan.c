@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:26:22 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:31:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "scanner.h"
 #include "shapes.h"
 
-static void	scan_prime(t_control *ctl, int fd);
-static void	*parse_object(t_control *ctl, char *line);
+static char	scan_prime(t_control *ctl, int fd);
+static void	*parse_object(t_control *ctl, char *line, int *parse_type);
 
 char	scan(t_control *ctl, char *filename)
 {
-	int	fd;
+	int		fd;
 
 	if (check_extension(filename) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -29,34 +29,37 @@ char	scan(t_control *ctl, char *filename)
 		printf(ERROR_MSG);
 		return (EXIT_FAILURE);
 	}
-	scan_prime(ctl, fd);
-	return (EXIT_SUCCESS);
+	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
+	ft_darray_init(&ctl->lights, sizeof(t_light), 5);
+	return (scan_prime(ctl, fd));
 }
 
-static void	scan_prime(t_control *ctl, int fd)
+static char	scan_prime(t_control *ctl, int fd)
 {
 	char	*str;
 	void	*content;
+	int		parse_type;
 
 	str = NULL;
-	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
 	while (true)
 	{
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		content = parse_object(ctl, str);
-		if (!content && str[0] != 'C')
+		content = parse_object(ctl, str, &parse_type);
+		free(str);
+		if (!content && parse_type == P_ERRTYPE)
 		{
 			printf(ERROR_MSG);
-			free(str);
-			break ;
+			return (EXIT_FAILURE);
 		}
-		if (content)
+		if (content && parse_type >= P_SPHERE && parse_type < P_POINTLIGHT)
 			ft_darray_pushback(&ctl->world, content);
+		else if (content && parse_type >= P_POINTLIGHT && parse_type < P_ERRTYPE)
+			ft_darray_pushback(&ctl->lights, content);
 		free(content);
-		free(str);
 	}
+	return (EXIT_SUCCESS);
 }
 
 static t_list	*get_tokens(char *line)
@@ -80,7 +83,7 @@ static t_list	*get_tokens(char *line)
 }
 
 /* TODO: Add comment feature (Usage: # Here is your comment. )*/
-static void	*parse_object(t_control *ctl, char *line)
+static void	*parse_object(t_control *ctl, char *line, int *parse_type)
 {
 	void		*rv;
 	t_list		*tokens;
@@ -89,12 +92,12 @@ static void	*parse_object(t_control *ctl, char *line)
 	rv = NULL;
 	tokens = get_tokens(line);
 	if (!ft_strcmp((char *)(tokens->content), "C"))
-		rv = parse_camera(ctl, tokens);
+		rv = parse_camera(ctl, tokens, parse_type);
 	else if (!ft_strcmp((char *)(tokens->content), "A"))
+		rv = parse_ambient(ctl, tokens, parse_type);
+	else if (!ft_strcmp((char *)(tokens->content), "L"))
 		rv = NULL;
 	else if (!ft_strcmp((char *)(tokens->content), "sp"))
-		rv = NULL;
-	else if (!ft_strcmp((char *)(tokens->content), "L"))
 		rv = NULL;
 	else
 		printf("%s%s%s", RED, ERR_BADARG, RESET);

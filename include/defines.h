@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 18:23:05 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:26:09 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,22 @@
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
-# define ERROR_MSG "Error\n"
 # define EXTENSION ".rt"
 # define DOT '.'
+
+/* Error Messages */
+# define ERROR_MSG "Error\n"
+# define ERR_INVALID_EXT "Error: Invalid file extension.\n"
+# define ERR_BADARG "Error: Bad Argument.\n"
+# define ERR_INVALID_ARGS "Invalid number of arguments, expected %d...\n"
+
+
+/* Colors Escape Codes */
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define RESET "\033[0m"
 
 /* Defines for floating-point operations */
 # define EPSILON 0.000001

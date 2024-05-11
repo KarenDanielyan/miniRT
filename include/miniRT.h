@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 18:50:45 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:22:47 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ struct s_control
 };
 
 /* */
-char		scan(t_control *ctl, t_darray *nodes, char *filename);
+char		scan(t_control *ctl, char *filename);
 
 void		init_ui(t_control *ctl);
 

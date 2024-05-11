@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 14:28:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:43:06 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void		generate_tasks(t_control *ctl);
 static void	env_init(t_control *ctl);
 static void	create_world(t_darray *world);
 
+double	ft_map(int num)
+{
+	if (num == 0)
+		return (0);
+	return (1 / num);
+}
 /**
  * Main logic:
  * 1. check file validity

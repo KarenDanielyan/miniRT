@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:51:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:33:13 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void		fill_image(t_image *image, int color);
 
 void		create_image(char *name, int *pixels, int w, int h);
 void		new_image(void *mlx_ptr, int width, int height, t_image *image);
+double		ft_map(int num);
 
 /* Floating point operations */
 

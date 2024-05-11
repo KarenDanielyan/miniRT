@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:26:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:32:17 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 # define ERR_INVALID_EXT "Error: Invalid file extension.\n"
 # define ERR_BADARG "Error: Bad Argument.\n"
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected %d...\n"
-
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

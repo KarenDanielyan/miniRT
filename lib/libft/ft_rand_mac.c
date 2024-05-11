@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rand.c                                          :+:      :+:    :+:   */
+/*   ft_rand_mac.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:47:23 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:34:56 by kdaniely         ###   ########.fr       */
+/*   Created: 2024/05/11 15:34:05 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/05/11 15:34:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <sys/random.h>
 
-/* Normally distributed number with mean=0 and sd=1 */
-double	ft_random_gaussian_value(void)
-{
-	double	theta;
-	double	rho;
+#ifdef __APPLE__
 
-	theta = 2 * M_PI * ft_random_double();
-	rho = sqrt(-2 * log(ft_random_double()));
-	return (rho * cos(theta));
+float	ft_random_float(void)
+{
+	return ((float)rand() / RAND_MAX);
 }
+
+double	ft_random_double(void)
+{
+	return ((double)rand() / RAND_MAX);
+}
+
+double	ft_random_double_in_range(double min, double max)
+{
+	return (min + (max - min) * ((double)rand() / RAND_MAX));
+}
+#endif

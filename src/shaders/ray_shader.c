@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 01:12:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:09:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
-	di = skybox_shader(r);
-	new_vec3(&di, 0, 0, 0);
+	di = vec3(0, 0, 0); //skybox_shader(r);
 	new_vec3(&gi, 0, 0, 0);
 	if (hit_anything(r, &ctl->world, &hr))
 	{
@@ -57,9 +56,10 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 		{
 			gi = global_illumination(ctl, &hr, bounce);
 			gi = vec3_scalar_mult(&gi, &hr.hit->material.color);
+			gi = scale_vec3(0.5, &gi);
 		}
 	}
-	return (vec3_lerp(&di, &gi, 0.7));
+	return (sum_vec3(&gi, &di));
 }
 
 /**

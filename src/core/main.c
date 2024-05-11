@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 21:12:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:28:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	env_init(&ctl);
-	scan(&ctl, &ctl.world, av[1]);
+	if (scan(&ctl, av[1]) == EXIT_FAILURE)
+	{
+		mlx_destroy_window(ctl.mlx_ptr, ctl.win_ptr);
+		exit(EXIT_FAILURE);
+	}
 	create_world(&ctl.world);
 	generate_tasks(&ctl);
 	run(&ctl);

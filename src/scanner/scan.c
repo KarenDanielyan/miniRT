@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 16:31:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:33:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static char	scan_prime(t_control *ctl, int fd)
 		}
 		if (content && parse_type >= P_SPHERE && parse_type < P_POINTLIGHT)
 			ft_darray_pushback(&ctl->world, content);
-		else if (content && parse_type >= P_POINTLIGHT && parse_type < P_ERRTYPE)
+		else if (content && parse_type >= P_POINTLIGHT \
+			&& parse_type < P_ERRTYPE)
 			ft_darray_pushback(&ctl->lights, content);
 		free(content);
 	}

@@ -6,16 +6,16 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:30:48 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/11 19:48:33 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:12:23 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-/* mapping for color of ambient [0-250] -> [0-1]*/
-double	ft_map(int num)
+/* mapping for color of ambient [0-255] -> [0-1]*/
+double	ft_map(double num)
 {
 	if (num == 0)
 		return (0);
-	return (1 / num);
+	return (num / 255.0);
 }

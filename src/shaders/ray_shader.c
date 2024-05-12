@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 14:09:13 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:05:48 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
 	t_color	specular;
 	t_color	res;
 
-	ambient = vec3(1.0, 1.0, 1.0);
-	ambient = vec3_scalar_mult(&hr->hit->material.color, &ambient);
-	ambient = scale_vec3(0.1, &ambient);
+	ambient = ambient_shader(ctl, hr);
 	diffuse = diffuse_shader(ctl, hr);
 	specular = vec3(0.0, 0.0, 0.0);
 	res = sum_vec3(&ambient, &diffuse);

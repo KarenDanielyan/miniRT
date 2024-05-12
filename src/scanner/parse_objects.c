@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:19:13 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/11 16:29:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:43:44 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,27 @@ void	*parse_camera(t_control *ctl, t_list *tokens, int *parse_type)
 	return (NULL);
 }
 
+/**
+	ambient: 1. Symbol -> A, Brightness -> double, RGB -> "x,y,z"
+*/
 void	*parse_ambient(t_control *ctl, t_list *tokens, int *parse_type)
 {
 	void	*rv;
+	char	**rgb;
 
-	*parse_type = P_POINTLIGHT;
-	rv = NULL;
 	(void)ctl;
-	(void)tokens;
+	if (ft_lstsize(tokens) != 3)
+	{
+		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
+		*parse_type = P_ERRTYPE;
+		return (NULL);
+	}
+	*parse_type = P_POINTLIGHT;
+	rgb = ft_split(ft_lst_get_by_index(tokens, 2)->content, ',');
+	rv = new_ambient(ft_atof(ft_lst_get_by_index(tokens, 1)->content), \
+					vec3(ft_map(ft_atof(rgb[0])), \
+						ft_map(ft_atof(rgb[1])), \
+						ft_map(ft_atof(rgb[2]))));
+	free_2d(rgb);
 	return (rv);
 }

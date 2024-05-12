@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 16:20:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:59:10 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	*new_hittable(t_type type, t_hit hit, void *shape);
 
 void	*new_sphere(t_point3 center, float radius);
 
+void	*new_ambient(double brightness, t_color color);
+
 /* Hit functions */
 
 bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr);
@@ -116,8 +118,11 @@ struct s_light
 {
 	t_lighttype	type;
 	double		brightness;
-	t_point3	pos;
+	t_point3	position;
 	t_color		color;
 };
+
+/* Compare functions for lights. */
+int	get_if_ambient(void *l);
 
 #endif

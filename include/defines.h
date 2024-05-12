@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:32:17 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:48:08 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 100
+#  define SSAA 10
 # endif
 
 /* Global Illumination */
 # ifndef GI
-#  define GI 1
+#  define GI 0
 # endif
 
 /* Miscellaneous Defines */

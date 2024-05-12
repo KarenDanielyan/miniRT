@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 19:33:13 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:08:41 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		run(t_control *ctl);
 
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 
+t_color		ambient_shader(t_control *ctl, t_hitrecord *hr);
+
 t_color		diffuse_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		skybox_shader(t_ray *ray);
@@ -93,7 +95,7 @@ void		fill_image(t_image *image, int color);
 
 void		create_image(char *name, int *pixels, int w, int h);
 void		new_image(void *mlx_ptr, int width, int height, t_image *image);
-double		ft_map(int num);
+double		ft_map(double num);
 
 /* Floating point operations */
 

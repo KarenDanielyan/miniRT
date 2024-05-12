@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 20:01:56 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:58:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	*new_sphere(t_point3 center, float radius);
 
 void	*new_ambient(double brightness, t_color color);
 
-void	*new_light(t_vec3 position, double brigthness, t_color color);
+void	*new_light(double brigthness, t_point3 position, t_color color);
 
 /* Hit functions */
 
@@ -125,6 +125,8 @@ struct s_light
 };
 
 /* Compare functions for lights. */
-int	get_if_ambient(void *l);
+int		get_if_ambient(void *l);
+
+int		get_if_point(void *l);
 
 #endif

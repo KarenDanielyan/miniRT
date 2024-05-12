@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 16:59:10 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:01:56 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	*new_hittable(t_type type, t_hit hit, void *shape);
 void	*new_sphere(t_point3 center, float radius);
 
 void	*new_ambient(double brightness, t_color color);
+
+void	*new_light(t_vec3 position, double brigthness, t_color color);
 
 /* Hit functions */
 

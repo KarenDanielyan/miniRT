@@ -29,7 +29,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c scan.c parse_objects.c \
-				ambient_constructor.c) \
+				ambient_constructor.c light_constructor.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \

@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 19:54:44 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/12 20:32:17 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:45:31 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	*new_light(t_vec3 position, double brigthness, t_color color)
 	l->position = position;
 	l->brightness = brigthness;
 	l->color = color;
-	l->type = AMBIENT;
+	l->type = POINT;
 	return (l);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scanner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 16:30:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:27:27 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		check_extension(char *name);
 
 void	*parse_camera(t_control *ctl, t_list *tokens, int *parse_type);
 void	*parse_ambient(t_control *ctl, t_list *tokens, int *parse_type);
+void	*parse_light(t_control *ctl, t_list *tokens, int *parse_type);
 
 #endif

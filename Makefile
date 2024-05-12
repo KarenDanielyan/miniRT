@@ -25,10 +25,11 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				hittable.c shapes.c trace.c normals.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
-				fill_image.c get_time.c \
-				progress_bar.c clamp.c) \
+				fill_image.c get_time.c mapping.c \
+				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
-				check_extension.c scan.c parse_objects.c) \
+				check_extension.c scan.c parse_objects.c \
+				ambient_constructor.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \
@@ -43,7 +44,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				print_messages.c test_hit.c \
 				test_shaders.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
-				ray_shader.c skybox_shader.c diffuse_shader.c)
+				ray_shader.c skybox_shader.c \
+				diffuse_shader.c ambient_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

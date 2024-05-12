@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 15:26:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:52:11 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void		ft_darray_init(t_darray *arr, size_t elem_size, size_t capacity);
 void		ft_darray_pushback(t_darray *arr, void *content);
 void		*ft_darray_get(t_darray *arr, void *value, \
 	int (*cmp)(void *a, void *b));
+void		*ft_darray_get_if(t_darray *arr, int (*cmp)(void *value));
 void		*ft_darray_get_by_index(t_darray *arr, int index);
 void		ft_darray_free(t_darray *arr);
 

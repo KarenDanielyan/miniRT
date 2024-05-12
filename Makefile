@@ -63,17 +63,17 @@ INVOKE		=	libft printf mlx
 
 IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
 
-LFLAGS		=	-Llib/libft -lft -Llib/printf -lftprintf -lm
+LFLAGS		=	-Llib/printf -lftprintf -lm
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux
 	IFLAGS	+=	-I/usr/include -I$(MLX)
-	LFLAGS	+=	-L$(MLX) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	LFLAGS	+=	-L$(MLX) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -Llib/libft -l:libft.a
 endif
 ifeq ($(PLATFORM), Darwin)
 	MLX		=	lib/mlx_mac
 	IFLAGS	+=	-I$(MLX)
-	LFLAGS	+=	-L$(MLX) -lmlx -framework OpenGL -framework AppKit
+	LFLAGS	+=	-L$(MLX) -lmlx -framework OpenGL -framework AppKit -Llib/libft -lft
 
 endif
 

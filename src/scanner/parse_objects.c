@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:19:13 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/12 20:14:47 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:56:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ void	*parse_light(t_control *ctl, t_list *tokens, int *parse_type)
 	*parse_type = P_POINTLIGHT;
 	coordinates = ft_split(ft_lst_get_by_index(tokens, 1)->content, ',');
 	rgb = ft_split(ft_lst_get_by_index(tokens, 3)->content, ',');
-	rv = new_light(vec3(ft_atof(coordinates[0]), ft_atof(coordinates[1]), \
-						ft_atof(coordinates[2])), \
-					ft_atof(ft_lst_get_by_index(tokens, 2)->content),
-					vec3(ft_map(ft_atof(rgb[0])), \
-						ft_map(ft_atof(rgb[1])), \
-						ft_map(ft_atof(rgb[2]))));
+	rv = new_light(ft_atof(ft_lst_get_by_index(tokens, 2)->content), \
+				vec3(ft_atof(coordinates[0]), \
+					ft_atof(coordinates[1]), \
+					ft_atof(coordinates[2])), \
+				vec3(ft_map(ft_atof(rgb[0])), \
+					ft_map(ft_atof(rgb[1])), \
+					ft_map(ft_atof(rgb[2]))));
 	free_2d(coordinates);
 	free_2d(rgb);
 	return (rv);

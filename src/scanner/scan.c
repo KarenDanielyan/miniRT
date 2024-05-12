@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 16:33:08 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:48:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	*parse_object(t_control *ctl, char *line, int *parse_type)
 	else if (!ft_strcmp((char *)(tokens->content), "A"))
 		rv = parse_ambient(ctl, tokens, parse_type);
 	else if (!ft_strcmp((char *)(tokens->content), "L"))
-		rv = NULL;
+		rv = parse_light(ctl, tokens, parse_type);
 	else if (!ft_strcmp((char *)(tokens->content), "sp"))
 		rv = NULL;
 	else

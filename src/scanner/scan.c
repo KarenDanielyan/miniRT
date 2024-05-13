@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 21:34:07 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:29:31 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	*parse_object(t_control *ctl, char *line, int *parse_type)
 	else if (!ft_strcmp((char *)(tokens->content), "L"))
 		rv = parse_light(ctl, tokens, parse_type);
 	else if (!ft_strcmp((char *)(tokens->content), "sp"))
-		rv = NULL;
+		rv = parse_sphere(ctl, tokens, parse_type);
 	else
 		printf("%s%s%s", RED, ERR_BADARG, RESET);
 	ft_lstclear(&tokens, &free);

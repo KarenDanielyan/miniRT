@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/13 12:29:31 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/16 20:59:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,21 @@
 #include "scanner.h"
 #include "shapes.h"
 
-static char	scan_prime(t_control *ctl, int fd);
-static void	*parse_object(t_control *ctl, char *line, int *parse_type);
+static t_list	*get_tokens(char *line);
+static bool		scan_prime(t_control *ctl, int fd);
+static void		*parse_object(t_control *ctl, char *line, t_parsetype *pt);
 
-char	scan(t_control *ctl, char *filename)
+/**
+ * @brief	scan() checks the validity of the input file,
+ * 			and read's the contents inside to create the world.
+ * 			It will propmt error messages when encounters an error
+ * 			in the file.
+ * 
+ * @param ctl		The control structure of our program.
+ * @param filename	Name of the input file.
+ * @return bool		Exit code of the program. (EXIT_SUCCESS | EXIT_FAILURE).
+ */
+bool	scan(t_control *ctl, char *filename)
 {
 	int		fd;
 
@@ -34,11 +45,23 @@ char	scan(t_control *ctl, char *filename)
 	return (scan_prime(ctl, fd));
 }
 
-static char	scan_prime(t_control *ctl, int fd)
+/**
+ * @brief		scan_prime() reads the file line by line,
+ * 				and parses the object specified in the line.
+ * 
+ * @param ctl	The control structure of the file.
+ * @param fd	file descriptor of the file. (Read Unix manual)
+ * @return bool	Returns (EXIT_SUCCESS | EXIT_FAILURE) to indicate
+ * 				whether the parsing was successfull or not.
+ * 
+ * NOTE:		Error messages are printed by appropriate functions
+ * 				that parse the object from the line.
+ */
+static bool	scan_prime(t_control *ctl, int fd)
 {
-	char	*str;
-	void	*content;
-	int		parse_type;
+	char		*str;
+	void		*content;
+	t_parsetype	pt;
 
 	str = NULL;
 	while (true)
@@ -46,23 +69,54 @@ static char	scan_prime(t_control *ctl, int fd)
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		content = parse_object(ctl, str, &parse_type);
+		content = parse_object(ctl, str, &pt);
 		free(str);
-		if (!content && parse_type == P_ERRTYPE)
-		{
-			printf(ERROR_MSG);
+		if (pt == P_ERROR)
 			return (EXIT_FAILURE);
-		}
-		if (content && parse_type >= P_SPHERE && parse_type < P_POINTLIGHT)
+		if (pt == P_OBJECT)
 			ft_darray_pushback(&ctl->world, content);
-		else if (content && parse_type >= P_POINTLIGHT \
-			&& parse_type < P_ERRTYPE)
+		else if (pt == P_LIGHTSOURCE)
 			ft_darray_pushback(&ctl->lights, content);
 		free(content);
 	}
 	return (EXIT_SUCCESS);
 }
 
+/* TODO: Add comment feature (Usage: # Here is your comment. )*/
+static void	*parse_object(t_control *ctl, char *line, t_parsetype *pt)
+{
+	void		*rv;
+	t_list		*tokens;
+
+	(void)ctl;
+	rv = NULL;
+	tokens = get_tokens(line);
+	if (!ft_strcmp((char *)(tokens->content), "C"))
+		rv = parse_camera(ctl, tokens, pt);
+	else if (!ft_strcmp((char *)(tokens->content), "A"))
+		rv = parse_ambient(tokens, pt);
+	else if (!ft_strcmp((char *)(tokens->content), "L"))
+		rv = parse_light(tokens, pt);
+	else if (!ft_strcmp((char *)(tokens->content), "sp"))
+		rv = parse_sphere(tokens, pt);
+	else if (!ft_strncmp((char *)(tokens->content), "#", 1))
+		*pt = P_COMMENT;
+	else
+	{
+		printf("%s%s%s", RED, ERR_BADARG, RESET);
+		*pt = P_ERROR;
+	}
+	ft_lstclear(&tokens, &free);
+	return (rv);
+}
+
+/**
+ * @brief			get_tokens() returns a linked list of tokens
+ * 					parsed from the line.
+ * 
+ * @param line		The line.
+ * @return t_list*	Linked list of tokens.
+ */
 static t_list	*get_tokens(char *line)
 {
 	t_list	*head;
@@ -81,27 +135,4 @@ static t_list	*get_tokens(char *line)
 		tmp = NULL;
 	}
 	return (head);
-}
-
-/* TODO: Add comment feature (Usage: # Here is your comment. )*/
-static void	*parse_object(t_control *ctl, char *line, int *parse_type)
-{
-	void		*rv;
-	t_list		*tokens;
-
-	(void)ctl;
-	rv = NULL;
-	tokens = get_tokens(line);
-	if (!ft_strcmp((char *)(tokens->content), "C"))
-		rv = parse_camera(ctl, tokens, parse_type);
-	else if (!ft_strcmp((char *)(tokens->content), "A"))
-		rv = parse_ambient(ctl, tokens, parse_type);
-	else if (!ft_strcmp((char *)(tokens->content), "L"))
-		rv = parse_light(ctl, tokens, parse_type);
-	else if (!ft_strcmp((char *)(tokens->content), "sp"))
-		rv = parse_sphere(ctl, tokens, parse_type);
-	else
-		printf("%s%s%s", RED, ERR_BADARG, RESET);
-	ft_lstclear(&tokens, &free);
-	return (rv);
 }

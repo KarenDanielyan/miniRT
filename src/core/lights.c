@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_constructor.c                              :+:      :+:    :+:   */
+/*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 15:46:30 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/12 20:32:26 by armhakob         ###   ########.fr       */
+/*   Created: 2024/05/16 20:38:47 by kdaniely          #+#    #+#             */
+/*   Updated: 2024/05/16 21:07:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,22 @@ void	*new_ambient(double brightness, t_color color)
 	l->brightness = brightness;
 	l->color = color;
 	l->type = AMBIENT;
+	return (l);
+}
+
+void	*new_light(double brightness, t_vec3 position, t_color color)
+{
+	t_light	*l;
+
+	l = ft_calloc(sizeof(t_light), 1);
+	if (l == NULL)
+	{
+		perror("Error::");
+		exit(EXIT_FAILURE);
+	}
+	l->position = position;
+	l->brightness = brightness;
+	l->color = color;
+	l->type = POINT;
 	return (l);
 }

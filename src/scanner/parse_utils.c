@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 17:34:35 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:52:06 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	check_tuple(char *tuple, int size)
 	{
 		if (*tuple == ',')
 			count ++;
+		tuple ++;
 	}
 	if (count != size - 1)
 		return (EXIT_FAILURE);
@@ -33,34 +34,38 @@ bool	check_tuple(char *tuple, int size)
 bool	check_number(char *number)
 {
 	int	i;
-	int	flag;
+	int	flag_dot;
 	
 	i = 0;
-	flag = 0;
+	flag_dot = 0;
 	while (number[i] != '\0')
 	{
-		if (number[i] == '.' && flag == 0)
-			flag++;
-		else if (!ft_isdigit(number[i]) && flag != 0)
+		if (i == 0 && (number[i] == '-' || number[i] == '+'))
+			i ++;
+		else if (flag_dot == 0 && number[i] == '.')
+			i ++;
+		else if (ft_isdigit(number[i]))
+			i ++;
+		else
 			return (EXIT_FAILURE);
-		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-char	**check_and_split(*tuple, char c,int size)
+char	**tuple_split(char *tuple, char c, int size)
 {
 	int		i;
 	char	**splited;
 
 	i = 0;
-	if (check_tuple(tuple) == EXIT_FAILURE)
+	if (check_tuple(tuple, size) == EXIT_FAILURE)
 		return (NULL);
 	splited = ft_split(tuple, c);
 	while (splited[i])
 	{
 		if (check_number(splited[i]) == EXIT_FAILURE)
 			return (NULL);
+		i ++;
 	}
 	return (splited);
 }

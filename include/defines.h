@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 16:51:42 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:57:59 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 10
+# define MAX_BOUNCE 5
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 100
+#  define SSAA 10
 # endif
 
 /* Global Illumination */
@@ -48,6 +48,13 @@
 # define ERR_INVALID_EXT "Error: Invalid file extension.\n"
 # define ERR_BADARG "Error: Bad Argument.\n"
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected"
+# define ERR_INVALID "Invalid "
+
+/* Symbols */
+# define S_CAMERA "C: "
+# define S_AMBIENT "A: "
+# define S_LIGHT "L: "
+# define S_SPHERE "sp: "
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

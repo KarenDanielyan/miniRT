@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:42:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 20:44:38 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:53:01 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_parsetype	argument_check(t_list *tokens, \
 	if (check_number(\
 		ft_lst_get_by_index(tokens, 1)->content) == EXIT_SUCCESS)
 		*brightness = ft_atof(ft_lst_get_by_index(tokens, 1)->content);
-	if (!rgb)
+	if (!rgb || check_color(rgb) == EXIT_FAILURE)
 	{
 		printf("%s%s%scolor.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
 		return (P_ERROR);
@@ -65,11 +65,6 @@ static t_parsetype	argument_check(t_list *tokens, \
 	else if (*brightness < 0.0 || *brightness > 1.0)
 	{
 		printf("%s%s%sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
-	else if (check_color(rgb) == EXIT_FAILURE)
-	{
-		printf("%s%s%scolor.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
 		return (P_ERROR);
 	}
 	return (P_LIGHTSOURCE);

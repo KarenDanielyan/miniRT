@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 19:01:30 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:41:47 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	*parse_sphere(t_list *tokens, t_parsetype *pt);
 
 bool	check_number(char *number);
 bool	check_tuple(char *tuple, int size);
+bool	check_color(char **rgb);
+
 char	**tuple_split(char *tuple, char c,int size);
 #endif

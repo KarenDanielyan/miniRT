@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 19:52:06 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:44:48 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,26 @@ bool	check_tuple(char *tuple, int size)
 	return (EXIT_SUCCESS);
 }
 
+bool	check_color(char **rgb)
+{
+	float	c;
+
+	while (*rgb)
+	{
+		c = ft_atof(*rgb);
+		if (c < 0.0 || c > 255.0)
+			return (EXIT_FAILURE);
+		rgb ++;
+	}
+	return (EXIT_SUCCESS);
+}
+
 // TODO: Write Check number.
 bool	check_number(char *number)
 {
 	int	i;
 	int	flag_dot;
-	
+
 	i = 0;
 	flag_dot = 0;
 	while (number[i] != '\0')

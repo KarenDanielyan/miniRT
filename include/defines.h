@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 18:25:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:51:42 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define ERROR_MSG "Error\n"
 # define ERR_INVALID_EXT "Error: Invalid file extension.\n"
 # define ERR_BADARG "Error: Bad Argument.\n"
-# define ERR_INVALID_ARGS "Invalid number of arguments, expected %d...\n"
+# define ERR_INVALID_ARGS "Invalid number of arguments, expected"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 20:59:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:38:51 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static bool	scan_prime(t_control *ctl, int fd)
 		free(str);
 		if (pt == P_ERROR)
 			return (EXIT_FAILURE);
-		if (pt == P_OBJECT)
+		else if (pt == P_OBJECT)
 			ft_darray_pushback(&ctl->world, content);
 		else if (pt == P_LIGHTSOURCE)
 			ft_darray_pushback(&ctl->lights, content);

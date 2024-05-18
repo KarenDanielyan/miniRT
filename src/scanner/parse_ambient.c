@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:42:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 20:58:10 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:53:14 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 /**
 	ambient: 1. Symbol -> A, Brightness -> double, RGB -> "x,y,z"
+
+	Pipeline:	1. Check if number of arguments is correct.
+				2. Check if arguments are valid.
+				3. Create the object using the arguments.
 */
 void	*parse_ambient(t_list *tokens, t_parsetype *pt)
 {
@@ -23,7 +27,7 @@ void	*parse_ambient(t_list *tokens, t_parsetype *pt)
 
 	if (ft_lstsize(tokens) != 3)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 3, RESET);
+		printf("%s%s%s%d.%s\n", RED, ERR_INVALID_ARGS, " ", 3, RESET);
 		*pt = P_ERROR;
 		return (NULL);
 	}

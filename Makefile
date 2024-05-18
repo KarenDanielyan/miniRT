@@ -22,14 +22,15 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c \
-				hittable.c shapes.c trace.c normals.c) \
+				hittable.c lights.c shapes.c \
+				trace.c normals.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c mapping.c \
 				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
-				check_extension.c scan.c parse_objects.c \
-				ambient_constructor.c light_constructor.c) \
+				check_extension.c scan.c parse_ambient.c \
+				parse_light.c parse_camera.c parse_sphere.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \

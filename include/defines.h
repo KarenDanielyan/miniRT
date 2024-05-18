@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 16:48:08 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:25:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 10
+#  define SSAA 100
 # endif
 
 /* Global Illumination */
-# ifndef GI
-#  define GI 0
-# endif
+# define GI 1
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"

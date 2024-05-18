@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 17:08:41 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:33:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ struct s_control
 	t_image			render;
 };
 
-/* */
-char		scan(t_control *ctl, char *filename);
-
+/* Program logic functions. */
 void		init_ui(t_control *ctl);
+
+bool		scan(t_control *ctl, char *filename);
 
 void		run(t_control *ctl);
 

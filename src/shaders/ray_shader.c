@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 20:58:47 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/16 20:20:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "camera.h"
 #include "shapes.h"
 
-static t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
-static t_color	global_illumination(t_control *ctl, \
+t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
+t_color	global_illumination(t_control *ctl, \
 	t_hitrecord *hr, int bounce);
 
 /**
@@ -47,7 +47,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
-	di = vec3(0.0, 0.0, 0.0);
+	di = vec3(0, 0, 0);
 	new_vec3(&gi, 0, 0, 0);
 	if (hit_anything(r, &ctl->world, &hr))
 	{
@@ -56,7 +56,6 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 		{
 			gi = global_illumination(ctl, &hr, bounce);
 			gi = vec3_scalar_mult(&gi, &hr.hit->material.color);
-			gi = scale_vec3(0.5, &gi);
 		}
 	}
 	return (sum_vec3(&gi, &di));

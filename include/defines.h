@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 19:57:59 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:39:20 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@
 # define S_AMBIENT "A: "
 # define S_LIGHT "L: "
 # define S_SPHERE "sp: "
+# define S_PLANE "pl: "
+# define S_CYLINDER "cl: "
+# define S_CONE "cn: "
+# define S_RECTANGLE "rgl: "
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

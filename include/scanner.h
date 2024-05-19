@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 19:26:59 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:24:12 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ int		check_extension(char *name);
 
 void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt);
 
+void	*parse_rectangle(t_list *tokens, t_parsetype *pt);
+void	*parse_cyliner(t_list *tokens, t_parsetype *pt);
 void	*parse_ambient(t_list *tokens, t_parsetype *pt);
-void	*parse_light(t_list *tokens, t_parsetype *pt);
 void	*parse_sphere(t_list *tokens, t_parsetype *pt);
+void	*parse_light(t_list *tokens, t_parsetype *pt);
+void	*parse_plane(t_list *tokens, t_parsetype *pt);
+void	*parse_cone(t_list *tokens, t_parsetype *pt);
 
 /* Utility Functions */
 

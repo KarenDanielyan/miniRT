@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 20:58:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:43:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,17 @@ struct s_hittable
 
 /* Constructors */
 
+/* General constructor */
 void	*new_hittable(t_type type, t_hit hit, void *shape);
 
+/* Constructors for objects */
+
 void	*new_sphere(t_point3 center, float radius);
+void	*new_plane(t_point3 center, t_vec3 normal);
+
+/* Constructors for light sources */
 
 void	*new_ambient(double brightness, t_color color);
-
 void	*new_light(double brigthness, t_point3 position, t_color color);
 
 /* Hit functions */

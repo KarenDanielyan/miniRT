@@ -6,12 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 18:18:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/20 00:59:52 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "debug.h"
 #include "vec3.h"
 #include "material.h"
 #include "scanner.h"

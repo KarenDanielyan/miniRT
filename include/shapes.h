@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:54:35 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 21:03:15 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	*new_light(double brigthness, t_point3 position, t_color color);
 bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr);
 
 bool	hit_sphere(t_shape *self, t_ray *r, double *t);
+bool	hit_plane(t_shape *self, t_ray *r, double *t);
 
 /* Surfece Normals */
 

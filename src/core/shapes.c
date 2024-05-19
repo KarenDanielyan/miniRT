@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:46:32 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 21:00:51 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*new_sphere(t_point3 center, float radius)
 	sp = ft_calloc(1, sizeof(t_sphere));
 	if (sp == NULL)
 	{
-		ft_printf("Fatal Error: Cannot allocate space.\n");
+		perror("new_sphere: ");
 		exit(EXIT_FAILURE);
 	}
 	sp->center = center;
@@ -32,5 +32,13 @@ void	*new_plane(t_point3 center, t_vec3 normal)
 {
 	t_plane	*pl;
 
+	pl = ft_calloc(1, sizeof(t_plane));
+	if (pl == NULL)
+	{
+		perror("new_plane: ");
+		exit(EXIT_FAILURE);
+	}
+	pl->center = center;
+	pl->normal = normal;
 	return (NULL);
 }

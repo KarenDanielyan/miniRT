@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:03 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/19 20:46:08 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 21:06:35 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*parse_plane(t_list *tokens, t_parsetype *pt)
 		ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	coords = tuple_split(\
 		ft_lst_get_by_index(tokens, 1)->content, ',', 3);
-	*pt = argument_check(tokens, pv, vo, &ctl->cam.h_fov);
+	*pt = argument_check(coords, normal, rgb);
 	if (*pt == P_OBJECT)
 		hittable = make(rgb, normal, coords);
 	free_2d(rgb);
@@ -70,5 +70,15 @@ static t_parsetype	argument_check(char **coords, \
 static void	*make(char **rgb, char **normal, char **coords)
 {
 	void	*plane;
-	
+	void	*hittable;
+
+	plane = new_plane(vec3(ft_atof(coords[0]), ft_atof(coords[1]), \
+							ft_atof(coords[3])), \
+					vec3(ft_atof(normal[0]), ft_atof(normal[1]), \
+							ft_atof(normal[3])));
+	hittable = new_hittable(PLANE, &hit_plane, plane);
+	((t_hittable *)hittable)->material.color = vec3(ft_map(ft_atof(rgb[0])), \
+			ft_map(ft_atof(rgb[1])), ft_map(ft_atof(rgb[2])));
+	free(plane);
+	return (hittable);
 }

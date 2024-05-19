@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 01:14:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/16 20:17:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct s_vec3		t_color;
 typedef struct s_material	t_material;
+typedef enum e_mtype		t_mtype;
 
 static inline void	set_color(int *pixel, t_color color)
 {
@@ -28,6 +29,11 @@ static inline void	set_color(int *pixel, t_color color)
 
 struct s_material
 {
+	int		properties;
+	double	lambertian;
+	double	specular;
+	double	glossiness;
+	double	transparency;
 	t_color	color;
 };
 

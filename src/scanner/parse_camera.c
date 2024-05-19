@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:43:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 20:04:00 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:30:18 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 	vo = tuple_split(\
 		ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	*pt = argument_check(tokens, pv, vo, &ctl->cam.h_fov);
-	if (*pt == P_ERROR)
-		return (NULL);
-	new_vec3(&ctl->cam.center, \
-		ft_atof(pv[0]), ft_atof(pv[1]), ft_atof(pv[2]));
-	new_vec3(&ctl->cam.direction, \
-		ft_atof(vo[0]), ft_atof(vo[1]), ft_atof(vo[2]));
-	initialize_camera(&ctl->cam);
+	if (*pt == P_CAMERA)
+	{
+		new_vec3(&ctl->cam.center, \
+			ft_atof(pv[0]), ft_atof(pv[1]), ft_atof(pv[2]));
+		new_vec3(&ctl->cam.direction, \
+			ft_atof(vo[0]), ft_atof(vo[1]), ft_atof(vo[2]));
+		initialize_camera(&ctl->cam);
+	}
 	free_2d(pv);
 	free_2d(vo);
 	return (NULL);

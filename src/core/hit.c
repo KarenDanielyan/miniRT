@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/10 17:45:19 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:36:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,31 @@ bool	hit_sphere(t_shape *self, t_ray *r, double *t)
 	if (*t < 0.0001)
 		return (false);
 	return (true);
+}
+
+bool	hit_plane(t_shape *self, t_ray *r, double *t)
+{
+	t_plane		*pl;
+	t_vec3		tmp;
+	double		denom;
+	double		numer;
+
+	pl = &self->p;
+	denom = vec3_dot(&pl->normal, &r->direction);
+	if (fabs(denom) < 0.0001)
+		return (false);
+	tmp = subst_vec3(&pl->center, &r->origin);
+	numer = vec3_dot(&pl->normal, &tmp);
+	*t = -numer / denom;
+	if (*t < 0.0001)
+		return (false);
+	return (true);
+}
+
+bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
+{
+	(void)self;
+	(void)r;
+	(void)t;
+	return (false);
 }

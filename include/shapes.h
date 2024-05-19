@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 20:58:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:38:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef union u_shape		t_shape;
 typedef enum e_shapetype	t_type;
 
 typedef struct s_sphere		t_sphere;
+typedef struct s_plane		t_plane;
+typedef struct s_cylinder	t_cylinder;
 
 typedef bool				(*t_hit)(t_shape *self, t_ray *r, double *t);
 
@@ -47,10 +49,26 @@ struct s_sphere
 	float		radius;
 };
 
+struct s_plane
+{
+	t_point3	center;
+	t_vec3		normal;
+};
+
+struct s_cylinder
+{
+	t_point3	center;
+	t_vec3		normal;
+	float		radius;
+	float		height;
+};
+
 union u_shape
 {
 	/* TODO: Add geometry structures. */
 	t_sphere	s;
+	t_plane		p;
+	t_cylinder	c;
 };
 
 /**
@@ -84,7 +102,7 @@ void	*new_sphere(t_point3 center, float radius);
 
 void	*new_ambient(double brightness, t_color color);
 
-void	*new_light(double brigthness, t_point3 position, t_color color);
+void	*new_light(double brightness, t_vec3 position, t_color color);
 
 /* Hit functions */
 

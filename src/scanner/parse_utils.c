@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 20:44:48 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:05:41 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,29 @@ bool	check_number(char *number)
 char	**tuple_split(char *tuple, char c, int size)
 {
 	int		i;
-	char	**splited;
+	char	**splitted;
 
 	i = 0;
 	if (check_tuple(tuple, size) == EXIT_FAILURE)
 		return (NULL);
-	splited = ft_split(tuple, c);
-	while (splited[i])
+	splitted = ft_split(tuple, c);
+	while (splitted[i])
 	{
-		if (check_number(splited[i]) == EXIT_FAILURE)
+		if (check_number(splitted[i]) == EXIT_FAILURE)
+		{
+			free_2d(splitted);
 			return (NULL);
+		}
 		i ++;
 	}
-	return (splited);
+	return (splitted);
+}
+
+void	*error_return(char ***coordinates, char ***rgb)
+{
+	if (*coordinates)
+		free_2d(*coordinates);
+	if (*rgb)
+		free_2d(*rgb);
+	return (NULL);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quarternion.c                                      :+:      :+:    :+:   */
+/*   quaternion_operations.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 00:54:26 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 01:44:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:52:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,53 @@
 #include "quaternion.h"
 #include "vec3.h"
 
-t_quaternion	new_quaternion(float i, float j, float k, float w)
+/**
+ * @brief		get_quaternion() returns a quaternion that represents
+ * 				the rotation from vector u to vector v.
+ * 
+ * @param u 	Pointer to the first vector.
+ * @param v 	Pointer to the second vector.
+ * @return 		The quaternion that represents the rotation.
+ */
+t_quaternion	get_quaternion(t_vec3 *u, t_vec3 *v)
 {
-	t_quaternion	q;
+	t_vec3			rod;
+	float			theta;
 
-	q.i = i;
-	q.j = j;
-	q.k = k;
-	q.w = w;
-	return (q);
+	theta = acos(vec3_dot(u, v));
+	rod = vec3_cross(u, v);
+	if (vec3_length(&rod) < 0.0001)
+	{
+		if (theta > 0.0001)
+			return (quaternion(0, 1, 0, 0));
+		if (theta < 0.0001)
+			return (quaternion(0, 0, 0, 1));
+	}
+	rod = unit_vector(rod);
+	return (rodrigues_rotation(&rod, theta));
 }
 
-t_quaternion	rodrigues_rotation(t_vec3 *v, float angle)
+t_quaternion	rodrigues_rotation(t_vec3 *rod, float angle)
 {
 	t_quaternion	q;
 	float			sin_a;
 
 	sin_a = sin(angle / 2);
-	q.i = get_x(v) * sin_a;
-	q.j = get_y(v) * sin_a;
-	q.k = get_z(v) * sin_a;
+	q.i = get_x(rod) * sin_a;
+	q.j = get_y(rod) * sin_a;
+	q.k = get_z(rod) * sin_a;
 	q.w = cos(angle / 2);
 	return (q);
 }
 
-t_quaternion	quaternion_inverse(t_quaternion *q)
+t_quaternion	quaternion_conjugate(t_quaternion *q)
 {
-	float			norm;
 	t_quaternion	qi;
 
-	norm = 1.0 / (q->i * q->i + q->j * q->j + q->k * q->k + q->w * q->w);
-	qi.i = -q->i * norm;
-	qi.j = -q->j * norm;
-	qi.k = -q->k * norm;
-	qi.w = q->w * norm;
+	qi.i = -q->i;
+	qi.j = -q->j;
+	qi.k = -q->k;
+	qi.w = q->w;
 	return (qi);
 }
 
@@ -69,8 +82,8 @@ t_vec3	quarternion_rotate(t_quaternion *q, t_vec3 *v)
 	t_quaternion	r;
 	t_quaternion	res;
 
-	vq = new_quaternion(get_x(v), get_y(v), get_z(v), 0);
-	qi = quaternion_inverse(q);
+	vq = quaternion(get_x(v), get_y(v), get_z(v), 0);
+	qi = quaternion_conjugate(q);
 	r = quaternion_multiply(q, &vq);
 	res = quaternion_multiply(&r, &qi);
 	return (vec3(res.i, res.j, res.k));

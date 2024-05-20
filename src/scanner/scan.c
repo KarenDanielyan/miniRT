@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 20:59:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:23:13 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static t_list	*get_tokens(char *line);
 static bool		scan_prime(t_control *ctl, int fd);
-static void		*parse_object(t_control *ctl, char *line, t_parsetype *pt);
+static void		*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt);
 
 /**
  * @brief	scan() checks the validity of the input file,
@@ -61,6 +61,7 @@ static bool	scan_prime(t_control *ctl, int fd)
 {
 	char		*str;
 	void		*content;
+	t_list		*tokens;
 	t_parsetype	pt;
 
 	str = NULL;
@@ -69,11 +70,13 @@ static bool	scan_prime(t_control *ctl, int fd)
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		content = parse_object(ctl, str, &pt);
+		tokens = get_tokens(str);
+		content = parse_object(ctl, tokens, &pt);
 		free(str);
+		ft_lstclear(&tokens, &free);
 		if (pt == P_ERROR)
 			return (EXIT_FAILURE);
-		if (pt == P_OBJECT)
+		else if (pt == P_OBJECT)
 			ft_darray_pushback(&ctl->world, content);
 		else if (pt == P_LIGHTSOURCE)
 			ft_darray_pushback(&ctl->lights, content);
@@ -83,22 +86,24 @@ static bool	scan_prime(t_control *ctl, int fd)
 }
 
 /* TODO: Add comment feature (Usage: # Here is your comment. )*/
-static void	*parse_object(t_control *ctl, char *line, t_parsetype *pt)
+static void	*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt)
 {
-	void		*rv;
-	t_list		*tokens;
-
-	(void)ctl;
-	rv = NULL;
-	tokens = get_tokens(line);
 	if (!ft_strcmp((char *)(tokens->content), "C"))
-		rv = parse_camera(ctl, tokens, pt);
+		return (parse_camera(ctl, tokens, pt));
 	else if (!ft_strcmp((char *)(tokens->content), "A"))
-		rv = parse_ambient(tokens, pt);
+		return (parse_ambient(tokens, pt));
 	else if (!ft_strcmp((char *)(tokens->content), "L"))
-		rv = parse_light(tokens, pt);
+		return (parse_light(tokens, pt));
 	else if (!ft_strcmp((char *)(tokens->content), "sp"))
-		rv = parse_sphere(tokens, pt);
+		return (parse_sphere(tokens, pt));
+	else if (!ft_strcmp((char *)(tokens->content), "cy"))
+		return (parse_cyliner(tokens, pt));
+	else if (!ft_strcmp((char *)(tokens->content), "pl"))
+		return (parse_plane(tokens, pt));
+	else if (!ft_strcmp((char *)(tokens->content), "cn"))
+		return (parse_cone(tokens, pt));
+	else if (!ft_strcmp((char *)(tokens->content), "rgl"))
+		return (parse_rectangle(tokens, pt));
 	else if (!ft_strncmp((char *)(tokens->content), "#", 1))
 		*pt = P_COMMENT;
 	else
@@ -106,8 +111,7 @@ static void	*parse_object(t_control *ctl, char *line, t_parsetype *pt)
 		printf("%s%s%s", RED, ERR_BADARG, RESET);
 		*pt = P_ERROR;
 	}
-	ft_lstclear(&tokens, &free);
-	return (rv);
+	return (NULL);
 }
 
 /**

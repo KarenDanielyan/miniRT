@@ -31,7 +31,10 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c scan.c parse_ambient.c \
-				parse_light.c parse_camera.c parse_sphere.c) \
+				parse_light.c parse_camera.c parse_sphere.c \
+				parse_utils.c parse_cylinder.c \
+				parse_plane.c parse_cone.c \
+				parse_rectangle.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \

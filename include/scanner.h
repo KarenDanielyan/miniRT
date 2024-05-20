@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scanner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:24:12 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:05:25 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	check_number(char *number);
 bool	check_tuple(char *tuple, int size);
 bool	check_color(char **rgb);
 
-char	**tuple_split(char *tuple, char c,int size);
+char	**tuple_split(char *tuple, char c, int size);
 
 void	*error_return(char ***coordinates, char ***rgb);
 #endif

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_darray2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:53:39 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/12 16:57:56 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:05:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 /**
  * 		ft_darray_get_if() will return the first occurent element of 

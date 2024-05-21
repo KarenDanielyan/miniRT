@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/18 19:36:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/20 01:00:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ bool	hit_plane(t_shape *self, t_ray *r, double *t)
 	return (true);
 }
 
+/**
+ * @brief	hit_cylinder() checks if a ray r hits a cylinder self.
+ * 
+ * @param self		Pointer to the cylinder.
+ * @param r			Pointer to the ray.
+ * @param t			Reference to the distance to the hit point.
+ * @return true		If the ray hits the cylinder.
+ * @return false	If the ray does not hit the cylinder.
+ */
 bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 {
 	(void)self;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 21:00:51 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:43:28 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,23 @@ void	*new_plane(t_point3 center, t_vec3 normal)
 	}
 	pl->center = center;
 	pl->normal = normal;
-	return (NULL);
+	return (pl);
+}
+
+void	*new_cylinder(t_point3 center, t_vec3 normal, \
+	float radius, float height)
+{
+	t_cylinder	*cy;
+
+	cy = ft_calloc(1, sizeof(t_cylinder));
+	if (cy == NULL)
+	{
+		perror("new_cylinder: ");
+		exit(EXIT_FAILURE);
+	}
+	cy->center = center;
+	cy->normal = normal;
+	cy->radius = radius;
+	cy->height = height;
+	return (cy);
 }

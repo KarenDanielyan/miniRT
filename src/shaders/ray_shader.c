@@ -6,15 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 20:20:56 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/20 01:00:47 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
 #include "miniRT.h"
-#include "defines.h"
-#include "camera.h"
-#include "shapes.h"
 
 t_color	direct_illumination(t_control *ctl, t_hitrecord *hr);
 t_color	global_illumination(t_control *ctl, \

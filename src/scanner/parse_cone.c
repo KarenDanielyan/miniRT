@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:00 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/21 20:17:21 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:11:05 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	*parse_cone(t_list *tokens, t_parsetype *pt)
 	f.coords = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
 	f.normal = tuple_split(ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 5)->content, ',', 3);
-	f.radius = ft_lst_get_by_index(tokens, 3)->content;
-	f.height = ft_lst_get_by_index(tokens, 4)->content;
+	f.radius = ft_strdup(ft_lst_get_by_index(tokens, 3)->content);
+	f.height = ft_strdup(ft_lst_get_by_index(tokens, 4)->content);
 	*pt = argument_check(&f);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);

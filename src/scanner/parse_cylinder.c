@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:09 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/21 20:17:09 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:12:16 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	*parse_cyliner(t_list *tokens, t_parsetype *pt)
 	f.coords = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
 	f.normal = tuple_split(ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 5)->content, ',', 3);
-	f.diameter = ft_lst_get_by_index(tokens, 3)->content;
-	f.height = ft_lst_get_by_index(tokens, 4)->content;
+	f.diameter = ft_strdup(ft_lst_get_by_index(tokens, 3)->content);
+	f.height = ft_strdup(ft_lst_get_by_index(tokens, 4)->content);
 	*pt = argument_check(&f);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);
@@ -47,7 +47,7 @@ static t_parsetype	argument_check(t_pfields *f)
 
 	rv = P_ERROR;
 	if (!f->coords)
-		printf("%s%s%s coordinates.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
+		printf("%s%s%s coordinates.%s\n", RED, S_CYLINDER, ERR_INVALID, RESET);
 	else if (!f->normal)
 		printf("%s%s%s normal vector.%s\n", \
 		RED, S_CYLINDER, ERR_INVALID, RESET);

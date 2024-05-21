@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:08:10 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:28:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ struct s_parsefields
 	char	*diameter;
 	char	*radius;
 	char	*height;
+	char	*ratio;
 };
 
 int		check_extension(char *name);

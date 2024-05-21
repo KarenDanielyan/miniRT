@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 15:43:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:13:21 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,22 @@ void	*new_cylinder(t_point3 center, t_vec3 normal, \
 	cy->radius = radius;
 	cy->height = height;
 	return (cy);
+}
+
+void	*new_cone(t_point3 center, t_vec3 normal, \
+	float radius, float height)
+{
+	t_cylinder	*cn;
+
+	cn = ft_calloc(1, sizeof(t_cone));
+	if (cn == NULL)
+	{
+		perror("new_cone: ");
+		exit(EXIT_FAILURE);
+	}
+	cn->center = center;
+	cn->normal = normal;
+	cn->radius = radius;
+	cn->height = height;
+	return (cn);
 }

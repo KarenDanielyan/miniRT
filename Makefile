@@ -22,7 +22,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c camera.c hit.c \
+				main.c ray.c ui.c camera.c hit.c hit_2.c \
 				hittable.c lights.c shapes.c normals.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
@@ -33,7 +33,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				parse_light.c parse_camera.c parse_sphere.c \
 				parse_utils.c parse_cylinder.c \
 				parse_plane.c parse_cone.c \
-				parse_rectangle.c) \
+				parse_rectangle.c parse_utils2.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \

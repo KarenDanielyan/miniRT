@@ -95,19 +95,22 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 	t_quaternion	q;
 	double			t_prime[2];
 
+	cy_prime = self->c;
 	cy_prime.normal = vec3(0, 0, 1);
 	cy_prime.center = vec3(0, 0, 0);
 	q = get_quaternion(&self->c.normal, &cy_prime.normal);
-	r_prime.origin = subst_vec3(&r->origin, &cy_prime.center);
-	r_prime.origin = quarternion_rotate(&q, &r->origin);
+	r_prime.origin = subst_vec3(&r->origin, &self->c.center);
+	r_prime.origin = quarternion_rotate(&q, &r_prime.origin);
 	r_prime.direction = quarternion_rotate(&q, &r->direction);
 	if (hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) || \
 		hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
 	{
 		if (t_prime[0] < t_prime[1] && t_prime[0] > EPSILON)
 			*t = t_prime[0];
-		else if (t_prime[1] > EPSILON)
+		else if (t_prime[1] < t_prime[0] && t_prime[1] > EPSILON)
 			*t = t_prime[1];
+		else
+			*t = t_prime[0];
 	}
 	if (*t > EPSILON)
 		return (true);
@@ -166,18 +169,22 @@ bool	hit_cylinder_caps(t_cylinder *cy, t_ray *r, double *t)
 
 	*t = -1;
 	pl[0].p.normal = cy->normal;
-	pl[1].p.normal = cy->normal;
+	pl[1].p.normal = vec3_neg(&cy->normal);
 	tmp = scale_vec3(cy->height / 2, &cy->normal);
 	pl[0].p.center = sum_vec3(&cy->center, &tmp);
 	pl[1].p.center = subst_vec3(&cy->center, &tmp);
-	if (hit_plane(&pl[0], r, &t1) || hit_plane(&pl[1], r, &t2))
+	if (hit_plane(&pl[0], r, &t1) | hit_plane(&pl[1], r, &t2))
 	{
-		if (t1 < t2 && t1 > EPSILON)
+		tmp = ray_at(r, t1);
+		if (t1 > EPSILON && \
+			(pow(get_x(&tmp), 2) + pow(get_y(&tmp), 2) <= pow(cy->radius, 2)))
 			*t = t1;
-		else if (t2 > EPSILON)
+		tmp = ray_at(r, t2);
+		if (t2 > EPSILON && \
+			(pow(get_x(&tmp), 2) + pow(get_y(&tmp), 2) <= \
+			pow(cy->radius, 2)) && \
+			(t2 < *t || *t < EPSILON))
 			*t = t2;
 	}
-	if (*t > EPSILON)
-		return (true);
-	return (false);
+	return (*t > EPSILON);
 }

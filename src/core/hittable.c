@@ -56,7 +56,7 @@ bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr)
 			hr->r = *r;
 			hr->at = ray_at(r, t);
 			hr->hit = current;
-			hr->normal = get_normal(r, &hr->at, hr->hit);
+			hr->normal = get_normal(&hr->at, hr->hit);
 		}
 		i ++;
 	}

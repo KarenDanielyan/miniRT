@@ -34,6 +34,8 @@ struct s_material
 	double	specular;
 	double	glossiness;
 	double	transparency;
+	void	*normal_map;
+	void	*texture_map;
 	t_color	color;
 };
 

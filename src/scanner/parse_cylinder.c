@@ -54,9 +54,10 @@ static t_parsetype	argument_check(t_pfields *f)
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s%s color.%s\n", RED, S_CYLINDER, ERR_INVALID, RESET);
 	else if (check_number(f->diameter) == EXIT_FAILURE || \
-		ft_atof(f->diameter) > 0.0)
+		ft_atof(f->diameter) < 0.0)
 		printf("%s%s%s diameter.%s\n", RED, S_CYLINDER, ERR_INVALID, RESET);
-	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) > 0)
+	else if (check_number(f->height) == EXIT_FAILURE || \
+		ft_atof(f->height) < 0.0)
 		printf("%s%s%s height.%s\n", RED, S_CYLINDER, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;
@@ -71,8 +72,9 @@ static void	*make(t_pfields *f)
 	cylinder = new_cylinder(\
 			vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
 				ft_atof(f->coords[2])), \
+			unit_vector(\
 			vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
-				ft_atof(f->normal[2])), \
+				ft_atof(f->normal[2]))), \
 			ft_atof(f->diameter) / 2, \
 			ft_atof(f->height));
 	hittable = new_hittable(CYLINDER, &hit_cylinder, cylinder);

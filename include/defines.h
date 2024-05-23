@@ -32,7 +32,7 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 100
+#  define SSAA 10
 # endif
 
 /* Global Illumination */
@@ -68,7 +68,7 @@
 # define RESET "\033[0m"
 
 /* Defines for floating-point operations */
-# define EPSILON 0.0001
+# define EPSILON 0.000001
 
 # define HEADER "\
 * **************** miniRT ***************** *\n\

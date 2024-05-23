@@ -27,6 +27,12 @@ void	*new_hittable(t_type type, t_hit hit, void *shape)
 	obj->hit = hit;
 	if (type == SPHERE)
 		obj->shape.s = *((t_sphere *)shape);
+	else if (type == PLANE)
+		obj->shape.p = *((t_plane *)shape);
+	else if (type == CYLINDER)
+		obj->shape.c = *((t_cylinder *)shape);
+	else if (type == CONE)
+		obj->shape.cn = *((t_cone *)shape);
 	return (obj);
 }
 

@@ -64,9 +64,9 @@ static void	*make(t_pfields *f)
 	void	*hittable;
 
 	plane = new_plane(vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
-							ft_atof(f->coords[3])), \
+							ft_atof(f->coords[2])), \
 					vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
-							ft_atof(f->normal[3])));
+							ft_atof(f->normal[2])));
 	hittable = new_hittable(PLANE, &hit_plane, plane);
 	((t_hittable *)hittable)->material.color = vec3(ft_map(ft_atof(f->rgb[0])), \
 			ft_map(ft_atof(f->rgb[1])), ft_map(ft_atof(f->rgb[2])));

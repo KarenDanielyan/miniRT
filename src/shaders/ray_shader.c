@@ -43,7 +43,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
-	di = skybox_shader(r);
+	di = vec3(0, 0, 0);
 	gi = vec3(0, 0, 0);
 	if (hit_anything(r, &ctl->world, &hr))
 	{

@@ -29,5 +29,6 @@ t_color	linear_to_gamma(t_color l)
 	tmp = get_z(&l);
 	if (tmp > 0.0)
 		set_z(&c, sqrt(tmp));
+	return (l);
 	return (c);
 }

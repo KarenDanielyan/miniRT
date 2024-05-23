@@ -18,5 +18,7 @@ t_vec3	get_normal(t_ray *r, t_point3 *at, t_hittable *hit)
 	(void)r;
 	if (hit->type == SPHERE)
 		return (unit_vector(subst_vec3(at, &hit->shape.s.center)));
+	else if (hit->type == PLANE)
+		return (unit_vector(hit->shape.p.normal));
 	return (vec3(0.0, 0.0, 0.0));
 }

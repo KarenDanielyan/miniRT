@@ -40,6 +40,23 @@ bool	hit_sphere(t_shape *self, t_ray *r, double *t)
 	return (true);
 }
 
+/**
+ * @brief		hit_plane() checks if a ray r hits a plane self.
+ * 
+ * @param self	Pointer to the plane.
+ * @param r		Pointer to the ray.
+ * @param t		Reference to the distance to the hit point.
+ * @return true	If ray hit the plane.
+ * @return false Otherwise.
+ * 
+ * @details
+ * 		Solution for the ray-plane intersection is:
+ * 				t = (p0 - l0) * n / l * n, where:
+ * 			1. p0 - origin of the plane.
+ * 			2. l0 - origin of the ray.
+ * 			3. n - normal of the plane.
+ * 			4. l - direction of the ray.
+ */
 bool	hit_plane(t_shape *self, t_ray *r, double *t)
 {
 	t_plane		*pl;
@@ -53,7 +70,7 @@ bool	hit_plane(t_shape *self, t_ray *r, double *t)
 		return (false);
 	tmp = subst_vec3(&pl->center, &r->origin);
 	numer = vec3_dot(&pl->normal, &tmp);
-	*t = -numer / denom;
+	*t = numer / denom;
 	if (*t < EPSILON)
 		return (false);
 	return (true);

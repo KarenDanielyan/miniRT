@@ -63,7 +63,7 @@ static t_parsetype	argument_check(t_pfields *f)
 	if (check_number(f->diameter) == EXIT_FAILURE || \
 		ft_atof(f->diameter) <= 0.0)
 		printf("%s%s%sdiameter.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
-	if (!f->coords)
+	else if (!f->coords)
 		printf("%s%s%scoordinates.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s%scolor.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);

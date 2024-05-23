@@ -36,7 +36,7 @@
 # endif
 
 /* Global Illumination */
-# define GI 1
+# define GI 0
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"

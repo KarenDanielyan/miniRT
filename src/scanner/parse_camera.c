@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:43:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 19:30:18 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:53:29 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static t_parsetype	argument_check(t_list *tokens, char **point_view, \
 	char **vector_orientation, float *h_fov);
 
-//TODO: error managment and pretty printing
 void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 {
 	char	**pv;
@@ -49,23 +48,19 @@ void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 static t_parsetype	argument_check(t_list *tokens, char **point_view, \
 	char **vector_orientation, float *h_fov)
 {
+	t_parsetype	rv;
+
 	*h_fov = -1;
+	rv = P_ERROR;
 	if (check_number(ft_lst_get_by_index(tokens, 3)->content) == EXIT_SUCCESS)
 		*h_fov = ft_atof(ft_lst_get_by_index(tokens, 3)->content);
 	if (!point_view)
-	{
 		printf("%s%s%s position.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
 	else if (!vector_orientation)
-	{
 		printf("%s%s%s direction.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
 	else if (*h_fov < 0.0 || *h_fov > 179.9)
-	{
 		printf("%s%s%s fov.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
-	return (P_CAMERA);
+	else
+		rv = P_CAMERA;
+	return (rv);
 }

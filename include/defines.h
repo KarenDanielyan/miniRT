@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 18:39:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:14:48 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # endif
 
 /* Global Illumination */
-# define GI 0
+# define GI 1
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"

@@ -6,71 +6,63 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:16 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:06:12 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:11:28 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scanner.h"
 #include "miniRT.h"
 
-static t_parsetype	argument_check(t_list *tokens, \
-	char **coords, char **rgb, float *brightness);
-void				*make(float brightness, char **coordinates, char **rgb);
+static t_parsetype	argument_check(t_pfields *f);
+void				*make(t_pfields *f);
 
 /* Light: position -> brightness -> color */
 void	*parse_light(t_list *tokens, t_parsetype *pt)
 {
-	void	*rv;
-	char	**coordinates;
-	char	**rgb;
-	float	brightness;
+	void		*rv;
+	t_pfields	f;
 
 	rv = NULL;
+	init_fields(&f);
 	*pt = P_ERROR;
 	if (ft_lstsize(tokens) != 4)
 	{
 		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
 		return (NULL);
 	}
-	coordinates = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
-	rgb = tuple_split(ft_lst_get_by_index(tokens, 3)->content, ',', 3);
-	*pt = argument_check(tokens, coordinates, rgb, &brightness);
+	f.coords = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
+	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 3)->content, ',', 3);
+	f.ratio = ft_strdup(ft_lst_get_by_index(tokens, 2)->content);
+	*pt = argument_check(&f);
 	if (*pt == P_LIGHTSOURCE)
-		rv = make(brightness, coordinates, rgb);
-	free_2d(coordinates);
-	free_2d(rgb);
+		rv = make(&f);
+	free_fields(&f);
 	return (rv);
 }
 
-void	*make(float brightness, char **coordinates, char **rgb)
+void	*make(t_pfields *f)
 {
-	return (new_light(brightness, \
-				vec3(ft_atof(coordinates[0]), ft_atof(coordinates[1]), \
-					ft_atof(coordinates[2])), \
-					vec3(ft_map(ft_atof(rgb[0])), ft_map(ft_atof(rgb[1])), \
-					ft_map(ft_atof(rgb[2])))));
+	return (new_light(ft_atof(f->ratio), \
+				vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
+					ft_atof(f->coords[2])), \
+					vec3(ft_map(ft_atof(f->rgb[0])), \
+					ft_map(ft_atof(f->rgb[1])), \
+					ft_map(ft_atof(f->rgb[2])))));
 }
 
-static t_parsetype	argument_check(t_list *tokens, \
-	char **coords, char **rgb, float *brightness)
+static t_parsetype	argument_check(t_pfields *f)
 {
-	*brightness = -1;
-	if (check_number(ft_lst_get_by_index(tokens, 2)->content) == EXIT_SUCCESS)
-		*brightness = ft_atof(ft_lst_get_by_index(tokens, 2)->content);
-	if (!coords)
-	{
+	t_parsetype	rv;
+
+	rv = P_ERROR;
+	if (check_number(f->ratio) == EXIT_FAILURE || \
+		ft_atof(f->ratio) < 0.0 || ft_atof(f->ratio) > 1.0)
 		printf("%s%s%scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
-	else if (*brightness < 0.0 || *brightness > 1.0)
-	{
-		printf("%s%s%sbrightness.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
-	else if (!rgb || check_color(rgb) == EXIT_FAILURE)
-	{
+	else if (!f->coords)
+		printf("%s%s%scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s%scolor.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
-		return (P_ERROR);
-	}
-	return (P_LIGHTSOURCE);
+	else
+		rv = P_LIGHTSOURCE;
+	return (rv);
 }

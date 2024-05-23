@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scanner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 17:05:25 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:28:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-typedef enum e_parsetype	t_parsetype;
+typedef struct s_parsefields	t_pfields;
+typedef enum e_parsetype		t_parsetype;
 
 enum e_parsetype
 {
@@ -27,6 +28,17 @@ enum e_parsetype
 	P_OBJECT,
 	P_COMMENT,
 	P_ERROR
+};
+
+struct s_parsefields
+{
+	char	**rgb;
+	char	**coords;
+	char	**normal;
+	char	*diameter;
+	char	*radius;
+	char	*height;
+	char	*ratio;
 };
 
 int		check_extension(char *name);
@@ -49,5 +61,7 @@ bool	check_color(char **rgb);
 
 char	**tuple_split(char *tuple, char c, int size);
 
-void	*error_return(char ***coordinates, char ***rgb);
+void	init_fields(t_pfields *f);
+void	free_fields(t_pfields *f);
+
 #endif

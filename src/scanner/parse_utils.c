@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:05:41 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:02:52 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,4 @@ char	**tuple_split(char *tuple, char c, int size)
 		i ++;
 	}
 	return (splitted);
-}
-
-void	*error_return(char ***coordinates, char ***rgb)
-{
-	if (*coordinates)
-		free_2d(*coordinates);
-	if (*rgb)
-		free_2d(*rgb);
-	return (NULL);
 }

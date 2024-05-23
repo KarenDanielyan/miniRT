@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ray_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
 /*   Updated: 2024/05/20 18:59:24 by kdaniely         ###   ########.fr       */
@@ -52,6 +52,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 		{
 			gi = global_illumination(ctl, &hr, bounce);
 			gi = vec3_scalar_mult(&gi, &hr.hit->material.color);
+			gi = scale_vec3(0.5, &gi);
 		}
 	}
 	return (sum_vec3(&gi, &di));

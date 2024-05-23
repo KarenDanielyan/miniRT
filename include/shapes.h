@@ -133,7 +133,7 @@ bool	hit_cone(t_shape *self, t_ray *r, double *t);
 
 /* Surfece Normals */
 
-t_vec3	get_normal(t_ray *r, t_point3 *at, t_hittable *hit);
+t_vec3	get_normal(t_point3 *at, t_hittable *hit);
 
 /* Light sources */
 

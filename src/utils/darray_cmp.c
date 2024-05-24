@@ -12,14 +12,14 @@
 
 #include "miniRT.h"
 
-int	get_if_ambient(void *l)
+int	is_ambient(void *l)
 {
 	if (((t_light *)l)->type == AMBIENT)
 		return (true);
 	return (false);
 }
 
-int	get_if_point(void *l)
+int	is_point(void *l)
 {
 	if (((t_light *)l)->type == POINT)
 		return (true);

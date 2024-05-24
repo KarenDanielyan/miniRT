@@ -164,8 +164,8 @@ struct s_light
 };
 
 /* Compare functions for lights. */
-int		get_if_ambient(void *l);
+int		is_ambient(void *l);
 
-int		get_if_point(void *l);
+int		is_point(void *l);
 
 #endif

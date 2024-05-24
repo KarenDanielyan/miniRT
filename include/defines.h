@@ -28,15 +28,20 @@
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 10
+# define MAX_BOUNCE 5
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 10
+#  define SSAA 50
 # endif
 
 /* Global Illumination */
 # define GI 0
+# if GI == 1
+#  define DI_INTENSITY 0.6
+# else
+#  define DI_INTENSITY 1.0
+# endif
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"

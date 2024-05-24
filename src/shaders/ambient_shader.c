@@ -17,7 +17,7 @@ t_color	ambient_shader(t_control *ctl, t_hitrecord *hr)
 	t_light	*a;
 	t_color	c;
 
-	a = ft_darray_get_if(&ctl->lights, &get_if_ambient);
+	a = ft_darray_get_if(&ctl->lights, &is_ambient);
 	c = vec3_scalar_mult(&a->color, &hr->hit->material.color);
 	c = scale_vec3(a->brightness, &c);
 	return (c);

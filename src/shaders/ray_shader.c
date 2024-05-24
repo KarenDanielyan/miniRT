@@ -52,10 +52,9 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 		{
 			gi = global_illumination(ctl, &hr, bounce);
 			gi = vec3_scalar_mult(&gi, &hr.hit->material.color);
-			gi = scale_vec3(0.5, &gi);
 		}
 	}
-	return (sum_vec3(&gi, &di));
+	return (vec3_lerp(&di, &gi, DI_INTENSITY));
 }
 
 /**

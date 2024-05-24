@@ -31,7 +31,7 @@ void	*parse_ambient(t_list *tokens, t_parsetype *pt)
 	init_fields(&f);
 	if (ft_lstsize(tokens) != 3)
 	{
-		printf("%s%s%s%s%d.%s\n", RED, \
+		printf("%s%s: %s%s%d.%s\n", RED, \
 			S_AMBIENT, ERR_INVALID_ARGS, " ", 3, RESET);
 		*pt = P_ERROR;
 		return (rv);
@@ -57,9 +57,9 @@ static t_parsetype	argument_check(t_pfields *f)
 	rv = P_ERROR;
 	if (check_number(f->ratio) == EXIT_FAILURE || \
 		ft_atof(f->ratio) < 0.0 || ft_atof(f->ratio) > 1.0)
-		printf("%s%s%sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
+		printf("%s%s: %sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
 	if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
-		printf("%s%s%sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
+		printf("%s%s: %sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
 	else
 		rv = P_LIGHTSOURCE;
 	return (rv);

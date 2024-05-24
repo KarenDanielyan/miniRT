@@ -56,14 +56,14 @@
 # define ERR_INVALID "Invalid "
 
 /* Symbols */
-# define S_CAMERA "C: "
-# define S_AMBIENT "A: "
-# define S_LIGHT "L: "
-# define S_SPHERE "sp: "
-# define S_PLANE "pl: "
-# define S_CYLINDER "cl: "
-# define S_CONE "cn: "
-# define S_RECTANGLE "rgl: "
+# define S_CAMERA "C"
+# define S_AMBIENT "A"
+# define S_LIGHT "l"
+# define S_SPHERE "sp"
+# define S_PLANE "pl"
+# define S_CYLINDER "cy"
+# define S_CONE "cn"
+# define S_RECTANGLE "rgl"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

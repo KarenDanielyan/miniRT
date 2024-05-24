@@ -47,17 +47,17 @@ static t_parsetype	argument_check(t_pfields *f)
 
 	rv = P_ERROR;
 	if (!f->coords)
-		printf("%s%s%s coordinates.%s\n", RED, S_CONE, ERR_INVALID, RESET);
+		printf("%s%s: %s coordinates.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else if (!f->normal)
-		printf("%s%s%s normal vector.%s\n", \
+		printf("%s%s: %s normal vector.%s\n", \
 		RED, S_CONE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
-		printf("%s%s%s color.%s\n", RED, S_CONE, ERR_INVALID, RESET);
+		printf("%s%s: %s color.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else if (check_number(f->diameter) == EXIT_FAILURE || \
 		ft_atof(f->radius) > 0.0)
-		printf("%s%s%s radius.%s\n", RED, S_CONE, ERR_INVALID, RESET);
+		printf("%s%s: %s radius.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) > 0)
-		printf("%s%s%s height.%s\n", RED, S_CONE, ERR_INVALID, RESET);
+		printf("%s%s: %s height.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;
 	return (rv);

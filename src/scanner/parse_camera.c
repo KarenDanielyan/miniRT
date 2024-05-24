@@ -23,7 +23,7 @@ void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 
 	if (ft_lstsize(tokens) != 4)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
+		printf("%s%s: %s%d%s", RED, S_CAMERA, ERR_INVALID_ARGS, 4, RESET);
 		*pt = P_ERROR;
 		return (NULL);
 	}
@@ -55,11 +55,11 @@ static t_parsetype	argument_check(t_list *tokens, char **point_view, \
 	if (check_number(ft_lst_get_by_index(tokens, 3)->content) == EXIT_SUCCESS)
 		*h_fov = ft_atof(ft_lst_get_by_index(tokens, 3)->content);
 	if (!point_view)
-		printf("%s%s%s position.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
+		printf("%s%s: %s position.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
 	else if (!vector_orientation)
-		printf("%s%s%s direction.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
+		printf("%s%s: %s direction.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
 	else if (*h_fov < 0.0 || *h_fov > 179.9)
-		printf("%s%s%s fov.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
+		printf("%s%s: %s fov.%s\n", RED, S_CAMERA, ERR_INVALID, RESET);
 	else
 		rv = P_CAMERA;
 	return (rv);

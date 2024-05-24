@@ -25,7 +25,7 @@ void	*parse_sphere(t_list *tokens, t_parsetype *pt)
 	init_fields(&f);
 	if (ft_lstsize(tokens) != 4)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
+		printf("%s%s: %s%d%s", RED, S_LIGHT, ERR_INVALID_ARGS, 4, RESET);
 		*pt = P_ERROR;
 		return (NULL);
 	}
@@ -62,11 +62,11 @@ static t_parsetype	argument_check(t_pfields *f)
 	rv = P_ERROR;
 	if (check_number(f->diameter) == EXIT_FAILURE || \
 		ft_atof(f->diameter) <= 0.0)
-		printf("%s%s%sdiameter.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
+		printf("%s%s: %sdiameter.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
 	else if (!f->coords)
-		printf("%s%s%scoordinates.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
+		printf("%s%s: %scoordinates.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
-		printf("%s%s%scolor.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
+		printf("%s%s: %scolor.%s\n", RED, S_SPHERE, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;
 	return (rv);

@@ -25,7 +25,7 @@ void	*parse_plane(t_list *tokens, t_parsetype *pt)
 	init_fields(&f);
 	if (ft_lstsize(tokens) != 4)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
+		printf("%s%s: %s%d%s", RED, S_PLANE, ERR_INVALID_ARGS, 4, RESET);
 		*pt = P_ERROR;
 		return (NULL);
 	}
@@ -48,11 +48,11 @@ static t_parsetype	argument_check(t_pfields *f)
 
 	rv = P_ERROR;
 	if (!f->coords)
-		printf("%s%s%s coordinates.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
+		printf("%s%s: %s coordinates.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
 	else if (!f->normal)
-		printf("%s%s%s normal vector.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
+		printf("%s%s: %s normal vector.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
-		printf("%s%s%s color.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
+		printf("%s%s: %s color.%s\n", RED, S_PLANE, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;
 	return (rv);

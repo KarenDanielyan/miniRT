@@ -88,21 +88,21 @@ static bool	scan_prime(t_control *ctl, int fd)
 /* TODO: Add comment feature (Usage: # Here is your comment. )*/
 static void	*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt)
 {
-	if (!ft_strcmp((char *)(tokens->content), "C"))
+	if (!ft_strcmp((char *)(tokens->content), S_CAMERA))
 		return (parse_camera(ctl, tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "A"))
+	else if (!ft_strcmp((char *)(tokens->content), S_AMBIENT))
 		return (parse_ambient(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "L"))
+	else if (!ft_strcmp((char *)(tokens->content), S_LIGHT))
 		return (parse_light(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "sp"))
+	else if (!ft_strcmp((char *)(tokens->content), S_SPHERE))
 		return (parse_sphere(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "cy"))
+	else if (!ft_strcmp((char *)(tokens->content), S_CYLINDER))
 		return (parse_cyliner(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "pl"))
+	else if (!ft_strcmp((char *)(tokens->content), S_PLANE))
 		return (parse_plane(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "cn"))
+	else if (!ft_strcmp((char *)(tokens->content), S_CONE))
 		return (parse_cone(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "rgl"))
+	else if (!ft_strcmp((char *)(tokens->content), S_RECTANGLE))
 		return (parse_rectangle(tokens, pt));
 	else if (!ft_strncmp((char *)(tokens->content), "#", 1))
 		*pt = P_COMMENT;

@@ -12,14 +12,36 @@
 
 #include "miniRT.h"
 
+static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l);
+
 t_color	diffuse_shader(t_control *ctl, t_hitrecord *hr)
 {
+	t_color		color;
 	t_light		*l;
+	t_color		tmp;
+	size_t		i;
+
+	color = vec3(0.0, 0.0, 0.0);
+	i = 0;
+	while (i < ctl->lights.nmemb)
+	{
+		l = ft_darray_get_by_index(&ctl->lights, i);
+		if (l->type == POINT)
+		{
+			tmp = compute_for_ls(ctl, hr, l);
+			color = sum_vec3(&color, &tmp);
+		}
+		i++;
+	}
+	return (shrink_vec3((float)(ctl->lights.nmemb - 1), &color));
+}
+
+static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l)
+{
 	t_hitrecord	tmp_hr;
 	t_color		color;
 	t_ray		r;
 
-	l = ft_darray_get_if(&ctl->lights, &get_if_point);
 	color = vec3(0.0, 0.0, 0.0);
 	new_ray(&r, l->position, subst_vec3(&hr->at, &l->position));
 	if (hit_anything(&r, &ctl->world, &tmp_hr) && tmp_hr.hit == hr->hit)

@@ -25,7 +25,7 @@ void	*parse_cone(t_list *tokens, t_parsetype *pt)
 	init_fields(&f);
 	if (ft_lstsize(tokens) != 6)
 	{
-		printf("%s%s%s%d%s", RED, S_CONE, ERR_INVALID_ARGS, 5, RESET);
+		printf("%s%s: %s%d%s", RED, S_CONE, ERR_INVALID_ARGS, 5, RESET);
 		*pt = P_ERROR;
 		return (hittable);
 	}

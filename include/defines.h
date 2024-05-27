@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 21:14:48 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:01:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define ERR_BADARG "Error: Bad Argument.\n"
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected"
 # define ERR_INVALID "Invalid "
+# define ERR_ARGNUM "occured more than once"
 
 /* Symbols */
 # define S_CAMERA "C"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scanner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:28:46 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:15:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,34 @@ struct s_parsefields
 	char	*radius;
 	char	*height;
 	char	*ratio;
+	char	*material;
+	char	*texture;
+	char	*normal_map;
 };
 
-int		check_extension(char *name);
+void		*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt);
 
-void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt);
-
-void	*parse_rectangle(t_list *tokens, t_parsetype *pt);
-void	*parse_cyliner(t_list *tokens, t_parsetype *pt);
-void	*parse_ambient(t_list *tokens, t_parsetype *pt);
-void	*parse_sphere(t_list *tokens, t_parsetype *pt);
-void	*parse_light(t_list *tokens, t_parsetype *pt);
-void	*parse_plane(t_list *tokens, t_parsetype *pt);
-void	*parse_cone(t_list *tokens, t_parsetype *pt);
+void		*parse_rectangle(t_list *tokens, t_parsetype *pt);
+void		*parse_cyliner(t_list *tokens, t_parsetype *pt);
+void		*parse_ambient(t_list *tokens, t_parsetype *pt);
+void		*parse_sphere(t_list *tokens, t_parsetype *pt);
+void		*parse_light(t_list *tokens, t_parsetype *pt);
+void		*parse_plane(t_list *tokens, t_parsetype *pt);
+void		*parse_cone(t_list *tokens, t_parsetype *pt);
 
 /* Utility Functions */
 
-bool	check_number(char *number);
-bool	check_tuple(char *tuple, int size);
-bool	check_color(char **rgb);
+t_parsetype	optional_check(t_list *tokens, t_pfields *f);
 
-char	**tuple_split(char *tuple, char c, int size);
+bool		check_number(char *number);
+bool		check_tuple(char *tuple, int size);
+bool		check_color(char **rgb);
 
-void	init_fields(t_pfields *f);
-void	free_fields(t_pfields *f);
+int			check_extension(char *name, char *extension);
+
+char		**tuple_split(char *tuple, char c, int size);
+
+void		init_fields(t_pfields *f);
+void		free_fields(t_pfields *f);
 
 #endif

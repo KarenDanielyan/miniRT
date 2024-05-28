@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:36:35 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 16:54:44 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:41:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_camera
 {
+	int			is_active;
 	t_point3	center;
 	t_point3	pixel_00;
 	t_vec3		direction;

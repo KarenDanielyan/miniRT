@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 16:13:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:41:52 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	initialize_camera(t_camera *cam)
 	temp = sum_vec3(&cam->pixel_delta_u, &cam->pixel_delta_v);
 	temp = shrink_vec3(2.0f, &temp);
 	cam->pixel_00 = sum_vec3(&viewport_upperleft, &temp);
+	cam->is_active = 1;
 }
 
 void	trace(t_control *ctl, t_job *job)

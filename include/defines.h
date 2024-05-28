@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 21:14:48 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:30:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,20 @@
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 10
+# define MAX_BOUNCE 5
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 100
+#  define SSAA 50
 # endif
 
 /* Global Illumination */
-# define GI 1
+# define GI 0
+# if GI == 1
+#  define DI_INTENSITY 0.6
+# else
+#  define DI_INTENSITY 1.0
+# endif
 
 /* Miscellaneous Defines */
 # define RENDER_FILE "Images/render.ppm"
@@ -49,16 +54,24 @@
 # define ERR_BADARG "Error: Bad Argument.\n"
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected"
 # define ERR_INVALID "Invalid "
+# define ERR_ARGNUM "occured more than once"
+
+# define WARN_NOMATERIAL "no material specified, assuming default"
+# define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"
 
 /* Symbols */
-# define S_CAMERA "C: "
-# define S_AMBIENT "A: "
-# define S_LIGHT "L: "
-# define S_SPHERE "sp: "
-# define S_PLANE "pl: "
-# define S_CYLINDER "cl: "
-# define S_CONE "cn: "
-# define S_RECTANGLE "rgl: "
+# define S_CAMERA "C"
+# define S_AMBIENT "A"
+# define S_LIGHT "l"
+# define S_SPHERE "sp"
+# define S_PLANE "pl"
+# define S_CYLINDER "cy"
+# define S_CONE "cn"
+# define S_RECTANGLE "rgl"
+
+# define S_PLASTIC "plastic"
+# define S_METALLIC "metallic"
+# define S_DIELECTRIC "dielectric"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

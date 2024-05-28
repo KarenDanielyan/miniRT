@@ -33,3 +33,21 @@ void	*ft_darray_get_if(t_darray *arr, int (*cmp)(void *value))
 	}
 	return (NULL);
 }
+
+size_t	ft_darray_count_if(t_darray *arr, int (*cmp)(void *value))
+{
+	size_t	count;
+	size_t	i;
+
+	count = 0;
+	i = 0;
+	if (!arr)
+		return (0);
+	while (i < arr->nmemb)
+	{
+		if (cmp(ft_darray_get_by_index(arr, i)) == 1)
+			count ++;
+		i ++;
+	}
+	return (count);
+}

@@ -29,7 +29,7 @@ void	*new_ambient(double brightness, t_color color)
 	return (l);
 }
 
-void	*new_light(double brightness, t_vec3 position, t_color color)
+void	*new_light(double brightness, t_point3 position, t_color color)
 {
 	t_light	*l;
 

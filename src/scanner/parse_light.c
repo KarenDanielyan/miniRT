@@ -27,7 +27,7 @@ void	*parse_light(t_list *tokens, t_parsetype *pt)
 	*pt = P_ERROR;
 	if (ft_lstsize(tokens) != 4)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
+		printf("%s%s: %s%d%s", RED, S_LIGHT, ERR_INVALID_ARGS, 4, RESET);
 		return (NULL);
 	}
 	f.coords = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
@@ -57,11 +57,11 @@ static t_parsetype	argument_check(t_pfields *f)
 	rv = P_ERROR;
 	if (check_number(f->ratio) == EXIT_FAILURE || \
 		ft_atof(f->ratio) < 0.0 || ft_atof(f->ratio) > 1.0)
-		printf("%s%s%scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+		printf("%s%s: %scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
 	else if (!f->coords)
-		printf("%s%s%scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+		printf("%s%s: %scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
-		printf("%s%s%scolor.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+		printf("%s%s: %scolor.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
 	else
 		rv = P_LIGHTSOURCE;
 	return (rv);

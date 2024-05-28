@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/19 20:23:13 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:08:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static t_list	*get_tokens(char *line);
 static bool		scan_prime(t_control *ctl, int fd);
+static bool		check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt);
 static void		*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt);
 
 /**
@@ -32,7 +33,7 @@ bool	scan(t_control *ctl, char *filename)
 {
 	int		fd;
 
-	if (check_extension(filename) == EXIT_FAILURE)
+	if (check_extension(filename, EXTENSION) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -88,22 +89,22 @@ static bool	scan_prime(t_control *ctl, int fd)
 /* TODO: Add comment feature (Usage: # Here is your comment. )*/
 static void	*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt)
 {
-	if (!ft_strcmp((char *)(tokens->content), "C"))
+	if (check_repition(ctl, tokens, pt) == EXIT_FAILURE)
+		return (NULL);
+	if (!ft_strcmp((char *)(tokens->content), S_CAMERA))
 		return (parse_camera(ctl, tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "A"))
+	else if (!ft_strcmp((char *)(tokens->content), S_AMBIENT))
 		return (parse_ambient(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "L"))
+	else if (!ft_strcmp((char *)(tokens->content), S_LIGHT))
 		return (parse_light(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "sp"))
+	else if (!ft_strcmp((char *)(tokens->content), S_SPHERE))
 		return (parse_sphere(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "cy"))
+	else if (!ft_strcmp((char *)(tokens->content), S_CYLINDER))
 		return (parse_cyliner(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "pl"))
+	else if (!ft_strcmp((char *)(tokens->content), S_PLANE))
 		return (parse_plane(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "cn"))
+	else if (!ft_strcmp((char *)(tokens->content), S_CONE))
 		return (parse_cone(tokens, pt));
-	else if (!ft_strcmp((char *)(tokens->content), "rgl"))
-		return (parse_rectangle(tokens, pt));
 	else if (!ft_strncmp((char *)(tokens->content), "#", 1))
 		*pt = P_COMMENT;
 	else
@@ -112,6 +113,28 @@ static void	*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt)
 		*pt = P_ERROR;
 	}
 	return (NULL);
+}
+
+/* Not more than one camera or ambient. */
+/* Camera: check if we initialized camera before. */
+/* Ambient: same as camera. */
+static bool	check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt)
+{
+	if (!ft_strcmp(tokens->content, S_AMBIENT) && \
+		ft_darray_get_if(&ctl->lights, is_ambient) != NULL)
+	{
+		*pt = P_ERROR;
+		printf("%s%s: %s.%s\n", RED, S_AMBIENT, ERR_ARGNUM, RESET);
+	}
+	else if (!ft_strcmp(tokens->content, S_CAMERA) && \
+		ctl->cam.is_active == 1)
+	{
+		*pt = P_ERROR;
+		printf("%s%s: %s.%s\n", RED, S_CAMERA, ERR_ARGNUM, RESET);
+	}
+	else
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
 /**

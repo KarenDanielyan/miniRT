@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 00:54:26 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 16:52:44 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:39:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ t_quaternion	get_quaternion(t_vec3 *u, t_vec3 *v)
 
 	theta = acos(vec3_dot(u, v));
 	rod = vec3_cross(u, v);
-	if (vec3_length(&rod) < 0.0001)
+	if (vec3_length(&rod) < EPSILON)
 	{
-		if (theta > 0.0001)
+		if (theta > EPSILON)
 			return (quaternion(0, 1, 0, 0));
-		if (theta < 0.0001)
+		if (theta < EPSILON)
 			return (quaternion(0, 0, 0, 1));
 	}
 	rod = unit_vector(rod);

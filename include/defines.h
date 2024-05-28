@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 21:01:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:30:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@
 # define ERR_INVALID "Invalid "
 # define ERR_ARGNUM "occured more than once"
 
+# define WARN_NOMATERIAL "no material specified, assuming default"
+# define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"
+
 /* Symbols */
 # define S_CAMERA "C"
 # define S_AMBIENT "A"
@@ -65,6 +68,10 @@
 # define S_CYLINDER "cy"
 # define S_CONE "cn"
 # define S_RECTANGLE "rgl"
+
+# define S_PLASTIC "plastic"
+# define S_METALLIC "metallic"
+# define S_DIELECTRIC "dielectric"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

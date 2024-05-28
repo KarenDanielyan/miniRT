@@ -27,6 +27,12 @@ void	*new_hittable(t_type type, t_hit hit, void *shape)
 	obj->hit = hit;
 	if (type == SPHERE)
 		obj->shape.s = *((t_sphere *)shape);
+	else if (type == PLANE)
+		obj->shape.p = *((t_plane *)shape);
+	else if (type == CYLINDER)
+		obj->shape.c = *((t_cylinder *)shape);
+	else if (type == CONE)
+		obj->shape.cn = *((t_cone *)shape);
 	return (obj);
 }
 
@@ -50,7 +56,7 @@ bool	hit_anything(t_ray *r, t_darray *world, t_hitrecord *hr)
 			hr->r = *r;
 			hr->at = ray_at(r, t);
 			hr->hit = current;
-			hr->normal = get_normal(r, &hr->at, hr->hit);
+			hr->normal = get_normal(&hr->at, hr->hit);
 		}
 		i ++;
 	}

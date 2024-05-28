@@ -3,40 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:16 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 21:08:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:11:28 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scanner.h"
 #include "miniRT.h"
 
+static t_parsetype	argument_check(t_pfields *f);
+void				*make(t_pfields *f);
+
 /* Light: position -> brightness -> color */
 void	*parse_light(t_list *tokens, t_parsetype *pt)
 {
-	void	*rv;
-	char	**coordinates;
-	char	**rgb;
+	void		*rv;
+	t_pfields	f;
 
+	rv = NULL;
+	init_fields(&f);
+	*pt = P_ERROR;
 	if (ft_lstsize(tokens) != 4)
 	{
-		printf("%s%s%d%s", RED, ERR_INVALID_ARGS, 4, RESET);
-		*pt = P_ERROR;
+		printf("%s%s: %s%d%s", RED, S_LIGHT, ERR_INVALID_ARGS, 4, RESET);
 		return (NULL);
 	}
-	*pt = P_LIGHTSOURCE;
-	coordinates = ft_split(ft_lst_get_by_index(tokens, 1)->content, ',');
-	rgb = ft_split(ft_lst_get_by_index(tokens, 3)->content, ',');
-	rv = new_light(ft_atof(ft_lst_get_by_index(tokens, 2)->content), \
-				vec3(ft_atof(coordinates[0]), \
-					ft_atof(coordinates[1]), \
-					ft_atof(coordinates[2])), \
-				vec3(ft_map(ft_atof(rgb[0])), \
-					ft_map(ft_atof(rgb[1])), \
-					ft_map(ft_atof(rgb[2]))));
-	free_2d(coordinates);
-	free_2d(rgb);
+	f.coords = tuple_split(ft_lst_get_by_index(tokens, 1)->content, ',', 3);
+	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 3)->content, ',', 3);
+	f.ratio = ft_strdup(ft_lst_get_by_index(tokens, 2)->content);
+	*pt = argument_check(&f);
+	if (*pt == P_LIGHTSOURCE)
+		rv = make(&f);
+	free_fields(&f);
+	return (rv);
+}
+
+void	*make(t_pfields *f)
+{
+	return (new_light(ft_atof(f->ratio), \
+				vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
+					ft_atof(f->coords[2])), \
+					vec3(ft_map(ft_atof(f->rgb[0])), \
+					ft_map(ft_atof(f->rgb[1])), \
+					ft_map(ft_atof(f->rgb[2])))));
+}
+
+static t_parsetype	argument_check(t_pfields *f)
+{
+	t_parsetype	rv;
+
+	rv = P_ERROR;
+	if (check_number(f->ratio) == EXIT_FAILURE || \
+		ft_atof(f->ratio) < 0.0 || ft_atof(f->ratio) > 1.0)
+		printf("%s%s: %scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+	else if (!f->coords)
+		printf("%s%s: %scoordinates.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
+		printf("%s%s: %scolor.%s\n", RED, S_LIGHT, ERR_INVALID, RESET);
+	else
+		rv = P_LIGHTSOURCE;
 	return (rv);
 }

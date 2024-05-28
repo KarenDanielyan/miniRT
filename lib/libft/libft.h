@@ -121,11 +121,14 @@ typedef struct s_darray
 }	t_darray;
 
 void		ft_darray_init(t_darray *arr, size_t elem_size, size_t capacity);
+void		*ft_darray_get_by_index(t_darray *arr, int index);
 void		ft_darray_pushback(t_darray *arr, void *content);
+void		ft_darray_free(t_darray *arr);
+
+size_t		ft_darray_count_if(t_darray *arr, int (*cmp)(void *value));
+
+void		*ft_darray_get_if(t_darray *arr, int (*cmp)(void *value));
 void		*ft_darray_get(t_darray *arr, void *value, \
 	int (*cmp)(void *a, void *b));
-void		*ft_darray_get_if(t_darray *arr, int (*cmp)(void *value));
-void		*ft_darray_get_by_index(t_darray *arr, int index);
-void		ft_darray_free(t_darray *arr);
 
 #endif

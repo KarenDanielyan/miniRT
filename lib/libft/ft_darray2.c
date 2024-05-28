@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_darray2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:53:39 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/12 16:57:56 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:05:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 /**
  * 		ft_darray_get_if() will return the first occurent element of 
@@ -33,4 +32,22 @@ void	*ft_darray_get_if(t_darray *arr, int (*cmp)(void *value))
 		i ++;
 	}
 	return (NULL);
+}
+
+size_t	ft_darray_count_if(t_darray *arr, int (*cmp)(void *value))
+{
+	size_t	count;
+	size_t	i;
+
+	count = 0;
+	i = 0;
+	if (!arr)
+		return (0);
+	while (i < arr->nmemb)
+	{
+		if (cmp(ft_darray_get_by_index(arr, i)) == 1)
+			count ++;
+		i ++;
+	}
+	return (count);
 }

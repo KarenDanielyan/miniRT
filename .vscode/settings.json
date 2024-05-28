@@ -98,7 +98,8 @@
     "limits": "c",
     "numeric": "c",
     "algorithm": "c",
-    "ratio": "c"
+    "ratio": "c",
+    "quaternion.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "python.analysis.typeCheckingMode": "basic"

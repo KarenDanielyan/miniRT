@@ -17,33 +17,34 @@ SUBDIRS		=	core scanner math events utils job debug shaders
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				defines.h miniRT.h scanner.h \
 				vec3.h material.h ray.h ui.h \
-				camera.h matrix4.h shapes.h) \
+				camera.h shapes.h \
+				quaternion.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
-				main.c ray.c ui.c camera.c hit.c \
-				hittable.c lights.c shapes.c \
-				trace.c normals.c) \
+				main.c ray.c ui.c camera.c hit.c hit_2.c \
+				hittable.c lights.c shapes.c normals.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c mapping.c \
 				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c scan.c parse_ambient.c \
-				parse_light.c parse_camera.c parse_sphere.c) \
+				parse_light.c parse_camera.c parse_sphere.c \
+				parse_utils.c parse_cylinder.c \
+				parse_plane.c parse_cone.c \
+				parse_rectangle.c parse_utils2.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \
 				vec3_set.c vec3_utils.c \
-				vec3_random.c matrix4.c) \
+				vec3_random.c quaternion_operations.c\
+				quaternion_constructors.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \
 				tasks.c put_render.c \
 				listener.c update.c worker.c) \
-				$(patsubst %.c, $(SRC)/debug/%.c, \
-				print_messages.c test_hit.c \
-				test_shaders.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
 				ray_shader.c skybox_shader.c \
 				diffuse_shader.c ambient_shader.c \

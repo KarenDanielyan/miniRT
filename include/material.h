@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 17:57:31 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:28:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ static inline void	set_color(int *pixel, t_color color)
 
 enum e_mtype
 {
-	DEFAULT = 0,
-	PLASTIC = 1,
-	METALIC = 2,
-	DIELECRIC = 4
+	DEFAULT		= 0,
+	PLASTIC		= 1,
+	METALIC		= 2,
+	DIELECRIC	= 4,
+	TEXTURED	= 8,
+	NORMAL		= 16
 };
 
 struct s_material
@@ -49,8 +51,7 @@ struct s_material
 };
 
 void	set_material(t_material *material, t_color color, char *type);
-void	set_texture(t_material *material, char *texture_map);
-void	set_normal_map(t_material *material, char *normal_map);
+void	set_texture_and_normal(t_material *m, char *texture, char *normal);
 
 /* Working with bitmaps */
 

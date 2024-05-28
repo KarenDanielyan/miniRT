@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 20:52:58 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:01:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ t_color	diffuse_shader(t_control *ctl, t_hitrecord *hr)
 		}
 		i++;
 	}
-	return (shrink_vec3((float)(ctl->lights.nmemb - 1), &color));
+	return (vec3(\
+		clamp_d(get_x(&color), 0.000, 1.000), \
+		clamp_d(get_y(&color), 0.000, 1.000), \
+		clamp_d(get_z(&color), 0.000, 1.000)));
 }
 
 static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l)

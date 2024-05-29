@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 18:30:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:33:39 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # endif
 
 /* Global Illumination */
-# define GI 0
+# define GI 1
 # if GI == 1
 #  define DI_INTENSITY 0.6
 # else

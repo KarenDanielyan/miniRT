@@ -6,6 +6,8 @@ LIBFT		=	lib/libft/libft.a
 
 PRINTF		=	lib/printf/libftprintf.a
 
+BITMAP		=	lib/ft_bitmap/libftbitmap.a
+
 PLATFORM	=	$(shell uname -s)
 
 BUILD		=	build
@@ -64,11 +66,11 @@ RM			=	rm -rf
 
 CFLAGS		=	-fPIC -g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
-INVOKE		=	libft printf mlx
+INVOKE		=	libft printf ft_bitmap mlx
 
 IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
 
-LFLAGS		=	-Llib/printf -lftprintf -lm
+LFLAGS		=	-Llib/printf -lftprintf -lm -Llib/ft_bitmap -lftbitmap
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux
@@ -116,6 +118,9 @@ libft:
 printf:
 			@$(MAKE) $(MAKECMDGOALS) -C lib/printf
 
+ft_bitmap:
+			@$(MAKE) $(MAKECMDGOALS) -C lib/ft_bitmap
+
 wait_msg:
 			@echo "${BLUE}Please wait for $(NAME) to compile.${RESET}"
 
@@ -136,4 +141,4 @@ mlx:
 
 re:			fclean all
 
-.PHONY:		all clean fclean re libft printf mlx wait_msg
+.PHONY:		all clean fclean re libft printf ft_bitmap mlx wait_msg

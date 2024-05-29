@@ -3,6 +3,8 @@ miniRT_old
 Images/*.ppm
 build
 lib/libft/build
+lib/ft_bitmap/build
+lib/ft_bitmap/libftbitmap.a
 lib/libft/libft.*
 lib/printf/build
 lib/printf/libftprintf.a

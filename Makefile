@@ -129,7 +129,7 @@ clean:		$(INVOKE)
 			@$(RM) $(BUILD)
 			@echo "${GREEN}Done.${RESET}"
 
-fclean:		libft printf
+fclean:		libft printf ft_bitmap
 			@echo "${CYAN}Cleaning Everyting...${RESET}"
 			@$(MAKE) clean -C $(MLX)
 			@$(RM) $(BUILD)

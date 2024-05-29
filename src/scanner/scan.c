@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 22:08:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:12:20 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void		*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt);
 bool	scan(t_control *ctl, char *filename)
 {
 	int		fd;
+	bool	rv;
 
 	if (check_extension(filename, EXTENSION) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -43,7 +44,13 @@ bool	scan(t_control *ctl, char *filename)
 	}
 	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
 	ft_darray_init(&ctl->lights, sizeof(t_light), 5);
-	return (scan_prime(ctl, fd));
+	rv = scan_prime(ctl, fd);
+	if (ft_darray_get_if(&ctl->lights, is_ambient) == NULL)
+	{
+		printf("%s%s: %s 1.%s\n", RED, S_AMBIENT, ERR_INVALID_ARGS, RESET);
+		return (EXIT_FAILURE);
+	}
+	return (rv);
 }
 
 /**

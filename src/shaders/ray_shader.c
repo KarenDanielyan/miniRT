@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 01:45:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 03:17:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
-	di = skybox_shader(r);
+	di = vec3(0, 0, 0);
 	gi = vec3(0, 0, 0);
 	if (hit_anything(r, &ctl->world, &hr))
 	{

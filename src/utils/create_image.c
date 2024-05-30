@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 12:46:05 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 03:05:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 03:20:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	create_image(char *name, int *pixels, int w, int h)
 		return ;
 	}
 	ft_save_bitmap(bitmap, name);
+	ft_destroy_bitmap(bitmap);
 }

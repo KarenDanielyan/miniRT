@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:19:41 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/31 03:33:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ struct s_cylinder
 struct s_cone
 {
 	t_point3	center;
+	t_point3	apex;
 	t_vec3		normal;
+	float		angle;
 	float		radius;
 	float		height;
 };

@@ -68,7 +68,7 @@ CFLAGS		=	-fPIC -g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=addre
 
 INVOKE		=	libft printf ft_bitmap mlx
 
-IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
+IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include -Ilib/ft_bitmap
 
 LFLAGS		=	-Llib/printf -lftprintf -lm -Llib/ft_bitmap -lftbitmap
 

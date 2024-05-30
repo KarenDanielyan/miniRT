@@ -1,0 +1,3 @@
+[submodule "lib/ft_bitmap"]
+	path = lib/ft_bitmap
+	url = git@github.com:KarenDanielyan/ft_bitmap.git

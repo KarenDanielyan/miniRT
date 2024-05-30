@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 02:47:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 03:06:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # endif
 
 /* Miscellaneous Defines */
-# define RENDER_FILE "images/render.ppm"
+# define RENDER_FILE "images/render.bmp"
 # define EXTENSION ".rt"
 # define DOT '.'
 

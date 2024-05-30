@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/29 19:33:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 02:47:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 50
+#  define SSAA 1
 # endif
 
 /* Global Illumination */
-# define GI 1
+# define GI 0
 # if GI == 1
 #  define DI_INTENSITY 0.6
 # else
@@ -44,7 +44,7 @@
 # endif
 
 /* Miscellaneous Defines */
-# define RENDER_FILE "Images/render.ppm"
+# define RENDER_FILE "images/render.ppm"
 # define EXTENSION ".rt"
 # define DOT '.'
 

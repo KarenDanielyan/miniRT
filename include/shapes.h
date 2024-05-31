@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 18:42:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:28:21 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ struct s_cone
 
 union u_shape
 {
-	t_sphere	s;
-	t_plane		p;
-	t_cylinder	c;
+	t_sphere	sp;
+	t_plane		pl;
+	t_cylinder	cy;
 	t_cone		cn;
 };
 

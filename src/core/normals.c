@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 17:36:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:29:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_vec3	get_normal(t_point3 *at, t_hittable *hit)
 	if (hit->material.normal_map == NULL)
 	{
 		if (hit->type == SPHERE)
-			return (unit_vector(subst_vec3(at, &hit->shape.s.center)));
+			return (unit_vector(subst_vec3(at, &hit->shape.sp.center)));
 		else if (hit->type == PLANE)
-			return (unit_vector(hit->shape.p.normal));
+			return (unit_vector(hit->shape.pl.normal));
 		else if (hit->type == CYLINDER)
 			return (get_cylinder_normal(at, hit));
 		else if (hit->type == CONE)
@@ -52,20 +52,20 @@ static t_vec3	get_cylinder_normal(t_point3 *at, t_hittable *hit)
 	t_vec3			displacement;
 	double			t;
 
-	displacement = subst_vec3(at, &hit->shape.c.center);
-	t = vec3_dot(&displacement, &hit->shape.c.normal);
-	tmp = scale_vec3(hit->shape.c.height / 2, &hit->shape.c.normal);
-	tmp = sum_vec3(&hit->shape.c.center, &tmp);
+	displacement = subst_vec3(at, &hit->shape.cy.center);
+	t = vec3_dot(&displacement, &hit->shape.cy.normal);
+	tmp = scale_vec3(hit->shape.cy.height / 2, &hit->shape.cy.normal);
+	tmp = sum_vec3(&hit->shape.cy.center, &tmp);
 	caps = subst_vec3(at, &tmp);
-	if (vec3_length(&caps) <= hit->shape.c.radius)
-		return (hit->shape.c.normal);
-	tmp = scale_vec3(hit->shape.c.height / 2, &hit->shape.c.normal);
-	tmp = subst_vec3(&hit->shape.c.center, &tmp);
+	if (vec3_length(&caps) <= hit->shape.cy.radius)
+		return (hit->shape.cy.normal);
+	tmp = scale_vec3(hit->shape.cy.height / 2, &hit->shape.cy.normal);
+	tmp = subst_vec3(&hit->shape.cy.center, &tmp);
 	caps = subst_vec3(at, &tmp);
-	if (vec3_length(&caps) <= hit->shape.c.radius)
-		return (vec3_neg(&hit->shape.c.normal));
-	tmp = scale_vec3(t, &hit->shape.c.normal);
-	tmp = sum_vec3(&hit->shape.c.center, &tmp);
+	if (vec3_length(&caps) <= hit->shape.cy.radius)
+		return (vec3_neg(&hit->shape.cy.normal));
+	tmp = scale_vec3(t, &hit->shape.cy.normal);
+	tmp = sum_vec3(&hit->shape.cy.center, &tmp);
 	return (unit_vector(subst_vec3(at, &tmp)));
 }
 

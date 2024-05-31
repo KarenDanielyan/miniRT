@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:02:52 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:31:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ char	**tuple_split(char *tuple, char c, int size)
 	if (check_tuple(tuple, size) == EXIT_FAILURE)
 		return (NULL);
 	splitted = ft_split(tuple, c);
+	if (ft_strlen_2d((const char **)splitted) != size)
+	{
+		free_2d(splitted);
+		return (NULL);
+	}
 	while (splitted[i])
 	{
 		if (check_number(splitted[i]) == EXIT_FAILURE)

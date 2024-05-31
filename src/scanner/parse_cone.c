@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:00 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/28 21:16:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 02:32:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static t_parsetype	argument_check(t_pfields *f)
 		RED, S_CONE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s: %s color.%s\n", RED, S_CONE, ERR_INVALID, RESET);
-	else if (check_number(f->diameter) == EXIT_FAILURE || \
-		ft_atof(f->radius) > 0.0)
+	else if (check_number(f->radius) == EXIT_FAILURE || \
+		ft_atof(f->radius) < 0.0)
 		printf("%s%s: %s radius.%s\n", RED, S_CONE, ERR_INVALID, RESET);
-	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) > 0)
+	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) < 0)
 		printf("%s%s: %s height.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;

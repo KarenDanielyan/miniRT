@@ -6,13 +6,14 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 20:30:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:46:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "shapes.h"
 #include "quaternion.h"
+#include "matrix.h"
 
 /*
  * NOTE:	Highly likely we can switch dot product in a to 1,
@@ -92,16 +93,15 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 {
 	t_cylinder		cy_prime;
 	t_ray			r_prime;
-	t_quaternion	q;
 	double			t_prime[2];
 
 	cy_prime = self->cy;
 	cy_prime.normal = vec3(0, 0, 1);
 	cy_prime.center = vec3(0, 0, 0);
-	q = get_quaternion(&self->cy.normal, &cy_prime.normal);
-	r_prime.origin = subst_vec3(&r->origin, &self->cy.center);
-	r_prime.origin = quarternion_rotate(&q, &r_prime.origin);
-	r_prime.direction = quarternion_rotate(&q, &r->direction);
+	r_prime.origin = \
+		apply_transform_to_point(&self->cy.wtl_matrix, &r->origin);
+	r_prime.direction = \
+		apply_transform_to_vector(&self->cy.wtl_matrix, &r->direction);
 	if (hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) || \
 		hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
 	{

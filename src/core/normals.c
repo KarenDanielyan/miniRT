@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/22 18:46:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:36:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static t_vec3	get_cylinder_normal(t_point3 *at, t_hittable *hit)
 	tmp = subst_vec3(&hit->shape.c.center, &tmp);
 	caps = subst_vec3(at, &tmp);
 	if (vec3_length(&caps) <= hit->shape.c.radius)
-		return (vec3(1, 0, 0));
+		return (vec3_neg(&hit->shape.c.normal));
 	tmp = scale_vec3(t, &hit->shape.c.normal);
 	tmp = sum_vec3(&hit->shape.c.center, &tmp);
 	return (unit_vector(subst_vec3(at, &tmp)));

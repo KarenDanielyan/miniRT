@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 03:06:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:38:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 1
+#  define SSAA 10
 # endif
 
 /* Global Illumination */
@@ -81,7 +81,7 @@
 # define RESET "\033[0m"
 
 /* Defines for floating-point operations */
-# define EPSILON 0.000001
+# define EPSILON 0.0000001
 
 # define HEADER "\
 * **************** miniRT ***************** *\n\
@@ -110,8 +110,6 @@ typedef struct s_point2		t_point2;
 typedef struct s_tuple4f	t_tuple4f;
 
 typedef struct s_ray		t_ray;
-
-typedef struct s_matrix4	t_matrix4;
 
 typedef struct s_thread		t_thread;
 

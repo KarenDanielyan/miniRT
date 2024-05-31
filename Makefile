@@ -17,10 +17,10 @@ SRC			=	src
 SUBDIRS		=	core scanner math events utils job debug shaders
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
-				defines.h miniRT.h scanner.h \
-				vec3.h material.h ray.h ui.h \
-				camera.h shapes.h \
-				quaternion.h) \
+				camera.h defines.h material.h \
+				matrix.h miniRT.h quaternion.h \
+				ray.h scanner.h shapes.h ui.h \
+				vec3.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
@@ -43,7 +43,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3_operations_2.c vec3_get.c \
 				vec3_set.c vec3_utils.c \
 				vec3_random.c quaternion_operations.c\
-				quaternion_constructors.c) \
+				quaternion_constructors.c \
+				matrix.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:46:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 17:54:25 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:34:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,74 @@ t_matrix	matrix_identity(void)
 	return (m);
 }
 
-/* t_matrix	world_to_local(t_point3 obj, t_vec3 face_direction)
+/*	m -> Transformation matrix, q -> quaternion to rotate the bases,
+	t -> translation part.
+*/
+static void	set_matrix(t_matrix *m, t_quaternion *q, t_point3 *t)
+{
+	t_vec3	x;
+	t_vec3	y;
+	t_vec3	z;
+
+	x = vec3(1, 0, 0);
+	y = vec3(0, 1, 0);
+	z = vec3(0, 0, 1);
+	x = quarternion_rotate(q, &x);
+	y = quarternion_rotate(q, &y);
+	z = quarternion_rotate(q, &z);
+	m->e[0][0] = get_x(&x);
+	m->e[1][0] = get_y(&x);
+	m->e[2][0] = get_z(&x);
+	m->e[3][0] = get_x(t);
+	m->e[0][1] = get_x(&y);
+	m->e[1][1] = get_y(&y);
+	m->e[2][1] = get_z(&y);
+	m->e[3][1] = get_y(t);
+	m->e[0][2] = get_x(&z);
+	m->e[1][2] = get_y(&z);
+	m->e[2][2] = get_z(&z);
+	m->e[3][2] = get_z(t);
+}
+
+t_matrix	world_to_local(t_point3 *origin, t_vec3 *face_direction)
 {
 	t_matrix		m;
 	t_quaternion	q;
 	t_vec3			z;
-	t_vec3			tmp_basis;
 
+	m = matrix_identity();
 	z = vec3(0, 0, 1);
-	q = get_quaternion(&z, &face_direction);
-	tmp_basis = vec3(1, 0, 0);
-	tmp_basis = quarternion_rotate(&q, &tmp_basis);
-	m.e[0] = {get_x(&tmp_basis), get_y(&tmp_basis), get_z(&tmp_basis), 0};
-}*/
+	q = get_quaternion(face_direction, &z);
+	set_matrix(&m, &q, origin);
+	return (m);
+}
+
+t_vec3	apply_transform_to_vector(t_matrix *m, t_vec3 *v)
+{
+	t_vec3	result;
+
+	set_x(&result, \
+		m->e[0][0] * get_x(v) + m->e[0][1] * get_y(v) + m->e[0][2] * get_z(v));
+	set_y(&result, \
+		m->e[1][0] * get_x(v) + m->e[1][1] * get_y(v) + m->e[1][2] * get_z(v));
+	set_z(&result, \
+		m->e[2][0] * get_x(v) + m->e[2][1] * get_y(v) + m->e[2][2] * get_z(v));
+	return (result);
+}
+
+/* Column-major order matrix */
+t_point3	apply_transform_to_point(t_matrix *m, t_point3 *p)
+{
+	t_vec3	result;
+
+	set_x(&result, \
+		m->e[0][0] * get_x(p) + m->e[0][1] * get_y(p) + m->e[0][2] * get_z(p) \
+		+ m->e[0][3]);
+	set_y(&result, \
+		m->e[1][0] * get_x(p) + m->e[1][1] * get_y(p) + m->e[1][2] * get_z(p) \
+		+ m->e[1][3]);
+	set_z(&result, \
+		m->e[2][0] * get_x(p) + m->e[2][1] * get_y(p) + m->e[2][2] * get_z(p) \
+		+ m->e[2][3]);
+	return (result);
+}

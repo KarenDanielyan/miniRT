@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:31:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 16:40:17 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:35:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * 			Stored in column-major order.
  * 
  */
-typedef struct
+typedef struct s_matrix
 {
 	float	e[4][4];
 }	t_matrix;
@@ -39,19 +39,30 @@ t_matrix	matrix_identity(void);
  * 			world space to local space using center of the object and the
  * 			direction the object is facing.
  * 
- * @param obj				The center of the object.
+ * @param origin			The origin point of the local coordinate system.
  * @param face_direction	The direction the object is facing.
  * @return t_matrix			The transformation matrix.
  */
-t_matrix	world_to_local(t_point3 obj, t_vec3 face_direction);
+t_matrix	world_to_local(t_point3 *origin, t_vec3 *face_direction);
 
 /**
- * @brief	apply_transform() - Applies a transformation matrix to a vector.
+ * @brief	apply_transform_to_vector() - 
+ * 			Applies a transformation matrix to a vector.
  * 
  * @param m	The transformation matrix.
  * @param v	The vector to transform.
  * @return t_vec3	The transformed vector.
  */
-t_vec3		apply_transform(t_matrix *m, t_vec3 *v);
+t_vec3		apply_transform_to_vector(t_matrix *m, t_vec3 *v);
+
+/**
+ * @brief	apply_transform_to_point() - 
+ * 			Applies a transformation matrix to a point.
+ * 
+ * @param m	The transformation matrix.
+ * @param p	The point to transform.
+ * @return t_vec3	The transformed point.
+ */
+t_point3	apply_transform_to_point(t_matrix *m, t_point3 *p);
 
 #endif

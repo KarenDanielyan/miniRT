@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 03:43:04 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:50:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*new_sphere(t_point3 center, float radius)
 	}
 	sp->center = center;
 	sp->radius = radius;
+	sp->wtl_matrix = world_to_local(&center, NULL);
 	return (sp);
 }
 
@@ -40,6 +41,7 @@ void	*new_plane(t_point3 center, t_vec3 normal)
 	}
 	pl->center = center;
 	pl->normal = normal;
+	pl->wtl_matrix = world_to_local(&center, &normal);
 	return (pl);
 }
 
@@ -58,6 +60,7 @@ void	*new_cylinder(t_point3 center, t_vec3 normal, \
 	cy->normal = normal;
 	cy->radius = radius;
 	cy->height = height;
+	cy->wtl_matrix = world_to_local(&center, &normal);
 	return (cy);
 }
 
@@ -79,5 +82,6 @@ void	*new_cone(t_point3 center, t_vec3 normal, \
 	cn->angle = atan(radius / height);
 	cn->apex = scale_vec3(height / 2, &normal);
 	cn->apex = sum_vec3(&center, &cn->apex);
+	cn->wtl_matrix = world_to_local(&center, &normal);
 	return (cn);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:46:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 18:34:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:50:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,18 @@ static void	set_matrix(t_matrix *m, t_quaternion *q, t_point3 *t)
 	m->e[0][0] = get_x(&x);
 	m->e[1][0] = get_y(&x);
 	m->e[2][0] = get_z(&x);
-	m->e[3][0] = get_x(t);
+	m->e[3][0] = -get_x(t);
 	m->e[0][1] = get_x(&y);
 	m->e[1][1] = get_y(&y);
 	m->e[2][1] = get_z(&y);
-	m->e[3][1] = get_y(t);
+	m->e[3][1] = -get_y(t);
 	m->e[0][2] = get_x(&z);
 	m->e[1][2] = get_y(&z);
 	m->e[2][2] = get_z(&z);
-	m->e[3][2] = get_z(t);
+	m->e[3][2] = -get_z(t);
 }
 
+/* origin -> 0, 0, 0 ; face_direction -> (0, 0, 1) */
 t_matrix	world_to_local(t_point3 *origin, t_vec3 *face_direction)
 {
 	t_matrix		m;
@@ -73,6 +74,8 @@ t_matrix	world_to_local(t_point3 *origin, t_vec3 *face_direction)
 
 	m = matrix_identity();
 	z = vec3(0, 0, 1);
+	if (face_direction == NULL)
+		face_direction = &z;
 	q = get_quaternion(face_direction, &z);
 	set_matrix(&m, &q, origin);
 	return (m);

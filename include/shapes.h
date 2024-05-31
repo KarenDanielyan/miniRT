@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 03:33:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:42:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Here we define hittable objects and lights and their structures. */
 
-# include "defines.h"
+# include "matrix.h"
 # include "ray.h"
 
 typedef struct s_hitrecord	t_hitrecord;
@@ -46,18 +46,21 @@ enum	e_shapetype
 
 struct s_sphere
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	float		radius;
 };
 
 struct s_plane
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	t_vec3		normal;
 };
 
 struct s_cylinder
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	t_vec3		normal;
 	float		radius;
@@ -66,6 +69,7 @@ struct s_cylinder
 
 struct s_cone
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	t_point3	apex;
 	t_vec3		normal;
@@ -97,6 +101,17 @@ struct s_hitrecord
 	t_hittable	*hit;
 };
 
+/**
+ * @brief	Hittable abstract data type.
+ * 
+ * 			- type: type of the object.
+ * 			- hit: function that checks if the ray hits the object.
+ * 				@param self: the object.
+ * 				@param r: the ray.
+ * 				@param t: the distance to the hit.
+ * 			- shape: the shape of the object.
+ * 			- material: the material of the object.
+ */
 struct s_hittable
 {
 	t_type		type;

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:46:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 21:44:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 03:37:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,16 @@ t_matrix	matrix_identity(void)
 */
 static void	set_rot_matrix(t_matrix *m, t_quaternion *q)
 {
-	t_vec3	x;
-	t_vec3	y;
-	t_vec3	z;
-
 	*m = matrix_identity();
-	x = vec3(1, 0, 0);
-	y = vec3(0, 1, 0);
-	z = vec3(0, 0, 1);
-	x = quarternion_rotate(q, &x);
-	y = quarternion_rotate(q, &y);
-	z = quarternion_rotate(q, &z);
-	m->e[0][0] = get_x(&x);
-	m->e[0][1] = get_x(&y);
-	m->e[0][2] = get_x(&z);
-	m->e[1][0] = get_y(&x);
-	m->e[1][1] = get_y(&y);
-	m->e[1][2] = get_y(&z);
-	m->e[2][0] = get_z(&x);
-	m->e[2][1] = get_z(&y);
-	m->e[2][2] = get_z(&z);
+	m->e[0][0] = 2 * (pow(q->w, 2) + pow(q->i, 2)) - 1;
+	m->e[0][1] = 2 * (q->i * q->j - q->w * q->k);
+	m->e[0][2] = 2 * (q->i * q->k + q->w * q->j);
+	m->e[1][0] = 2 * (q->i * q->j + q->w * q->k);
+	m->e[1][1] = 2 * (pow(q->w, 2) + pow(q->j, 2)) - 1;
+	m->e[1][2] = 2 * (q->j * q->k - q->w * q->i);
+	m->e[2][0] = 2 * (q->i * q->k - q->w * q->j);
+	m->e[2][1] = 2 * (q->j * q->k + q->w * q->i);
+	m->e[2][2] = 2 * (pow(q->w, 2) + pow(q->k, 2)) - 1;
 }
 
 static void	set_translation_matrix(t_matrix *m, t_point3 *t)

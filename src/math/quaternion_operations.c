@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 00:54:26 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 18:39:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 02:47:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ t_quaternion	quaternion_conjugate(t_quaternion *q)
 {
 	t_quaternion	qi;
 
+	qi.w = q->w;
 	qi.i = -q->i;
 	qi.j = -q->j;
 	qi.k = -q->k;
-	qi.w = q->w;
 	return (qi);
 }
 
@@ -68,10 +68,10 @@ t_quaternion	quaternion_multiply(t_quaternion *q1, t_quaternion *q2)
 {
 	t_quaternion	q;
 
+	q.w = q1->w * q2->w - q1->i * q2->i - q1->j * q2->j - q1->k * q2->k;
 	q.i = q1->w * q2->i + q1->i * q2->w + q1->j * q2->k - q1->k * q2->j;
 	q.j = q1->w * q2->j - q1->i * q2->k + q1->j * q2->w + q1->k * q2->i;
 	q.k = q1->w * q2->k + q1->i * q2->j - q1->j * q2->i + q1->k * q2->w;
-	q.w = q1->w * q2->w - q1->i * q2->i - q1->j * q2->j - q1->k * q2->k;
 	return (q);
 }
 

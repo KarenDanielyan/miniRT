@@ -44,7 +44,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3_set.c vec3_utils.c \
 				vec3_random.c quaternion_operations.c\
 				quaternion_constructors.c \
-				matrix.c) \
+				matrix.c matrix_operations.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \

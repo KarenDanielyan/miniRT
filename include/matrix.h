@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:31:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 18:35:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:37:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_matrix
  * @return t_matrix	The identity matrix.
  */
 t_matrix	matrix_identity(void);
+
+t_matrix	matrix_multiply(t_matrix *a, t_matrix *b);
 
 /**
  * @brief	world_to_local() - Generates a transformation matrix from

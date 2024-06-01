@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 20:29:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 23:44:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,21 @@ static t_vec3	get_cylinder_normal(t_point3 *at, t_hittable *hit)
 
 static t_vec3	get_cone_normal(t_point3 *at, t_hittable *hit)
 {
-	(void)at;
-	(void)hit;
-	return (vec3(0, 0, 0));
+	t_point3	delta;
+	t_vec3		tmp;
+	double		t;
+
+	delta = scale_vec3(hit->shape.cn.height, &hit->shape.cn.normal);
+	delta = sum_vec3(&hit->shape.cn.apex, &delta);
+	delta = subst_vec3(at, &delta);
+	if (vec3_dot(&delta, &hit->shape.cn.normal) < EPSILON && \
+		vec3_length(&delta) <= hit->shape.cn.radius)
+		return (hit->shape.cn.normal);
+	delta = subst_vec3(at, &hit->shape.cn.apex);
+	t = vec3_length(&delta) / cos(hit->shape.cn.angle);
+	tmp = scale_vec3(t, &hit->shape.cn.normal);
+	tmp = sum_vec3(&hit->shape.cn.apex, &tmp);
+	return (unit_vector(subst_vec3(at, &tmp)));
 }
 
 static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit)

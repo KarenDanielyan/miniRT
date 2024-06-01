@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/01 03:51:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 22:38:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	*new_cylinder(t_point3 center, t_vec3 normal, \
 	return (cy);
 }
 
+/**
+ * @param normal is the normal in the direction of incresing radius.
+ * 			So if we want to translate it to local space we need to use
+ * 			outward normal a.k.a inv_normal and align it with z = {0, 0, 1}.
+ * 
+ */
 void	*new_cone(t_point3 center, t_vec3 normal, \
 	float radius, float height)
 {
@@ -76,9 +82,10 @@ void	*new_cone(t_point3 center, t_vec3 normal, \
 		exit(EXIT_FAILURE);
 	}
 	cn->apex = center;
-	cn->normal = normal;
+	cn->normal = vec3_neg(&normal);
 	cn->angle = atan(radius / height);
 	cn->height = height;
+	cn->radius = radius;
 	cn->wtl_matrix = world_to_local(&center, &normal);
 	return (cn);
 }

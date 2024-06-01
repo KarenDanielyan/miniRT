@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:00 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/01 02:32:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 23:44:27 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ static void	*make(t_pfields *f)
 
 	cone = new_cone(vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
 						ft_atof(f->coords[2])), \
-					vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
-					ft_atof(f->normal[2])), \
+					unit_vector(vec3(ft_atof(f->normal[0]), \
+					ft_atof(f->normal[1]), \
+					ft_atof(f->normal[2]))), \
 			ft_atof(f->radius), ft_atof(f->height));
 	hittable = new_hittable(CONE, &hit_cone, cone);
 	if (!f->material)

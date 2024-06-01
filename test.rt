@@ -1,16 +1,18 @@
-C 0,0,1 0,0,-1 80
+C 0,0,1 0,0,-1 120
 # Light sources
 # Ambient: ratio [0; 1] -> color 3-tuple [0; 255]
 A			0.1				255,255,255
 # Point: x,y,z -> ratio [0; 1] -> color 3-tuple [0; 255]
 #l	1,0,0	0.8				255,0,0
-l	-1,0,0	0.8				255,255,255
+l	-1,-0.5,0	0.8				255,255,255
 # World objects
 # Sphere: x,y,z -> diameter -> color 3-tuple [0; 255]
 #sp 0,0,-1	1.0				255,255,0
 # Plane: x,y,z -> normal 3-tuple [-1; 1] -> color 3-tuple [0; 255]
-#pl 0.0,-0.5,0.0		0,1,0	255,0,0
+# pl 0.0,-0.5,0.0		0,1,0	255,0,0
 # Cylinder: x,y,z -> normal 3-tuple [-1; 1] -> \
 # diameter -> height -> color 3-tuple [0; 255]
-# cy 0,0,-1	0,1,0	1.0 1.0	255,0,255
-cn 0,1,-2 0,0,-1 1.0 1.0 255,0,255
+#cy 2,0,-1	1,1,0	1.0 1.0	255,0,255
+# cone: apex x,y,z -> normal 3-tuple [-1; 1] -> \
+# radius -> height -> color 3-tuple [0; 255]
+cn 0,0,-1 0,1,-1 0.5 1 255,0,255

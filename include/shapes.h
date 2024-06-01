@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/01 03:50:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 22:37:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ struct s_cone
 	t_vec3		normal;
 	float		angle;
 	float		height;
+	float		radius;
 };
 
 union u_shape

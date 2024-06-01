@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:20:48 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/01 23:32:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 01:42:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ bool	hit_cone_cap(t_cone *cn, t_ray *r, double *t)
 {
 	t_shape		pl;
 	t_point3	p;
+	t_vec3		co;
 
 	pl.pl.center = scale_vec3(cn->height, &cn->normal);
 	pl.pl.center = sum_vec3(&cn->apex, &pl.pl.center);
@@ -53,11 +54,12 @@ bool	hit_cone_cap(t_cone *cn, t_ray *r, double *t)
 	if (hit_plane(&pl, r, t))
 	{
 		p = ray_at(r, *t);
-		if (*t < EPSILON || \
-			(pow(get_x(&p), 2) + pow(get_y(&p), 2) > pow(cn->radius, 2)))
+		co = subst_vec3(&p, &pl.pl.center);
+		if (*t < EPSILON || vec3_length(&co) > cn->radius)
 			return (false);
+		return (true);
 	}
-	return (true);
+	return (false);
 }
 
 /* Ray cone intersection function */
@@ -73,17 +75,18 @@ bool	hit_cone(t_shape *self, t_ray *r, double *t)
 		apply_transform_to_vector(&self->cn.wtl_matrix, &r->direction);
 	cn_prime.apex = vec3(0, 0, 0);
 	cn_prime.normal = vec3(0, 0, -1);
-	if ((int)hit_cone_walls(&cn_prime, &r_prime, t_prime) | \
-			(int)hit_cone_cap(&cn_prime, &r_prime, t_prime + 1))
+	if (hit_cone_walls(&cn_prime, &r_prime, &t_prime[0]))
 	{
-		if (t_prime[0] < EPSILON || t_prime[0] > t_prime[1])
+		if (hit_cone_cap(&cn_prime, &r_prime, &t_prime[1]))
 		{
-			if (t_prime[1] < EPSILON)
-				return (false);
-			*t = t_prime[1];
+			if (t_prime[0] < t_prime[1])
+				*t = t_prime[0];
+			else
+				*t = t_prime[1];
+			return (true);
 		}
-		else
-			*t = t_prime[0];
+		*t = t_prime[0];
+		return (true);
 	}
-	return (true);
+	return (hit_cone_cap(&cn_prime, &r_prime, t));
 }

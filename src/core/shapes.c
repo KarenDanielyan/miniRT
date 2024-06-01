@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 19:50:31 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/01 03:51:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,10 @@ void	*new_cone(t_point3 center, t_vec3 normal, \
 		perror("new_cone: ");
 		exit(EXIT_FAILURE);
 	}
-	cn->center = center;
+	cn->apex = center;
 	cn->normal = normal;
-	cn->radius = radius;
-	cn->height = height;
 	cn->angle = atan(radius / height);
-	cn->apex = scale_vec3(height / 2, &normal);
-	cn->apex = sum_vec3(&center, &cn->apex);
+	cn->height = height;
 	cn->wtl_matrix = world_to_local(&center, &normal);
 	return (cn);
 }

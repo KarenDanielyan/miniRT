@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/29 13:12:20 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/02 21:53:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ bool	scan(t_control *ctl, char *filename)
 	}
 	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
 	ft_darray_init(&ctl->lights, sizeof(t_light), 5);
-	rv = scan_prime(ctl, fd);
-	if (ft_darray_get_if(&ctl->lights, is_ambient) == NULL)
+	rv = EXIT_FAILURE;
+	if (scan_prime(ctl, fd) == EXIT_SUCCESS)
 	{
-		printf("%s%s: %s 1.%s\n", RED, S_AMBIENT, ERR_INVALID_ARGS, RESET);
-		return (EXIT_FAILURE);
+		if (ft_darray_get_if(&ctl->lights, is_ambient) == NULL)
+			printf("%sError: %s is not specified%s\n", RED, S_AMBIENT, RESET);
+		else if (ctl->cam.is_active == 0)
+			printf("%sError: %s is not specified%s\n", RED, S_CAMERA, RESET);
+		else
+			rv = EXIT_SUCCESS;
 	}
 	return (rv);
 }

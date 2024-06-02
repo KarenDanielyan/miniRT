@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 21:28:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:37:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ enum e_mtype
 struct s_material
 {
 	int		properties;
-	double	lambertian;
-	double	specular;
+	double	shininess;
 	double	glossiness;
-	double	refractive_index;
+	double	ri;
 	void	*normal_map;
 	void	*texture_map;
 	t_color	color;

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 21:21:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:37:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	set_material(t_material *material, t_color color, char *type)
 		if (ft_strcmp(type, "default") != 0)
 			printf("%s%s.%s\n", YELLOW, WARN_INVMATERIAL, RESET);
 		material->properties |= DEFAULT;
-		material->lambertian = 0.7;
-		material->specular = 0.3;
+		material->shininess = 0.3;
 		material->glossiness = 0.0;
 	}
 }
@@ -55,23 +54,20 @@ static void	set_plastic(t_material *material)
 {
 	material->properties |= PLASTIC;
 	material->glossiness = 0.0;
-	material->lambertian = 1.0;
-	material->specular = 1.0;
+	material->shininess = 1.0;
 }
 
 static void	set_mettalic(t_material *material)
 {
 	material->properties |= METALIC;
 	material->glossiness = 1.0;
-	material->lambertian = 0.0;
-	material->specular = 1.0;
+	material->shininess = 1.0;
 }
 
 static void	set_dielectric(t_material *material)
 {
 	material->properties |= DIELECRIC;
 	material->glossiness = 0.0;
-	material->lambertian = 0.0;
-	material->specular = 1.0;
-	material->refractive_index = 1.5;
+	material->shininess = 1.0;
+	material->ri = 1.5;
 }

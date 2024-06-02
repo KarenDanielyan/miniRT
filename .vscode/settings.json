@@ -100,7 +100,8 @@
     "algorithm": "c",
     "ratio": "c",
     "quaternion.h": "c",
-    "matrix.h": "c"
+    "matrix.h": "c",
+    "math.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "python.analysis.typeCheckingMode": "basic"

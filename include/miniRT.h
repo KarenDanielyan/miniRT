@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 23:20:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 01:55:50 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ft_printf.h>
 # include <mlx.h>
 # include <stdio.h>
+# include <math.h>
 
 # include "defines.h"
 # include "camera.h"
@@ -65,6 +66,7 @@ struct s_control
 	t_darray		world;
 	t_darray		lights;
 	t_image			render;
+	t_image			light_icon;
 };
 
 /* Program logic functions. */
@@ -92,6 +94,8 @@ uint64_t	get_time(bool to_init);
 void		put_render(t_control *ctl);
 void		print_bar(t_control *ctl, int done);
 void		fill_image(t_image *image, int color);
+
+void		raster_light_sources(t_control *ctl);
 
 /* Utility Functions */
 

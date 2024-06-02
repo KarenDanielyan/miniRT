@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:09:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/15 20:45:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 01:45:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	run(t_control *ctl)
 	ft_printf("\033[34mRendering finished after %ldms.\n\033[0m", \
 		get_time(false));
 	put_render(ctl);
+	raster_light_sources(ctl);
 }
 
 static void	create_pool(t_control *ctl)

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:36:35 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 20:41:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 01:27:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_camera
 	t_vec3		viewport_v;
 	t_vec3		pixel_delta_u;
 	t_vec3		pixel_delta_v;
+	float		canvas_width;
+	float		canvas_height;
 	float		h_fov;
 	float		focal_length;
 }	t_camera;

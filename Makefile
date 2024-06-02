@@ -52,8 +52,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
 				ray_shader.c skybox_shader.c \
-				diffuse_shader.c ambient_shader.c \
-				linear_to_gamma.c)
+				blinn_phong_shader.c \
+				ambient_shader.c linear_to_gamma.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:06:10 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:56:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,11 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
 {
 	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
+	t_color	diffuse_and_specular;
 	t_color	res;
 
 	ambient = ambient_shader(ctl, hr);
-	diffuse = diffuse_shader(ctl, hr);
-	specular = vec3(0.0, 0.0, 0.0);
-	res = sum_vec3(&ambient, &diffuse);
-	res = sum_vec3(&res, &specular);
+	diffuse_and_specular = blinn_phong_shader(ctl, hr);
+	res = sum_vec3(&ambient, &diffuse_and_specular);
 	return (res);
 }

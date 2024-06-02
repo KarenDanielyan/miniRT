@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diffuse_shader.c                                   :+:      :+:    :+:   */
+/*   blinn_phong_shader.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 21:01:03 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:51:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l);
 
-t_color	diffuse_shader(t_control *ctl, t_hitrecord *hr)
+/**
+ * @brief		Compute the color of the object using Blinn-Phong model.
+ * 				The only component missing here is the ambient component.
+ * 
+ * @param ctl	Control structure.
+ * @param hr	Hit record.
+ * @return t_color	The color of the object on hit point.
+ */
+t_color	blinn_phong_shader(t_control *ctl, t_hitrecord *hr)
 {
 	t_color		color;
 	t_light		*l;

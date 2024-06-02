@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 17:38:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:01:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@
 /* Anti-alsiasing */
 # ifndef SSAA
 #  define SSAA 10
-# endif
-
-/* Global Illumination */
-# define GI 0
-# if GI == 1
-#  define DI_INTENSITY 0.6
-# else
-#  define DI_INTENSITY 1.0
 # endif
 
 /* Miscellaneous Defines */

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:51:35 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:04:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ t_color	blinn_phong_shader(t_control *ctl, t_hitrecord *hr)
 		l = ft_darray_get_by_index(&ctl->lights, i);
 		if (l->type == POINT)
 		{
-			tmp = compute_for_ls(ctl, hr, l);
-			color = sum_vec3(&color, &tmp);
+			if (vec3_dot(&hr->normal, &hr->r.direction) < 0.0)
+			{
+				tmp = compute_for_ls(ctl, hr, l);
+				color = sum_vec3(&color, &tmp);
+			}
 		}
 		i++;
 	}

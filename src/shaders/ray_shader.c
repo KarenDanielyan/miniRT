@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:56:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:20:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 		return (vec3(0, 0, 0));
 	if (hit_anything(r, &ctl->world, &hr))
 		return (direct_illumination(ctl, &hr));
-	return (skybox_shader(r));
+	return (skybox_shader(ctl, r));
 }
 
 /**

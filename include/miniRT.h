@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:55:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:20:36 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_color		ambient_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		blinn_phong_shader(t_control *ctl, t_hitrecord *hr);
 
-t_color		skybox_shader(t_ray *ray);
+t_color		skybox_shader(t_control *ctl, t_ray *ray);
 
 t_color		linear_to_gamma(t_color c);
 

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 23:04:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:07:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,27 @@ t_color	blinn_phong_shader(t_control *ctl, t_hitrecord *hr)
 		clamp_d(get_z(&color), 0.000, 1.000)));
 }
 
+static t_color	compute_specular(t_light *light, t_hitrecord *hr, t_ray *l)
+{
+	t_vec3	h;
+	t_vec3	v;
+	t_color	color;
+	double	intensity;
+
+	v = vec3_neg(&hr->r.direction);
+	h = sum_vec3(&l->direction, &v);
+	vec3_normalize(&h);
+	intensity = pow(fmax(0.0, vec3_dot(&hr->normal, &h)), \
+		hr->hit->material.shininess);
+	color = scale_vec3(intensity, &light->color);
+	return (color);
+}
+
 static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l)
 {
 	t_hitrecord	tmp_hr;
 	t_color		color;
+	t_color		specular;
 	t_ray		r;
 
 	color = vec3(0.0, 0.0, 0.0);
@@ -64,6 +81,8 @@ static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l)
 		color = vec3_scalar_mult(&hr->hit->material.color, &l->color);
 		color = scale_vec3(fmax(0.0, vec3_dot(&hr->normal, &r.direction)), \
 								&color);
+		specular = compute_specular(l, hr, &r);
+		color = sum_vec3(&color, &specular);
 		color = scale_vec3(l->brightness, &color);
 	}
 	return (color);

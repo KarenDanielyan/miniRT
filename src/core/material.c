@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:37:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:09:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_material(t_material *material, t_color color, char *type)
 		if (ft_strcmp(type, "default") != 0)
 			printf("%s%s.%s\n", YELLOW, WARN_INVMATERIAL, RESET);
 		material->properties |= DEFAULT;
-		material->shininess = 0.3;
+		material->shininess = 500;
 		material->glossiness = 0.0;
 	}
 }

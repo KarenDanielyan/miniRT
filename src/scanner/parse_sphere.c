@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:30 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 21:15:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:15:12 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	*make(t_pfields *f)
 	}
 	set_material(&((t_hittable *)hittable)->material, \
 			vec3(ft_map(ft_atof(f->rgb[0])), ft_map(ft_atof(f->rgb[1])), \
-			ft_map(ft_atof(f->rgb[2]))), f->material);
+			ft_map(ft_atof(f->rgb[2]))), (f->material + 2));
 	set_texture_and_normal(&((t_hittable *)hittable)->material, f->texture, \
 							f->normal_map);
 	free(shape);

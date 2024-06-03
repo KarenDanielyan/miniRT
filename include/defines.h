@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 23:10:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:14:39 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define S_PLASTIC "plastic"
 # define S_METALLIC "metallic"
 # define S_DIELECTRIC "dielectric"
+# define S_DEFAULT "m:default"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"

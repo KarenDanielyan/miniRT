@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 21:46:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:31:46 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ bool	hit_cylinder_caps(t_cylinder *cy, t_ray *r, double *t)
 	tmp = scale_vec3(cy->height / 2, &cy->normal);
 	pl[0].pl.center = sum_vec3(&cy->center, &tmp);
 	pl[1].pl.center = subst_vec3(&cy->center, &tmp);
-	if (hit_plane(&pl[0], r, &t1) | hit_plane(&pl[1], r, &t2))
+	if ((int)hit_plane(&pl[0], r, &t1) | (int)hit_plane(&pl[1], r, &t2))
 	{
 		tmp = ray_at(r, t1);
 		if (t1 > EPSILON && \

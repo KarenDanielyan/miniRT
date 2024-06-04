@@ -30,8 +30,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c mapping.c \
-				progress_bar.c clamp.c darray_cmp.c \
-				bmp.c) \
+				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
 				check_extension.c scan.c parse_ambient.c \
 				parse_light.c parse_camera.c parse_sphere.c \
@@ -53,7 +52,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				ray_shader.c skybox_shader.c \
 				blinn_phong_shader.c \
 				ambient_shader.c linear_to_gamma.c \
-				raster_light_shader.c)
+				raster_light_shader.c \
+				color_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \

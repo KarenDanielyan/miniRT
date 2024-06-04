@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/03 01:55:50 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:26:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_job		t_job;
 /* Multithreading */
 struct s_task
 {
-	struct s_point2	from;
-	struct s_point2	to;
+	t_point2	from;
+	t_point2	to;
 };
 
 struct s_thread
@@ -85,6 +85,8 @@ t_color		ambient_shader(t_control *ctl, t_hitrecord *hr);
 t_color		blinn_phong_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		skybox_shader(t_control *ctl, t_ray *ray);
+
+t_color		color_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		linear_to_gamma(t_color c);
 

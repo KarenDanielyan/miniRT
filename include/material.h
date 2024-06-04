@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 22:37:19 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:38:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "defines.h"
 # include "vec3.h"
+# include <ft_bitmap.h>
 
 typedef struct s_vec3		t_color;
 typedef struct s_bitmap		t_bitmap;
@@ -35,30 +36,24 @@ enum e_mtype
 	METALIC		= 2,
 	DIELECRIC	= 4,
 	TEXTURED	= 8,
-	NORMAL		= 16
+	CHECKERED	= 16,
+	NORMAL		= 32
 };
 
 struct s_material
 {
-	int		properties;
-	double	shininess;
-	double	glossiness;
-	double	ri;
-	void	*normal_map;
-	void	*texture_map;
+	int			properties;
+	double		specular;
+	double		lambertian;
+	double		shininess;
+	double		glossiness;
+	double		ri;
+	t_ftbitmap	*normal_map;
+	t_ftbitmap	*texture_map;
 	t_color	color;
 };
 
 void	set_material(t_material *material, t_color color, char *type);
 void	set_texture_and_normal(t_material *m, char *texture, char *normal);
-
-/* Working with bitmaps */
-
-struct s_bitmap
-{
-};
-
-void	*load_bmp(char *path);
-void	save_bmp(char *path, void *bitmap);
 
 #endif

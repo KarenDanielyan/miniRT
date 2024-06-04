@@ -101,7 +101,11 @@
     "ratio": "c",
     "quaternion.h": "c",
     "matrix.h": "c",
-    "math.h": "c"
+    "math.h": "c",
+    "array": "cpp",
+    "iterator": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "python.analysis.typeCheckingMode": "basic"

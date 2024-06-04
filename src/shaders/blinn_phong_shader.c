@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 18:38:40 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/03 17:07:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:56:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_color	compute_specular(t_light *light, t_hitrecord *hr, t_ray *l)
 	vec3_normalize(&h);
 	intensity = pow(fmax(0.0, vec3_dot(&hr->normal, &h)), \
 		hr->hit->material.shininess);
-	color = scale_vec3(intensity, &light->color);
+	color = scale_vec3(intensity * hr->hit->material.specular, &light->color);
 	return (color);
 }
 
@@ -78,7 +78,8 @@ static t_color	compute_for_ls(t_control *ctl, t_hitrecord *hr, t_light *l)
 	if (hit_anything(&r, &ctl->world, &tmp_hr) && tmp_hr.hit == hr->hit)
 	{
 		r.direction = vec3_neg(&r.direction);
-		color = vec3_scalar_mult(&hr->hit->material.color, &l->color);
+		color = color_shader(ctl, hr);
+		color = vec3_scalar_mult(&color, &l->color);
 		color = scale_vec3(fmax(0.0, vec3_dot(&hr->normal, &r.direction)), \
 								&color);
 		specular = compute_specular(l, hr, &r);

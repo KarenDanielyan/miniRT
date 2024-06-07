@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/28 18:31:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/06 01:32:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 {
 	if (!ft_strncmp(tokens->content, "t:", 2))
 	{
-		f->texture = ft_strdup(tokens->content);
-		if (ft_strcmp(f->texture, "t:checker") != 0 && \
+		f->texture = ft_strdup(tokens->content + 2);
+		if (ft_strcmp(f->texture, "checker") != 0 && \
 			(check_extension(f->texture, ".bmp") == EXIT_FAILURE || \
 			access(f->texture, F_OK) == -1))
 		{
@@ -94,11 +94,7 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 
 static bool	check_material(t_list *tokens, t_pfields *f)
 {
-	f->material = ft_strdup(tokens->content);
-	if (ft_strncmp(tokens->content, "m:", 2) != 0)
-	{
-		printf("Error.\n");
-		return (EXIT_FAILURE);
-	}
+	if (!ft_strncmp(tokens->content, "m:", 2))
+		f->material = ft_strdup(tokens->content);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/01 22:38:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:16:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	*new_sphere(t_point3 center, float radius)
 {
 	t_sphere	*sp;
+	t_vec3		normal;
 
+	normal = vec3(0, 1, 0);
 	sp = ft_calloc(1, sizeof(t_sphere));
 	if (sp == NULL)
 	{
@@ -25,7 +27,7 @@ void	*new_sphere(t_point3 center, float radius)
 	}
 	sp->center = center;
 	sp->radius = radius;
-	sp->wtl_matrix = world_to_local(&center, NULL);
+	sp->wtl_matrix = world_to_local(&center, &normal);
 	return (sp);
 }
 

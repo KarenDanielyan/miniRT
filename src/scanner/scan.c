@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 22:08:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/02 21:53:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void		*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt);
 bool	scan(t_control *ctl, char *filename)
 {
 	int		fd;
+	bool	rv;
 
 	if (check_extension(filename, EXTENSION) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -43,7 +44,17 @@ bool	scan(t_control *ctl, char *filename)
 	}
 	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
 	ft_darray_init(&ctl->lights, sizeof(t_light), 5);
-	return (scan_prime(ctl, fd));
+	rv = EXIT_FAILURE;
+	if (scan_prime(ctl, fd) == EXIT_SUCCESS)
+	{
+		if (ft_darray_get_if(&ctl->lights, is_ambient) == NULL)
+			printf("%sError: %s is not specified%s\n", RED, S_AMBIENT, RESET);
+		else if (ctl->cam.is_active == 0)
+			printf("%sError: %s is not specified%s\n", RED, S_CAMERA, RESET);
+		else
+			rv = EXIT_SUCCESS;
+	}
+	return (rv);
 }
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:19:41 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:11:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Here we define hittable objects and lights and their structures. */
 
-# include "defines.h"
+# include "matrix.h"
 # include "ray.h"
 
 typedef struct s_hitrecord	t_hitrecord;
@@ -46,18 +46,21 @@ enum	e_shapetype
 
 struct s_sphere
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	float		radius;
 };
 
 struct s_plane
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	t_vec3		normal;
 };
 
 struct s_cylinder
 {
+	t_matrix	wtl_matrix;
 	t_point3	center;
 	t_vec3		normal;
 	float		radius;
@@ -66,17 +69,19 @@ struct s_cylinder
 
 struct s_cone
 {
-	t_point3	center;
+	t_matrix	wtl_matrix;
+	t_point3	apex;
 	t_vec3		normal;
-	float		radius;
+	float		angle;
 	float		height;
+	float		radius;
 };
 
 union u_shape
 {
-	t_sphere	s;
-	t_plane		p;
-	t_cylinder	c;
+	t_sphere	sp;
+	t_plane		pl;
+	t_cylinder	cy;
 	t_cone		cn;
 };
 
@@ -95,6 +100,17 @@ struct s_hitrecord
 	t_hittable	*hit;
 };
 
+/**
+ * @brief	Hittable abstract data type.
+ * 
+ * 			- type: type of the object.
+ * 			- hit: function that checks if the ray hits the object.
+ * 				@param self: the object.
+ * 				@param r: the ray.
+ * 				@param t: the distance to the hit.
+ * 			- shape: the shape of the object.
+ * 			- material: the material of the object.
+ */
 struct s_hittable
 {
 	t_type		type;
@@ -107,6 +123,9 @@ struct s_hittable
 
 /* General constructor */
 void	*new_hittable(t_type type, t_hit hit, void *shape);
+
+void	clear_hittable(void *hittable);
+
 
 /* Constructors for objects */
 

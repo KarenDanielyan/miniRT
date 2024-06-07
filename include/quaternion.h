@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 01:13:04 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 16:55:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:31:10 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			new_quaternion(t_quaternion *q, t_vec3 *u, float w);
 
 /* Operations */
 
-t_quaternion	quaternion_inverse(t_quaternion *q);
+t_quaternion	quaternion_conjugate(t_quaternion *q);
 
 t_quaternion	get_quaternion(t_vec3 *u, t_vec3 *v);
 t_quaternion	rodrigues_rotation(t_vec3 *v, float angle);

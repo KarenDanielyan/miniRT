@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:52:33 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:13:21 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:16:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	*new_sphere(t_point3 center, float radius)
 {
 	t_sphere	*sp;
+	t_vec3		normal;
 
+	normal = vec3(0, 1, 0);
 	sp = ft_calloc(1, sizeof(t_sphere));
 	if (sp == NULL)
 	{
@@ -25,6 +27,7 @@ void	*new_sphere(t_point3 center, float radius)
 	}
 	sp->center = center;
 	sp->radius = radius;
+	sp->wtl_matrix = world_to_local(&center, &normal);
 	return (sp);
 }
 
@@ -40,6 +43,7 @@ void	*new_plane(t_point3 center, t_vec3 normal)
 	}
 	pl->center = center;
 	pl->normal = normal;
+	pl->wtl_matrix = world_to_local(&center, &normal);
 	return (pl);
 }
 
@@ -58,13 +62,20 @@ void	*new_cylinder(t_point3 center, t_vec3 normal, \
 	cy->normal = normal;
 	cy->radius = radius;
 	cy->height = height;
+	cy->wtl_matrix = world_to_local(&center, &normal);
 	return (cy);
 }
 
+/**
+ * @param normal is the normal in the direction of incresing radius.
+ * 			So if we want to translate it to local space we need to use
+ * 			outward normal a.k.a inv_normal and align it with z = {0, 0, 1}.
+ * 
+ */
 void	*new_cone(t_point3 center, t_vec3 normal, \
 	float radius, float height)
 {
-	t_cylinder	*cn;
+	t_cone	*cn;
 
 	cn = ft_calloc(1, sizeof(t_cone));
 	if (cn == NULL)
@@ -72,9 +83,11 @@ void	*new_cone(t_point3 center, t_vec3 normal, \
 		perror("new_cone: ");
 		exit(EXIT_FAILURE);
 	}
-	cn->center = center;
-	cn->normal = normal;
-	cn->radius = radius;
+	cn->apex = center;
+	cn->normal = vec3_neg(&normal);
+	cn->angle = atan(radius / height);
 	cn->height = height;
+	cn->radius = radius;
+	cn->wtl_matrix = world_to_local(&center, &normal);
 	return (cn);
 }

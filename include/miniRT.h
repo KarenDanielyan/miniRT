@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/16 21:35:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:14:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ft_printf.h>
 # include <mlx.h>
 # include <stdio.h>
+# include <math.h>
 
 # include "defines.h"
 # include "camera.h"
@@ -31,8 +32,8 @@ typedef struct s_job		t_job;
 /* Multithreading */
 struct s_task
 {
-	struct s_point2	from;
-	struct s_point2	to;
+	t_point2	from;
+	t_point2	to;
 };
 
 struct s_thread
@@ -65,6 +66,7 @@ struct s_control
 	t_darray		world;
 	t_darray		lights;
 	t_image			render;
+	t_image			light_icon;
 };
 
 /* Program logic functions. */
@@ -76,13 +78,19 @@ void		run(t_control *ctl);
 
 /* Shaders */
 
+t_color		map(uint32_t color);
+
+t_point2	compute_sphere_uv(t_hitrecord *hr);
+
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 
 t_color		ambient_shader(t_control *ctl, t_hitrecord *hr);
 
-t_color		diffuse_shader(t_control *ctl, t_hitrecord *hr);
+t_color		blinn_phong_shader(t_control *ctl, t_hitrecord *hr);
 
-t_color		skybox_shader(t_ray *ray);
+t_color		skybox_shader(t_control *ctl, t_ray *ray);
+
+t_color		color_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		linear_to_gamma(t_color c);
 
@@ -92,6 +100,8 @@ uint64_t	get_time(bool to_init);
 void		put_render(t_control *ctl);
 void		print_bar(t_control *ctl, int done);
 void		fill_image(t_image *image, int color);
+
+void		raster_light_sources(t_control *ctl);
 
 /* Utility Functions */
 

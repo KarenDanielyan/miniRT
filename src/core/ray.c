@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/11 01:05:04 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:31:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ t_point3	ray_at(t_ray *r, double t)
 
 	tmp = scale_vec3(t, &r->direction);
 	return (sum_vec3(&r->origin, &tmp));
+}
+
+t_vec3	ray_reflect(t_vec3 *v, t_vec3 *n)
+{
+	t_vec3	tmp;
+
+	tmp = scale_vec3(2 * vec3_dot(v, n), n);
+	tmp = subst_vec3(v, &tmp);
+	return (tmp);
 }

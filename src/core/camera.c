@@ -6,12 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 20:41:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:37:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include <math.h>
 #include "quaternion.h"
 
 static t_color	super_sample(t_control *ctl, t_job *job, int i, int j);
@@ -79,6 +78,8 @@ static void	set_canvas_dimensions(t_camera *cam)
 	cam->pixel_delta_v = quarternion_rotate(&q, &cam->pixel_delta_v);
 	cam->viewport_u = quarternion_rotate(&q, &cam->viewport_u);
 	cam->viewport_v = quarternion_rotate(&q, &cam->viewport_v);
+	cam->canvas_width = viewport_width;
+	cam->canvas_height = viewport_height;
 }
 
 static t_vec3	get_ray(t_camera *cam, int i, int j)
@@ -121,7 +122,6 @@ static t_color	super_sample(t_control *ctl, t_job *job, int i, int j)
 		k ++;
 	}
 	color = shrink_vec3(SSAA, &color);
-	color = linear_to_gamma(color);
 	return (vec3(\
 			clamp_d(get_x(&color), 0.000, 0.999), \
 			clamp_d(get_y(&color), 0.000, 0.999), \

@@ -7,7 +7,8 @@
                 "${workspaceFolder}/lib/libft",
                 "${workspaceFolder}/lib/printf/include",
                 "${workspaceFolder}/lib/mlx_linux",
-                "${workspaceFolder}/lib/mlx_mac"
+                "${workspaceFolder}/lib/mlx_mac",
+                "${workspaceFolder}/lib/ft_bitmap"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c99",
@@ -22,7 +23,8 @@
                 "${workspaceFolder}/lib/libft",
                 "${workspaceFolder}/lib/printf/include",
                 "${workspaceFolder}/lib/mlx_linux",
-                "${workspaceFolder}/lib/mlx_mac"
+                "${workspaceFolder}/lib/mlx_mac",
+                "${workspaceFolder}/lib/ft_bitmap"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c99",

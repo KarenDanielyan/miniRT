@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:00 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/28 18:31:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:14:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static t_parsetype	argument_check(t_pfields *f)
 		RED, S_CONE, ERR_INVALID, RESET);
 	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s: %s color.%s\n", RED, S_CONE, ERR_INVALID, RESET);
-	else if (check_number(f->diameter) == EXIT_FAILURE || \
-		ft_atof(f->radius) > 0.0)
+	else if (check_number(f->radius) == EXIT_FAILURE || \
+		ft_atof(f->radius) < 0.0)
 		printf("%s%s: %s radius.%s\n", RED, S_CONE, ERR_INVALID, RESET);
-	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) > 0)
+	else if (check_number(f->height) == EXIT_FAILURE || ft_atof(f->height) < 0)
 		printf("%s%s: %s height.%s\n", RED, S_CONE, ERR_INVALID, RESET);
 	else
 		rv = P_OBJECT;
@@ -73,8 +73,9 @@ static void	*make(t_pfields *f)
 
 	cone = new_cone(vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
 						ft_atof(f->coords[2])), \
-					vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
-					ft_atof(f->normal[2])), \
+					unit_vector(vec3(ft_atof(f->normal[0]), \
+					ft_atof(f->normal[1]), \
+					ft_atof(f->normal[2]))), \
 			ft_atof(f->radius), ft_atof(f->height));
 	hittable = new_hittable(CONE, &hit_cone, cone);
 	if (!f->material)
@@ -85,10 +86,8 @@ static void	*make(t_pfields *f)
 	set_material(&((t_hittable *)hittable)->material, \
 				vec3(ft_map(ft_atof(f->rgb[0])), ft_map(ft_atof(f->rgb[1])), \
 					ft_map(ft_atof(f->rgb[2]))), (f->material + 2));
-	if (f->texture)
-		set_texture(&((t_hittable *)hittable)->material, f->texture);
-	if (f->normal_map)
-		set_normal_map(&((t_hittable *)hittable)->material, f->normal_map);
+	set_texture_and_normal(&((t_hittable *)hittable)->material, f->texture, \
+							f->normal_map);
 	free(cone);
 	return (hittable);
 }

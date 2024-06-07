@@ -6,13 +6,14 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 18:42:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:46:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "shapes.h"
 #include "quaternion.h"
+#include "matrix.h"
 
 /*
  * NOTE:	Highly likely we can switch dot product in a to 1,
@@ -24,7 +25,7 @@ bool	hit_sphere(t_shape *self, t_ray *r, double *t)
 	t_tuple4f	q;
 	t_vec3		o;
 
-	sp = &self->s;
+	sp = &self->sp;
 	o = subst_vec3(&sp->center, &r->origin);
 	q.i = vec3_length_squared(&r->direction);
 	q.j = vec3_dot(&r->direction, &o);
@@ -64,7 +65,7 @@ bool	hit_plane(t_shape *self, t_ray *r, double *t)
 	double		denom;
 	double		numer;
 
-	pl = &self->p;
+	pl = &self->pl;
 	denom = vec3_dot(&pl->normal, &r->direction);
 	if (fabs(denom) < EPSILON)
 		return (false);
@@ -92,16 +93,15 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 {
 	t_cylinder		cy_prime;
 	t_ray			r_prime;
-	t_quaternion	q;
 	double			t_prime[2];
 
-	cy_prime = self->c;
+	cy_prime = self->cy;
 	cy_prime.normal = vec3(0, 0, 1);
 	cy_prime.center = vec3(0, 0, 0);
-	q = get_quaternion(&self->c.normal, &cy_prime.normal);
-	r_prime.origin = subst_vec3(&r->origin, &self->c.center);
-	r_prime.origin = quarternion_rotate(&q, &r_prime.origin);
-	r_prime.direction = quarternion_rotate(&q, &r->direction);
+	r_prime.origin = \
+		apply_transform_to_point(&self->cy.wtl_matrix, &r->origin);
+	r_prime.direction = \
+		apply_transform_to_vector(&self->cy.wtl_matrix, &r->direction);
 	if (hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) || \
 		hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
 	{
@@ -168,11 +168,11 @@ bool	hit_cylinder_caps(t_cylinder *cy, t_ray *r, double *t)
 	double	t2;
 
 	*t = -1;
-	pl[0].p.normal = cy->normal;
-	pl[1].p.normal = vec3_neg(&cy->normal);
+	pl[0].pl.normal = cy->normal;
+	pl[1].pl.normal = vec3_neg(&cy->normal);
 	tmp = scale_vec3(cy->height / 2, &cy->normal);
-	pl[0].p.center = sum_vec3(&cy->center, &tmp);
-	pl[1].p.center = subst_vec3(&cy->center, &tmp);
+	pl[0].pl.center = sum_vec3(&cy->center, &tmp);
+	pl[1].pl.center = subst_vec3(&cy->center, &tmp);
 	if (hit_plane(&pl[0], r, &t1) | hit_plane(&pl[1], r, &t2))
 	{
 		tmp = ray_at(r, t1);

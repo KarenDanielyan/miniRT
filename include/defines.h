@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 18:30:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:14:39 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,8 @@
 #  define SSAA 50
 # endif
 
-/* Global Illumination */
-# define GI 0
-# if GI == 1
-#  define DI_INTENSITY 0.6
-# else
-#  define DI_INTENSITY 1.0
-# endif
-
 /* Miscellaneous Defines */
-# define RENDER_FILE "Images/render.ppm"
+# define RENDER_FILE "images/render.bmp"
 # define EXTENSION ".rt"
 # define DOT '.'
 
@@ -72,6 +64,7 @@
 # define S_PLASTIC "plastic"
 # define S_METALLIC "metallic"
 # define S_DIELECTRIC "dielectric"
+# define S_DEFAULT "m:default"
 
 /* Colors Escape Codes */
 # define RED "\033[0;31m"
@@ -81,7 +74,7 @@
 # define RESET "\033[0m"
 
 /* Defines for floating-point operations */
-# define EPSILON 0.000001
+# define EPSILON 0.0000001
 
 # define HEADER "\
 * **************** miniRT ***************** *\n\
@@ -110,8 +103,6 @@ typedef struct s_point2		t_point2;
 typedef struct s_tuple4f	t_tuple4f;
 
 typedef struct s_ray		t_ray;
-
-typedef struct s_matrix4	t_matrix4;
 
 typedef struct s_thread		t_thread;
 

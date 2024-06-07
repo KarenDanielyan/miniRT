@@ -6,6 +6,8 @@ LIBFT		=	lib/libft/libft.a
 
 PRINTF		=	lib/printf/libftprintf.a
 
+BITMAP		=	lib/ft_bitmap/libftbitmap.a
+
 PLATFORM	=	$(shell uname -s)
 
 BUILD		=	build
@@ -15,10 +17,10 @@ SRC			=	src
 SUBDIRS		=	core scanner math events utils job debug shaders
 
 DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
-				defines.h miniRT.h scanner.h \
-				vec3.h material.h ray.h ui.h \
-				camera.h shapes.h \
-				quaternion.h) \
+				camera.h defines.h material.h \
+				matrix.h miniRT.h quaternion.h \
+				ray.h scanner.h shapes.h ui.h \
+				vec3.h) \
 				Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
@@ -33,14 +35,14 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				check_extension.c scan.c parse_ambient.c \
 				parse_light.c parse_camera.c parse_sphere.c \
 				parse_utils.c parse_cylinder.c \
-				parse_plane.c parse_cone.c \
-				parse_rectangle.c parse_utils2.c) \
+				parse_plane.c parse_cone.c parse_utils2.c) \
 				$(patsubst %.c, $(SRC)/math/%.c, \
 				vec3_constructors.c vec3_operations.c \
 				vec3_operations_2.c vec3_get.c \
 				vec3_set.c vec3_utils.c \
 				vec3_random.c quaternion_operations.c\
-				quaternion_constructors.c) \
+				quaternion_constructors.c \
+				matrix.c matrix_operations.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \
@@ -48,8 +50,10 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				listener.c update.c worker.c) \
 				$(patsubst %.c, $(SRC)/shaders/%.c, \
 				ray_shader.c skybox_shader.c \
-				diffuse_shader.c ambient_shader.c \
-				linear_to_gamma.c)
+				blinn_phong_shader.c \
+				ambient_shader.c linear_to_gamma.c \
+				raster_light_shader.c \
+				color_shader.c)
 
 OBJS		=	$(foreach dir, $(SUBDIRS), \
 				$(patsubst $(SRC)/$(dir)/%.c, $(BUILD)/%.o, \
@@ -63,11 +67,11 @@ RM			=	rm -rf
 
 CFLAGS		=	-fPIC -g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
 
-INVOKE		=	libft printf mlx
+INVOKE		=	libft printf ft_bitmap mlx
 
-IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include
+IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include -Ilib/ft_bitmap
 
-LFLAGS		=	-Llib/printf -lftprintf -lm
+LFLAGS		=	-Llib/printf -lftprintf -lm -Llib/ft_bitmap -lftbitmap
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux
@@ -115,6 +119,9 @@ libft:
 printf:
 			@$(MAKE) $(MAKECMDGOALS) -C lib/printf
 
+ft_bitmap:
+			@$(MAKE) $(MAKECMDGOALS) -C lib/ft_bitmap
+
 wait_msg:
 			@echo "${BLUE}Please wait for $(NAME) to compile.${RESET}"
 
@@ -123,7 +130,7 @@ clean:		$(INVOKE)
 			@$(RM) $(BUILD)
 			@echo "${GREEN}Done.${RESET}"
 
-fclean:		libft printf
+fclean:		libft printf ft_bitmap
 			@echo "${CYAN}Cleaning Everyting...${RESET}"
 			@$(MAKE) clean -C $(MLX)
 			@$(RM) $(BUILD)
@@ -135,4 +142,4 @@ mlx:
 
 re:			fclean all
 
-.PHONY:		all clean fclean re libft printf mlx wait_msg
+.PHONY:		all clean fclean re libft printf ft_bitmap mlx wait_msg

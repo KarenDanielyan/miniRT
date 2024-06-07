@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:42:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 21:09:10 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:44:51 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_parsetype	argument_check(t_pfields *f)
 	if (check_number(f->ratio) == EXIT_FAILURE || \
 		ft_atof(f->ratio) < 0.0 || ft_atof(f->ratio) > 1.0)
 		printf("%s%s: %sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
-	if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
+	else if (!f->rgb || check_color(f->rgb) == EXIT_FAILURE)
 		printf("%s%s: %sbrightness.%s\n", RED, S_AMBIENT, ERR_INVALID, RESET);
 	else
 		rv = P_LIGHTSOURCE;

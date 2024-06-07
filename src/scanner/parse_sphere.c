@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:30 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 18:33:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/06 01:22:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ static void			*make(t_pfields *f);
 void	*parse_sphere(t_list *tokens, t_parsetype *pt)
 {
 	t_pfields	f;
+	int			size;
 	void		*hittable;
 
 	hittable = NULL;
 	init_fields(&f);
-	if (ft_lstsize(tokens) != 4)
+	size = ft_lstsize(tokens);
+	if (size < 4 || size > 7)
 	{
-		printf("%s%s: %s%d%s", RED, S_LIGHT, ERR_INVALID_ARGS, 4, RESET);
+		printf("%s%s: %s at least %d%s", \
+			RED, S_SPHERE, ERR_INVALID_ARGS, 4, RESET);
 		*pt = P_ERROR;
 		return (NULL);
 	}
@@ -33,6 +36,7 @@ void	*parse_sphere(t_list *tokens, t_parsetype *pt)
 	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 3)->content, ',', 3);
 	f.diameter = ft_strdup(ft_lst_get_by_index(tokens, 2)->content);
 	*pt = argument_check(&f);
+	*pt = optional_check(ft_lst_get_by_index(tokens, 4), &f);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);
 	free_fields(&f);
@@ -51,11 +55,14 @@ static void	*make(t_pfields *f)
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
 	if (!f->material)
 	{
-		printf("%s%s: %s.%s\n", YELLOW, S_CYLINDER, WARN_NOMATERIAL, RESET);
+		printf("%s%s: %s.%s\n", YELLOW, S_SPHERE, WARN_NOMATERIAL, RESET);
 		f->material = ft_strdup("m:default");
 	}
-	((t_hittable *)hittable)->material.color = vec3(ft_map(ft_atof(f->rgb[0])), \
-			ft_map(ft_atof(f->rgb[1])), ft_map(ft_atof(f->rgb[2])));
+	set_material(&((t_hittable *)hittable)->material, \
+			vec3(ft_map(ft_atof(f->rgb[0])), ft_map(ft_atof(f->rgb[1])), \
+			ft_map(ft_atof(f->rgb[2]))), (f->material + 2));
+	set_texture_and_normal(&((t_hittable *)hittable)->material, f->texture, \
+							f->normal_map);
 	free(shape);
 	return (hittable);
 }

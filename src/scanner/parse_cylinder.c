@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:09 by armhakob          #+#    #+#             */
-/*   Updated: 2024/05/28 18:31:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:15:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,8 @@ static void	*make(t_pfields *f)
 				vec3(ft_map(ft_atof(f->rgb[0])), \
 					ft_map(ft_atof(f->rgb[1])), \
 					ft_map(ft_atof(f->rgb[2]))), (f->material + 2));
-	if (f->texture)
-		set_texture(&((t_hittable *)hittable)->material, f->texture);
-	if (f->normal_map)
-		set_normal_map(&((t_hittable *)hittable)->material, f->normal_map);
+	set_texture_and_normal(&((t_hittable *)hittable)->material, f->texture, \
+							f->normal_map);
 	free(cylinder);
 	return (hittable);
 }

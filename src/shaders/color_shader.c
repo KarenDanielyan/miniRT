@@ -6,13 +6,13 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:50:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 12:52:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:08:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static t_color map(uint32_t color)
+t_color map(uint32_t color)
 {
 	double r;
 	double g;
@@ -24,14 +24,29 @@ static t_color map(uint32_t color)
 	return (vec3(r, g, b));
 }
 
+t_point2	compute_sphere_uv(t_hitrecord *hr)
+{
+	t_point3	lp;
+	t_point2	uv;
+	double		theta;
+	double		phi;
+
+	lp = unit_vector(apply_transform_to_point( 
+		&hr->hit->shape.sp.wtl_matrix, &hr->at));
+	theta = M_PI + atan2(get_y(&lp), get_x(&lp));
+	phi = M_PI - acos(get_z(&lp) / vec3_length(&lp));
+	uv.x = theta / (2 * M_PI);
+	uv.y = phi / M_PI;
+	return (uv);
+}
+
 /* Planar projection for planes and Spherical projection for spheres */
 /* Spherical projection: 
 	x = [pi + atan2(y,x)] / 2pi 
 	y = [pi - acos(z / ||x||)] / pi
 */
-static t_color	texture_shader(t_control *ctl, t_hitrecord *hr)
+t_color	texture_shader(t_control *ctl, t_hitrecord *hr)
 {
-	t_point3	lp;
 	t_point2	uv;
 	uint32_t	tcolor;
 	t_color		color;
@@ -39,10 +54,7 @@ static t_color	texture_shader(t_control *ctl, t_hitrecord *hr)
 	(void)ctl;
 	if (hr->hit->type == SPHERE)
 	{
-		lp = apply_transform_to_point( 
-			&hr->hit->shape.sp.wtl_matrix, &hr->at);
-		uv.x = (M_PI + atan2(get_y(&lp), get_x(&lp))) / (2 * M_PI);
-		uv.y = (M_PI - acos(get_z(&lp) - vec3_length(&lp))) / M_PI;
+		uv = compute_sphere_uv(hr);
 		tcolor = ft_bitmap_get_pixel_color(hr->hit->material.texture_map, 
 					(int)(uv.x * hr->hit->material.texture_map->ih.bi_width), 
 					(int)(uv.y * hr->hit->material.texture_map->ih.bi_height));

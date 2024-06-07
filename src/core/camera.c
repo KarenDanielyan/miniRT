@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:40:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/03 01:28:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:37:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ static t_color	super_sample(t_control *ctl, t_job *job, int i, int j)
 		k ++;
 	}
 	color = shrink_vec3(SSAA, &color);
-	color = linear_to_gamma(color);
 	return (vec3(\
 			clamp_d(get_x(&color), 0.000, 0.999), \
 			clamp_d(get_y(&color), 0.000, 0.999), \

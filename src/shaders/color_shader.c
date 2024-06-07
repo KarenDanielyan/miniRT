@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_shader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:50:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 17:08:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:48:56 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,16 @@ t_color	texture_shader(t_control *ctl, t_hitrecord *hr)
 
 static t_color	checker_shader(t_control *ctl, t_hitrecord *hr)
 {
+	t_point2	uv;
+	t_point		c;
+
+
 	(void)ctl;
-	(void)hr;
+	uv = compute_sphere_uv(hr);
+	c.u = floor(uv.x * CHECKER_WIDTH);
+	c.v = floor(uv.y * CHECKER_HEIGHT);
+	if ((int)(c.u + c.v) % 2 == 0)
+		return (vec3(1, 1, 1));
 	return (vec3(0.0, 0.0, 0.0));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/03 16:14:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:43:33 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define RENDER_FILE "images/render.bmp"
 # define EXTENSION ".rt"
 # define DOT '.'
+
+# define CHECKER_WIDTH 15
+# define CHECKER_HEIGHT 15
 
 /* Error Messages */
 # define ERROR_MSG "Error\n"

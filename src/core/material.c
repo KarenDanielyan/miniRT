@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 13:54:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:17:20 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	set_texture_and_normal(t_material *m, char *texture, char *normal)
 		m->normal_map = ft_load_bitmap(normal);
 	}
 	if (ft_strcmp(texture, "checker") == 0)
+	{
 		m->properties |= CHECKERED;
+		m->properties ^= TEXTURED;
+	}
 }
 
 static void	set_plastic(t_material *material)

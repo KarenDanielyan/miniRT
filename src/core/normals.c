@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 14:14:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:12:25 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit)
 					(int)(uv.y * hr.hit->material.normal_map->ih.bi_height));
 		normal = map(tnormal);
 	}
+	else
+		normal = vec3(0.0, 0.0, 0.0);
 	return (normal);
 }

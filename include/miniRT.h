@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 14:26:56 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:14:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ bool		scan(t_control *ctl, char *filename);
 void		run(t_control *ctl);
 
 /* Shaders */
+
+t_color		map(uint32_t color);
+
+t_point2	compute_sphere_uv(t_hitrecord *hr);
 
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 

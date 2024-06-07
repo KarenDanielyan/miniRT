@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/06 01:32:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:02:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 	}
 	else if (!ft_strncmp(tokens->content, "n:", 2))
 	{
-		f->normal_map = ft_strdup(tokens->content);
+		f->normal_map = ft_strdup(tokens->content + 2);
 		if (check_extension(f->normal_map, ".bmp") == EXIT_FAILURE || \
 			access(f->normal_map, F_OK) == -1)
 		{

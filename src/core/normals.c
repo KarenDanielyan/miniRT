@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 01:25:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:14:36 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,20 @@ static t_vec3	get_cone_normal(t_point3 *at, t_hittable *hit)
 
 static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit)
 {
-	(void)at;
-	(void)hit;
-	return (vec3(0, 0, 0));
+	t_hitrecord	hr;
+	t_point2	uv;
+	uint32_t	tnormal;
+	t_color		normal;
+
+	hr.at = *at;
+	hr.hit = hit;
+	if (hr.hit->type == SPHERE)
+	{
+		uv = compute_sphere_uv(&hr);
+		tnormal = ft_bitmap_get_pixel_color(hr.hit->material.normal_map, \
+					(int)(uv.x * hr.hit->material.normal_map->ih.bi_width), \
+					(int)(uv.y * hr.hit->material.normal_map->ih.bi_height));
+		normal = map(tnormal);
+	}
+	return (normal);
 }

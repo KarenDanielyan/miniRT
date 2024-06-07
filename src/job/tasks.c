@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:31:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 01:00:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:10:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	generate_tasks(t_control *ctl)
 		i ++;
 	}
 	pthread_mutex_unlock(&ctl->qmux);
-	ft_darray_free(&tasks);
+	ft_darray_free(&tasks, NULL);
 }
 
 t_job	*new_job(t_task *task, t_compute shader)

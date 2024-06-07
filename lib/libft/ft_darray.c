@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:15:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/04/17 19:25:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:09:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,24 @@ void	*ft_darray_get_by_index(t_darray *arr, int index)
 	return (arr->content + (arr->size * index));
 }
 
-void	ft_darray_free(t_darray *arr)
+/* NOTE: del() is for freeing the memory for the fields inside the elements 
+	of the array, not the elements themselves!!!!
+*/
+void	ft_darray_free(t_darray *arr, void (*del)(void *content))
 {
+	size_t	i;
+
+	i = 0;
 	if (arr)
 	{
+		if (del)
+		{
+			while (i < arr->nmemb)
+			{
+				del(ft_darray_get_by_index(arr, i));
+				i ++;
+			}
+		}
 		free(arr->content);
 		arr->capacity = 0;
 		arr->nmemb = 0;

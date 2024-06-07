@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:21:00 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/12 16:52:11 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:09:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_darray
 void		ft_darray_init(t_darray *arr, size_t elem_size, size_t capacity);
 void		*ft_darray_get_by_index(t_darray *arr, int index);
 void		ft_darray_pushback(t_darray *arr, void *content);
-void		ft_darray_free(t_darray *arr);
+void		ft_darray_free(t_darray *arr, void (*del)(void *content));
 
 size_t		ft_darray_count_if(t_darray *arr, int (*cmp)(void *value));
 

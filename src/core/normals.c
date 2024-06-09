@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 18:12:25 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:47:25 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,20 @@ static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit)
 {
 	t_hitrecord	hr;
 	t_point2	uv;
-	uint32_t	tnormal;
-	t_color		normal;
+	t_vec3		normal;
+	t_vec3		tmp;
 
 	hr.at = *at;
 	hr.hit = hit;
 	if (hr.hit->type == SPHERE)
 	{
 		uv = compute_sphere_uv(&hr);
-		tnormal = ft_bitmap_get_pixel_color(hr.hit->material.normal_map, \
+		tmp = map(ft_bitmap_get_pixel_color(hr.hit->material.normal_map, \
 					(int)(uv.x * hr.hit->material.normal_map->ih.bi_width), \
-					(int)(uv.y * hr.hit->material.normal_map->ih.bi_height));
-		normal = map(tnormal);
+					(int)(uv.y * hr.hit->material.normal_map->ih.bi_height)));
+		normal = unit_vector(subst_vec3(at, &hit->shape.sp.center));
+		if (vec3_length(&tmp) != 0)
+			normal = unit_vector(vec3_scalar_mult(&tmp, &normal));
 	}
 	else
 		normal = vec3(0.0, 0.0, 0.0);

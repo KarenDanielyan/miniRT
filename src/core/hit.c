@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 21:31:46 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/10 23:31:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 	t_ray			r_prime;
 	double			t_prime[2];
 
+	*t = -1;
 	cy_prime = self->cy;
 	cy_prime.normal = vec3(0, 0, 1);
 	cy_prime.center = vec3(0, 0, 0);
@@ -154,6 +155,7 @@ bool	hit_cylinder_walls(t_cylinder *cy, t_ray *r, double *t)
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		*t = (q.j + sqrt(q.w)) / q.i;
+	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:27:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/06 22:11:41 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:51:01 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*new_hittable(t_type type, t_hit hit, void *shape)
 
 void	clear_hittable(void *hittable)
 {
-	t_hittable *hit;
+	t_hittable	*hit;
 
 	hit = hittable;
 	if (hit->material.texture_map)

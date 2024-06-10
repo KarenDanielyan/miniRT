@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 14:38:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:07:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ enum e_mtype
 	DEFAULT		= 0,
 	PLASTIC		= 1,
 	METALIC		= 2,
-	DIELECRIC	= 4,
+	DIELECTRIC	= 4,
 	TEXTURED	= 8,
 	CHECKERED	= 16,
 	NORMAL		= 32

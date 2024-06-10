@@ -26,7 +26,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c hit_2.c \
 				hittable.c lights.c shapes.c normals.c \
-				material.c) \
+				material.c normals_from_map.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c mapping.c \

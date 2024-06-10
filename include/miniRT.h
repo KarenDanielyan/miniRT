@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 14:14:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:27:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,16 @@ bool		scan(t_control *ctl, char *filename);
 
 void		run(t_control *ctl);
 
+/* UV mapping */
+
+t_point2	compute_sphere_uv(t_hitrecord *hr);
+
+t_point2	compute_plane_uv(t_hitrecord *hr);
+
 /* Shaders */
 
 t_color		map(uint32_t color);
 
-t_point2	compute_sphere_uv(t_hitrecord *hr);
 
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 
@@ -90,7 +95,7 @@ t_color		blinn_phong_shader(t_control *ctl, t_hitrecord *hr);
 
 t_color		skybox_shader(t_control *ctl, t_ray *ray);
 
-t_color		color_shader(t_control *ctl, t_hitrecord *hr);
+t_color		color_shader(t_hitrecord *hr);
 
 t_color		linear_to_gamma(t_color c);
 

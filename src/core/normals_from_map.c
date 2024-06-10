@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:35:24 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 17:50:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:32:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ static t_vec3	get_normal_for_sphere(t_point3 *at, t_hittable *hit)
 static t_vec3	get_normal_for_plane(t_point3 *at, t_hittable *hit)
 {
 	t_quaternion	t_to_world;
-	t_point3		at_l;
+	t_hitrecord		hr;
 	t_point2		uv;
 	t_vec3			z;
 	t_vec3			normal;
 
+	hr.at = *at;
+	hr.hit = hit;
 	z = vec3(0, 0, 1);
-	at_l = apply_transform_to_point(&hit->shape.pl.wtl_matrix, at);
 	t_to_world = get_quaternion(&z, &hit->shape.pl.normal);
-	uv.x = fabs(modf(get_x(&at_l) / 5, z.e));
-	uv.y = fabs(modf(get_y(&at_l) / 5, z.e));
+	uv = compute_plane_uv(&hr);
 	normal = map_for_normals(hit->material.normal_map, uv);
 	return (quarternion_rotate(&t_to_world, &normal));
 }

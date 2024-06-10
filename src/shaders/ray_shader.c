@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/09 18:18:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:15:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color	direct_illumination(t_control *ctl, t_hitrecord *hr)
 	t_color	diffuse_and_specular;
 	t_color	res;
 
-	hr->surface_color = color_shader(ctl, hr);
+	hr->surface_color = color_shader(hr);
 	ambient = ambient_shader(ctl, hr);
 	diffuse_and_specular = blinn_phong_shader(ctl, hr);
 	res = sum_vec3(&ambient, &diffuse_and_specular);

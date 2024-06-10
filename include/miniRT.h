@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:27:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:57:54 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ft_printf.h>
 # include <mlx.h>
 # include <stdio.h>
+# include <sys/errno.h>
 # include <math.h>
 
 # include "defines.h"

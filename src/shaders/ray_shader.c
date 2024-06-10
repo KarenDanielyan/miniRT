@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 20:17:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 23:58:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	if (hit_anything(r, &ctl->world, &hr))
 	{
 		hr.surface_color = color_shader(&hr);
-		if (hr.hit->material.properties & METALIC || hr.hit->material.properties & DIELECTRIC)
+		if (hr.hit->material.properties & METALIC || \
+			hr.hit->material.properties & DIELECTRIC)
 			return (scatter(ctl, &hr, bounce));
 		return (direct_illumination(ctl, &hr));
 	}

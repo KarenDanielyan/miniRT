@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_shader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:50:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 18:48:56 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/09 18:14:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,21 @@ t_color	texture_shader(t_control *ctl, t_hitrecord *hr)
 	t_point2	uv;
 	uint32_t	tcolor;
 	t_color		color;
+	t_point3	p;
 
 	(void)ctl;
 	if (hr->hit->type == SPHERE)
-	{
 		uv = compute_sphere_uv(hr);
-		tcolor = ft_bitmap_get_pixel_color(hr->hit->material.texture_map, 
-					(int)(uv.x * hr->hit->material.texture_map->ih.bi_width), 
-					(int)(uv.y * hr->hit->material.texture_map->ih.bi_height));
-		color = map(tcolor);
+	else if (hr->hit->type == PLANE)
+	{
+		p = apply_transform_to_point(&hr->hit->shape.pl.wtl_matrix, &hr->at);
+		uv.x = fabs(modf(get_x(&p), color.e));
+		uv.y = fabs(modf(get_y(&p), color.e));
 	}
-	else
-		color = hr->hit->material.color;
+	tcolor = ft_bitmap_get_pixel_color(hr->hit->material.texture_map, 
+				(int)(uv.x * hr->hit->material.texture_map->ih.bi_width), 
+				(int)(uv.y * hr->hit->material.texture_map->ih.bi_height));
+	color = map(tcolor);
 	return (color);
 }
 

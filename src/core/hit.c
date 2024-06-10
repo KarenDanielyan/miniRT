@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 23:58:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 03:23:45 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,7 @@ bool	hit_cylinder_walls(t_cylinder *cy, t_ray *r, double *t)
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		*t = (q.j + sqrt(q.w)) / q.i;
-	else
-		p = ray_at(r, *t);
+	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		return (false);

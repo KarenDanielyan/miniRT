@@ -1,0 +1,12 @@
+# This file is for testing how geometry is rednered in the scene
+# Camera
+C 0,0,1 0,0,-1 100
+# Lights
+A			0.1				135,206,235
+l	1,0,0	1.0				255,255,255
+# World objects
+pl -2,-0.5,-2		1,0,1	255,0,0		t:assets/textures/rock.bmp
+# n:assets/textures/rock_normal.bmp
+cy 0,0,-1	0,0,1	1.0 1.0	255,255,255
+# sp 0,0,-1	1				255,255,255
+# cn 0,0.5,-1 0,1,0 0.5 1		255,255,255

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:26:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:32:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:12:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_point2	compute_plane_uv(t_hitrecord *hr)
 	if (float_equal(modf(get_x(&p) / 2, &buf), 0.0f))
 		uv.x = fabs(modf(get_x(&p), &buf));
 	else
-		uv.x = 1 - fabs(modf(get_x(&p), &buf));
+		uv.x = 1.0 - fabs(modf(get_x(&p), &buf));
 	if (float_equal(modf(get_y(&p) / 2, &buf), 0.0f))
 		uv.y = fabs(modf(get_y(&p), &buf));
 	else
-		uv.y = 1 - fabs(modf(get_y(&p), &buf));
+		uv.y = 1.0 - fabs(modf(get_y(&p), &buf));
 	return (uv);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:16:25 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:38:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 50
+#  define SSAA 10
 # endif
 
 /* Miscellaneous Defines */
@@ -40,8 +40,8 @@
 # define EXTENSION ".rt"
 # define DOT '.'
 
-# define CHECKER_WIDTH 50
-# define CHECKER_HEIGHT 25
+# define CHECKER_WIDTH 25
+# define CHECKER_HEIGHT 12
 
 /* Error Messages */
 # define ERROR_MSG "Error\n"

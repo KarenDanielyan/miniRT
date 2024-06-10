@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:03 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/10 01:07:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:01:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ void	*parse_plane(t_list *tokens, t_parsetype *pt)
 		*pt = P_ERROR;
 		return (NULL);
 	}
-	f.rgb = tuple_split(\
-		ft_lst_get_by_index(tokens, 3)->content, ',', 3);
-	f.normal = tuple_split(\
-		ft_lst_get_by_index(tokens, 2)->content, ',', 3);
+	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 3)->content, ',', 3);
+	f.normal = tuple_split(ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	f.coords = tuple_split(\
 		ft_lst_get_by_index(tokens, 1)->content, ',', 3);
 	*pt = argument_check(&f);
-	*pt = optional_check(ft_lst_get_by_index(tokens, 4), &f);
+	if (*pt == P_OBJECT)
+		*pt = optional_check(ft_lst_get_by_index(tokens, 4), &f);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);
 	free_fields(&f);

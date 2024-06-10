@@ -6,14 +6,13 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/09 17:47:25 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:36:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "shapes.h"
 
-static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit);
 static t_vec3	get_cylinder_normal(t_point3 *at, t_hittable *hit);
 static t_vec3	get_cone_normal(t_point3 *at, t_hittable *hit);
 
@@ -84,28 +83,4 @@ static t_vec3	get_cone_normal(t_point3 *at, t_hittable *hit)
 	tmp = scale_vec3(t, &hit->shape.cn.normal);
 	tmp = sum_vec3(&hit->shape.cn.apex, &tmp);
 	return (unit_vector(subst_vec3(at, &tmp)));
-}
-
-static t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit)
-{
-	t_hitrecord	hr;
-	t_point2	uv;
-	t_vec3		normal;
-	t_vec3		tmp;
-
-	hr.at = *at;
-	hr.hit = hit;
-	if (hr.hit->type == SPHERE)
-	{
-		uv = compute_sphere_uv(&hr);
-		tmp = map(ft_bitmap_get_pixel_color(hr.hit->material.normal_map, \
-					(int)(uv.x * hr.hit->material.normal_map->ih.bi_width), \
-					(int)(uv.y * hr.hit->material.normal_map->ih.bi_height)));
-		normal = unit_vector(subst_vec3(at, &hit->shape.sp.center));
-		if (vec3_length(&tmp) != 0)
-			normal = unit_vector(vec3_scalar_mult(&tmp, &normal));
-	}
-	else
-		normal = vec3(0.0, 0.0, 0.0);
-	return (normal);
 }

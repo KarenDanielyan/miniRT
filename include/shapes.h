@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/06 22:11:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:36:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ struct s_hitrecord
 	t_ray		r;
 	t_point3	at;
 	t_vec3		normal;
+	t_color		surface_color;
 	t_hittable	*hit;
 };
 
@@ -153,6 +154,7 @@ bool	hit_cone(t_shape *self, t_ray *r, double *t);
 /* Surfece Normals */
 
 t_vec3	get_normal(t_point3 *at, t_hittable *hit);
+t_vec3	get_normal_from_map(t_point3 *at, t_hittable *hit);
 
 /* Light sources */
 

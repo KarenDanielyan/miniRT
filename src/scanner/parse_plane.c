@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:03 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/03 16:15:06 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 01:07:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*parse_plane(t_list *tokens, t_parsetype *pt)
 	hittable = NULL;
 	init_fields(&f);
 	size = ft_lstsize(tokens);
-	if (size < 4 || size > 5)
+	if (size < 4 || size > 7)
 	{
 		printf("%s%s: %s%d%s", RED, S_PLANE, ERR_INVALID_ARGS, 4, RESET);
 		*pt = P_ERROR;

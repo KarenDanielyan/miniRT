@@ -7,7 +7,7 @@ l	1,0,0	1.0				255,255,255
 # l	-1,0,0	1.0				255,255,255
 # World objects
 pl -2,-0.5,-2		1,0,1	255,0,0	t:assets/textures/rock.bmp n:assets/textures/rock_normal.bmp
-pl 0,-0.5,-1		0,1,0	255,0,0	m:metallic t:assets/textures/desert.bmp n:assets/textures/desert_normal.bmp
+pl 0,-0.5,-1		0,1,0	255,0,0	t:assets/textures/desert.bmp n:assets/textures/desert_normal.bmp
 # n:assets/textures/rock_normal.bmp
 cy 0,0,-1	0,1,0	1.0 1.0	255,255,255
 sp 1,0,-2	1				0,0,255 m:metallic

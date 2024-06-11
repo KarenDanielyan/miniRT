@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 20:55:19 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 21:16:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec3	ray_refract(t_vec3 *v, t_vec3 *n, double ni_over_nt)
 
 	vec3_normalize(v);
 	minus_v = vec3_neg(v);
-	cos_theta = vec3_dot(&minus_v, n);
+	cos_theta = fmin(vec3_dot(&minus_v, n), 1.0);
 	perp = scale_vec3(cos_theta, n);
 	perp = sum_vec3(v, &perp);
 	perp = scale_vec3(ni_over_nt, &perp);

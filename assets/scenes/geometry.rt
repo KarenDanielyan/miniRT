@@ -4,11 +4,10 @@ C 0,0,1 0,0,-1 100
 # Lights
 A			0.0				135,206,235
 l	1,0,0	1.0				255,255,255
-# l	-1,0,0	1.0				255,255,255
+ l	-1,100,0	1.0				255,255,255
 # World objects
-pl -2,-0.5,-2		1,0,1	255,0,0	t:assets/textures/rock.bmp n:assets/textures/rock_normal.bmp
 pl 0,-0.5,-1		0,1,0	255,0,0	t:assets/textures/desert.bmp n:assets/textures/desert_normal.bmp
 # n:assets/textures/rock_normal.bmp
-cy 0,0,-1	0,1,0	1.0 1.0	255,255,255
-sp 1,0,-2	1				0,0,255 m:metallic
+cy 0,0,-1.5	0,1,0	1.0 1.0	255,255,255 m:metallic
+sp 1,0,-2	1				0,0,255 t:assets/textures/earth.bmp n:assets/textures/earth_normal.bmp
 cn -1,0.5,-1 0,1,0 0.5 1		255,0,0

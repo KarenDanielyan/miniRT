@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 03:23:45 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:11:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 		apply_transform_to_point(&self->cy.wtl_matrix, &r->origin);
 	r_prime.direction = \
 		apply_transform_to_vector(&self->cy.wtl_matrix, &r->direction);
-	if (hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) || \
-		hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
+	if ((int)hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) | \
+		(int)hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
 	{
 		if (t_prime[0] < t_prime[1] && t_prime[0] > EPSILON)
 			*t = t_prime[0];

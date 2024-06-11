@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 20:30:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 00:40:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 static void	env_init(t_control *ctl)
 {
 	ctl->job_q = NULL;
-	ctl->worker_c = 1; //sysconf(_SC_NPROCESSORS_ONLN) - 1;
+	ctl->worker_c = sysconf(_SC_NPROCESSORS_ONLN) - 1;
 	pthread_mutex_init(&ctl->qmux, NULL);
 	init_ui(ctl);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 19:41:29 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:55:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,24 @@ t_vec3	ray_reflect(t_vec3 *v, t_vec3 *n)
 	return (tmp);
 }
 
-t_vec3		ray_refract(t_vec3 *v, t_vec3 *n, double ri)
+/*
+	vec3 r_out_perp =  etai_over_etat * (uv + cos_theta*n);
+	vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.length_squared())) * n;
+	return r_out_perp + r_out_parallel;
+*/
+t_vec3	ray_refract(t_vec3 *v, t_vec3 *n, double ni_over_nt)
 {
-	(void)v;
-	(void)n;
-	(void)ri;
-	return (vec3(0, 0, 0));
+	double	cos_theta;
+	t_vec3	minus_v;
+	t_vec3	perp;
+	t_vec3	parallel;
+
+	vec3_normalize(v);
+	minus_v = vec3_neg(v);
+	cos_theta = vec3_dot(&minus_v, n);
+	perp = scale_vec3(cos_theta, n);
+	perp = sum_vec3(v, &perp);
+	perp = scale_vec3(ni_over_nt, &perp);
+	parallel = scale_vec3(-sqrt(fabs(1.0 - vec3_length_squared(&perp))), n);
+	return (sum_vec3(&perp, &parallel));
 }

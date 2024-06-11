@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 02:28:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:53:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 1
+#  define SSAA 10
 # endif
 
 /* Miscellaneous Defines */
@@ -77,7 +77,7 @@
 # define RESET "\033[0m"
 
 /* Defines for floating-point operations */
-# define EPSILON 0.0000001
+# define EPSILON 0.0001
 
 # define HEADER "\
 * **************** miniRT ***************** *\n\

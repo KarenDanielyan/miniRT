@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 20:07:07 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:31:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct s_material
 	double		ri;
 	t_ftbitmap	*normal_map;
 	t_ftbitmap	*texture_map;
-	t_color	color;
+	t_color		color;
 };
 
 void	set_material(t_material *material, t_color color, char *type);

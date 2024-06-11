@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:57:54 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:31:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ t_point2	compute_plane_uv(t_hitrecord *hr);
 /* Shaders */
 
 t_color		map(uint32_t color);
-
 
 t_color		ray_shader(t_control *ctl, t_ray *r, int bounce);
 

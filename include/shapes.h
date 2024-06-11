@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:56:32 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 15:36:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:31:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ struct s_hittable
 void	*new_hittable(t_type type, t_hit hit, void *shape);
 
 void	clear_hittable(void *hittable);
-
 
 /* Constructors for objects */
 

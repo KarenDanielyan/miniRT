@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 23:58:35 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:21:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,20 @@ t_color	scatter(t_control *ctl, t_hitrecord *hr, int bounce);
 t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 {
 	t_hitrecord	hr;
+	t_color		di;
+	t_color		gi;
 
+	gi = vec3(0, 0, 0);
 	if (bounce <= 0)
 		return (vec3(0, 0, 0));
 	if (hit_anything(r, &ctl->world, &hr))
 	{
 		hr.surface_color = color_shader(&hr);
+		di = direct_illumination(ctl, &hr);
 		if (hr.hit->material.properties & METALIC || \
 			hr.hit->material.properties & DIELECTRIC)
-			return (scatter(ctl, &hr, bounce));
-		return (direct_illumination(ctl, &hr));
+			gi = scatter(ctl, &hr, bounce);
+		return (sum_vec3(&di, &gi));
 	}
 	return (skybox_shader(ctl, r));
 }

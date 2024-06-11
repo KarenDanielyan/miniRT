@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 19:29:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:36:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <ft_bitmap.h>
 
 static void	set_plastic(t_material *material);
-static void	set_mettalic(t_material *material);
+static void	set_metallic(t_material *material);
 static void	set_dielectric(t_material *material);
 
 void	set_material(t_material *material, t_color color, char *type)
@@ -24,7 +24,7 @@ void	set_material(t_material *material, t_color color, char *type)
 	if (ft_strcmp(type, S_PLASTIC) == 0)
 		set_plastic(material);
 	else if (ft_strcmp(type, S_METALLIC) == 0)
-		set_mettalic(material);
+		set_metallic(material);
 	else if (ft_strcmp(type, S_DIELECTRIC) == 0)
 		set_dielectric(material);
 	else
@@ -66,9 +66,9 @@ static void	set_plastic(t_material *material)
 	material->shininess = 1.0;
 }
 
-static void	set_mettalic(t_material *material)
+static void	set_metallic(t_material *material)
 {
-	material->properties |= METALIC;
+	material->properties |= METALLIC;
 	material->lambertian = 0.0;
 	material->glossiness = 1.0;
 	material->shininess = 20;

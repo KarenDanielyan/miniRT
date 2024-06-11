@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 19:21:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:33:26 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color	ray_shader(t_control *ctl, t_ray *r, int bounce)
 	{
 		hr.surface_color = color_shader(&hr);
 		di = direct_illumination(ctl, &hr);
-		if (hr.hit->material.properties & METALIC || \
+		if (hr.hit->material.properties & METALLIC || \
 			hr.hit->material.properties & DIELECTRIC)
 			gi = scatter(ctl, &hr, bounce);
 		return (sum_vec3(&di, &gi));
@@ -72,7 +72,7 @@ t_color	scatter(t_control *ctl, t_hitrecord *hr, int bounce)
 	t_color	color;
 
 	scattered.origin = hr->at;
-	if (hr->hit->material.properties & METALIC)
+	if (hr->hit->material.properties & METALLIC)
 		scattered.direction = ray_reflect(&hr->r.direction, &hr->normal);
 	color = ray_shader(ctl, &scattered, bounce - 1);
 	color = vec3_scalar_mult(&color, &hr->surface_color);

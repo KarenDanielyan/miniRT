@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:53 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 15:36:55 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:56:04 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static t_vec3	get_cone_normal(t_point3 *at, t_hittable *hit)
 	double		t;
 
 	local_hit = apply_transform_to_point(&hit->shape.cn.wtl_matrix, at);
-	if (float_equal(get_z(&local_hit), -hit->shape.cn.height))
+	if (get_z(&local_hit) + hit->shape.cn.height < 0.0001)
 		return (hit->shape.cn.normal);
 	delta = subst_vec3(at, &hit->shape.cn.apex);
 	t = vec3_length(&delta) / cos(hit->shape.cn.angle);

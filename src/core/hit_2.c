@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:20:48 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 01:42:41 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:49:53 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ bool	hit_cone_walls(t_cone *cn, t_ray *r, double *t)
 	q.k = pow(vec3_dot(&co, &cn->normal), 2) - vec3_dot(&co, &co) \
 		* pow(cos(cn->angle), 2);
 	q.w = q.j * q.j - 4 * q.i * q.k;
-	if (q.w < EPSILON)
+	if (q.w < 0.0)
 		return (false);
 	*t = (-q.j + sqrt(q.w)) / (2 * q.i);
 	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) > EPSILON || get_z(&p) < -(cn->height))
-	{
 		*t = (-q.j - sqrt(q.w)) / (2 * q.i);
-		p = ray_at(r, *t);
-	}
+	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) > EPSILON || get_z(&p) < -(cn->height))
 		return (false);
 	return (true);

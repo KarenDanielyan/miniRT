@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:28:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/09 03:53:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:21:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	float_equal(float a, float b)
 {
-	if (fabs(a - b) < EPSILON)
+	if (fabs(a - b) < __FLT_EPSILON__)
 		return (true);
 	return (false);
 }

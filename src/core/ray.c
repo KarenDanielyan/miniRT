@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 15:31:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:41:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,12 @@ t_vec3	ray_reflect(t_vec3 *v, t_vec3 *n)
 	tmp = scale_vec3(2 * vec3_dot(v, n), n);
 	tmp = subst_vec3(v, &tmp);
 	return (tmp);
+}
+
+t_vec3		ray_refract(t_vec3 *v, t_vec3 *n, double ri)
+{
+	(void)v;
+	(void)n;
+	(void)ri;
+	return (vec3(0, 0, 0));
 }

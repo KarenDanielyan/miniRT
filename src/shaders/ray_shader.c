@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:45 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 19:33:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:40:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_color	scatter(t_control *ctl, t_hitrecord *hr, int bounce)
 	scattered.origin = hr->at;
 	if (hr->hit->material.properties & METALLIC)
 		scattered.direction = ray_reflect(&hr->r.direction, &hr->normal);
+	else if (hr->hit->material.properties & DIELECTRIC)
+		scattered.direction = ray_refract(&hr->r.direction, &hr->normal, hr->hit->material.ri);
 	color = ray_shader(ctl, &scattered, bounce - 1);
 	color = vec3_scalar_mult(&color, &hr->surface_color);
 	return (color);

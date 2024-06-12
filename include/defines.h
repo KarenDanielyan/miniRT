@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 01:03:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:35:02 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define EXTENSION ".rt"
 # define DOT '.'
 
-# define CHECKER_WIDTH 25
-# define CHECKER_HEIGHT 12
+# define CHECKER_WIDTH 20
+# define CHECKER_HEIGHT 20
 
 /* Error Messages */
 # define ERROR_MSG "Error\n"

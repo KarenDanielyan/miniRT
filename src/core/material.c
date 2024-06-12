@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 00:39:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:59:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ static void	set_plastic(t_material *material)
 {
 	material->properties |= PLASTIC;
 	material->lambertian = 1.0;
+	material->specular = 0.3;
 	material->glossiness = 0.0;
-	material->shininess = 1.0;
+	material->shininess = 50;
 }
 
 static void	set_metallic(t_material *material)

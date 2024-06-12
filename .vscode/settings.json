@@ -106,7 +106,8 @@
     "iterator": "cpp",
     "string": "cpp",
     "vector": "cpp",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "ft_bitmap.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "python.analysis.typeCheckingMode": "basic"

@@ -21,7 +21,8 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				matrix.h miniRT.h quaternion.h \
 				ray.h scanner.h shapes.h ui.h \
 				vec3.h) \
-				Makefile
+				Makefile \
+				$(LIBFT) $(PRINTF) $(BITMAP)
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c hit_2.c \

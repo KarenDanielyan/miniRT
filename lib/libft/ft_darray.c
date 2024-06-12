@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:15:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/06 22:09:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:45:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_darray_pushback(t_darray *arr, void *content)
 		tmp = arr->content;
 		arr->capacity *= 2;
 		arr->content = ft_calloc(arr->capacity, arr->size);
-		ft_memcpy(arr->content, tmp, arr->size);
+		ft_memcpy(arr->content, tmp, arr->nmemb * arr->size);
 		free(tmp);
 	}
 	ft_memcpy((char *)(arr->content + (arr->nmemb * arr->size)), \

@@ -27,7 +27,7 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": ["assets/scenes/sphere.rt"],
+      "args": ["assets/scenes/test.rt"],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "${workspaceFolder}",

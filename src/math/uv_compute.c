@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   uv_compute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:26:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 19:12:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:56:24 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,10 @@ t_point2	compute_plane_uv(t_hitrecord *hr)
 {
 	t_point3	p;
 	t_point2	uv;
-	double		buf;
+	double		modfp;
 
 	p = apply_transform_to_point(&hr->hit->shape.pl.wtl_matrix, &hr->at);
-	if (float_equal(modf(get_x(&p) / 2, &buf), 0.0f))
-		uv.x = fabs(modf(get_x(&p), &buf));
-	else
-		uv.x = 1.0 - fabs(modf(get_x(&p), &buf));
-	if (float_equal(modf(get_y(&p) / 2, &buf), 0.0f))
-		uv.y = fabs(modf(get_y(&p), &buf));
-	else
-		uv.y = 1.0 - fabs(modf(get_y(&p), &buf));
+	uv.x = modf(get_x(&p), &modfp);
+	uv.y = modf(get_y(&p), &modfp);
 	return (uv);
 }

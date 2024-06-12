@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/07 17:02:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:58:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 			(check_extension(f->texture, ".bmp") == EXIT_FAILURE || \
 			access(f->texture, F_OK) == -1))
 		{
-			printf("ERROR\n");
+			if (access(f->texture, F_OK) == -1)
+				printf("%sError: %s.%s\n", RED, strerror(ENOENT), RESET);
 			return (EXIT_FAILURE);
 		}
 	}
@@ -85,7 +86,8 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 		if (check_extension(f->normal_map, ".bmp") == EXIT_FAILURE || \
 			access(f->normal_map, F_OK) == -1)
 		{
-			printf("ERROR\n");
+			if (access(f->normal_map, F_OK) == -1)
+				printf("%sError: %s.%s\n", RED, strerror(ENOENT), RESET);
 			return (EXIT_FAILURE);
 		}
 	}

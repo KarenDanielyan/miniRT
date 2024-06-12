@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:16:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 15:31:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 00:26:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,24 @@ t_vec3	ray_reflect(t_vec3 *v, t_vec3 *n)
 	tmp = scale_vec3(2 * vec3_dot(v, n), n);
 	tmp = subst_vec3(v, &tmp);
 	return (tmp);
+}
+
+/*
+	vec3 r_out_perp =  etai_over_etat * (uv + cos_theta*n);
+	vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.length_squared())) * n;
+	return r_out_perp + r_out_parallel;
+*/
+t_vec3	ray_refract(t_vec3 *v, t_vec3 *n, double ni_over_nt)
+{
+	double	cos_theta;
+	t_vec3	perp;
+	t_vec3	parallel;
+
+	vec3_normalize(v);
+	cos_theta = fmin(vec3_dot(v, n), 1.0);
+	perp = scale_vec3(cos_theta, n);
+	perp = sum_vec3(v, &perp);
+	perp = scale_vec3(ni_over_nt, &perp);
+	parallel = scale_vec3(-sqrt(fabs(1.0 - pow(cos_theta, 2))), n);
+	return (sum_vec3(&perp, &parallel));
 }

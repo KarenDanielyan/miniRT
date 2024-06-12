@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:44:49 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 14:38:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:33:06 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ enum e_mtype
 {
 	DEFAULT		= 0,
 	PLASTIC		= 1,
-	METALIC		= 2,
-	DIELECRIC	= 4,
+	METALLIC		= 2,
+	DIELECTRIC	= 4,
 	TEXTURED	= 8,
 	CHECKERED	= 16,
 	NORMAL		= 32
@@ -50,7 +50,7 @@ struct s_material
 	double		ri;
 	t_ftbitmap	*normal_map;
 	t_ftbitmap	*texture_map;
-	t_color	color;
+	t_color		color;
 };
 
 void	set_material(t_material *material, t_color color, char *type);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:49:55 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/04 21:31:46 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:29:04 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	hit_plane(t_shape *self, t_ray *r, double *t)
 
 	pl = &self->pl;
 	denom = vec3_dot(&pl->normal, &r->direction);
-	if (fabs(denom) < EPSILON)
+	if (fabs(denom) < 0.0)
 		return (false);
 	tmp = subst_vec3(&pl->center, &r->origin);
 	numer = vec3_dot(&pl->normal, &tmp);
@@ -95,6 +95,7 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 	t_ray			r_prime;
 	double			t_prime[2];
 
+	*t = -1;
 	cy_prime = self->cy;
 	cy_prime.normal = vec3(0, 0, 1);
 	cy_prime.center = vec3(0, 0, 0);
@@ -102,8 +103,8 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 		apply_transform_to_point(&self->cy.wtl_matrix, &r->origin);
 	r_prime.direction = \
 		apply_transform_to_vector(&self->cy.wtl_matrix, &r->direction);
-	if (hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) || \
-		hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
+	if ((int)hit_cylinder_walls(&cy_prime, &r_prime, &t_prime[0]) | \
+		(int)hit_cylinder_caps(&cy_prime, &r_prime, &t_prime[1]))
 	{
 		if (t_prime[0] < t_prime[1] && t_prime[0] > EPSILON)
 			*t = t_prime[0];
@@ -112,9 +113,9 @@ bool	hit_cylinder(t_shape *self, t_ray *r, double *t)
 		else
 			*t = t_prime[0];
 	}
-	if (*t > EPSILON)
-		return (true);
-	return (false);
+	if (*t < EPSILON)
+		return (false);
+	return (true);
 }
 
 /**
@@ -147,13 +148,14 @@ bool	hit_cylinder_walls(t_cylinder *cy, t_ray *r, double *t)
 	q.k = pow(get_x(&r->origin), 2) + pow(get_y(&r->origin), 2) \
 		- pow(cy->radius, 2);
 	q.w = q.j * q.j - q.i * q.k;
-	if (q.w < EPSILON)
+	if (q.w < 0.0)
 		return (false);
 	*t = (q.j - sqrt(q.w)) / q.i;
 	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		*t = (q.j + sqrt(q.w)) / q.i;
+	p = ray_at(r, *t);
 	if (*t < EPSILON || get_z(&p) < (get_z(&cy->center) - cy->height / 2) || \
 		get_z(&p) > (get_z(&cy->center) + cy->height / 2))
 		return (false);

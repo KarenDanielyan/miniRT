@@ -21,12 +21,13 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				matrix.h miniRT.h quaternion.h \
 				ray.h scanner.h shapes.h ui.h \
 				vec3.h) \
-				Makefile
+				Makefile \
+				$(LIBFT) $(PRINTF) $(BITMAP)
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c hit_2.c \
 				hittable.c lights.c shapes.c normals.c \
-				material.c) \
+				material.c normals_from_map.c) \
 				$(patsubst %.c, $(SRC)/utils/%.c, \
 				create_image.c new_image.c float_cmp.c \
 				fill_image.c get_time.c mapping.c \
@@ -42,7 +43,8 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				vec3_set.c vec3_utils.c \
 				vec3_random.c quaternion_operations.c\
 				quaternion_constructors.c \
-				matrix.c matrix_operations.c) \
+				matrix.c matrix_operations.c \
+				uv_compute.c) \
 				$(patsubst %.c, $(SRC)/events/%.c, \
 				on_destroy.c on_keypress.c) \
 				$(patsubst %.c, $(SRC)/job/%.c, \

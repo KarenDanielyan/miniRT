@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/02 21:53:13 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:24:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ static bool	scan_prime(t_control *ctl, int fd)
 		if (!str)
 			break ;
 		tokens = get_tokens(str);
+		if (!tokens)
+			continue ;
 		content = parse_object(ctl, tokens, &pt);
-		free(str);
 		ft_lstclear(&tokens, &free);
 		if (pt == P_ERROR)
 			return (EXIT_FAILURE);
@@ -151,6 +152,8 @@ static bool	check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt)
 /**
  * @brief			get_tokens() returns a linked list of tokens
  * 					parsed from the line.
+ * 					NOTE: The line is freed inside the function,
+ * 					so you should not free it again.
  * 
  * @param line		The line.
  * @return t_list*	Linked list of tokens.
@@ -158,10 +161,12 @@ static bool	check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt)
 static t_list	*get_tokens(char *line)
 {
 	t_list	*head;
+	char	*l;
 	char	*tmp;
 
 	tmp = NULL;
 	head = NULL;
+	l = line;
 	while (*line)
 	{
 		while (*line && ft_iswhitespace(*line))
@@ -172,5 +177,6 @@ static t_list	*get_tokens(char *line)
 			ft_lstadd_back(&head, ft_lstnew(tmp));
 		tmp = NULL;
 	}
+	free(l);
 	return (head);
 }

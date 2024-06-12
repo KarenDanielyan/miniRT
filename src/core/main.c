@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/20 00:59:52 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 00:40:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int ac, char **av)
 	if (scan(&ctl, av[1]) == EXIT_FAILURE)
 	{
 		mlx_destroy_window(ctl.mlx_ptr, ctl.win_ptr);
+		ft_darray_free(&ctl.world, &clear_hittable);
 		exit(EXIT_FAILURE);
 	}
 	generate_tasks(&ctl);

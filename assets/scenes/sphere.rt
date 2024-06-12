@@ -1,0 +1,14 @@
+# Camera
+C 0,10,10 0,-0.7,-0.7 20
+
+# Lights
+A			0.2				255,255,255
+l	1,0,0	1.0			255,255,255
+l	1,2,-2	1.0			255,255,255
+l	-1,0.5,2	1.0			0,255,255
+
+# World objects
+sp 0,0,-1	1				200,54,123 m:plastic
+sp -1,0,-0.5	0.6			255,0,0 m:metallic
+sp 0.3,0.2,-0.4 0.6			255,255,255 t:assets/textures/rocky.bmp n:assets/textures/rocky_normal.bmp
+pl 0,-0.5,0		0,1,0		255,255,0 t:assets/textures/rocky.bmp n:assets/textures/rocky_normal.bmp

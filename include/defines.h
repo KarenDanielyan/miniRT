@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 18:43:33 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/12 01:03:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 5
+# define MAX_BOUNCE 10
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 50
+#  define SSAA 10
 # endif
 
 /* Miscellaneous Defines */
@@ -40,8 +40,8 @@
 # define EXTENSION ".rt"
 # define DOT '.'
 
-# define CHECKER_WIDTH 15
-# define CHECKER_HEIGHT 15
+# define CHECKER_WIDTH 25
+# define CHECKER_HEIGHT 12
 
 /* Error Messages */
 # define ERROR_MSG "Error\n"
@@ -77,7 +77,7 @@
 # define RESET "\033[0m"
 
 /* Defines for floating-point operations */
-# define EPSILON 0.0000001
+# define EPSILON 0.0001
 
 # define HEADER "\
 * **************** miniRT ***************** *\n\

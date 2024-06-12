@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/07 18:17:20 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:59:20 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <ft_bitmap.h>
 
 static void	set_plastic(t_material *material);
-static void	set_mettalic(t_material *material);
+static void	set_metallic(t_material *material);
 static void	set_dielectric(t_material *material);
 
 void	set_material(t_material *material, t_color color, char *type)
@@ -24,7 +24,7 @@ void	set_material(t_material *material, t_color color, char *type)
 	if (ft_strcmp(type, S_PLASTIC) == 0)
 		set_plastic(material);
 	else if (ft_strcmp(type, S_METALLIC) == 0)
-		set_mettalic(material);
+		set_metallic(material);
 	else if (ft_strcmp(type, S_DIELECTRIC) == 0)
 		set_dielectric(material);
 	else
@@ -33,8 +33,9 @@ void	set_material(t_material *material, t_color color, char *type)
 			printf("%s%s.%s\n", YELLOW, WARN_INVMATERIAL, RESET);
 		material->properties |= DEFAULT;
 		material->shininess = 100;
-		material->specular = 0;
+		material->specular = 0.0;
 		material->glossiness = 0.0;
+		material->lambertian = 1.0;
 	}
 }
 
@@ -60,21 +61,27 @@ void	set_texture_and_normal(t_material *m, char *texture, char *normal)
 static void	set_plastic(t_material *material)
 {
 	material->properties |= PLASTIC;
+	material->lambertian = 1.0;
+	material->specular = 0.3;
 	material->glossiness = 0.0;
-	material->shininess = 1.0;
+	material->shininess = 50;
 }
 
-static void	set_mettalic(t_material *material)
+static void	set_metallic(t_material *material)
 {
-	material->properties |= METALIC;
+	material->properties |= METALLIC;
+	material->lambertian = 0.0;
 	material->glossiness = 1.0;
-	material->shininess = 1.0;
+	material->shininess = 20;
+	material->specular = 1.0;
 }
 
 static void	set_dielectric(t_material *material)
 {
-	material->properties |= DIELECRIC;
+	material->properties |= DIELECTRIC;
+	material->lambertian = 0.0;
 	material->glossiness = 0.0;
-	material->shininess = 1.0;
+	material->specular = 0.0;
+	material->shininess = 100;
 	material->ri = 1.5;
 }

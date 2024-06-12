@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/10 18:58:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:22:10 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,22 @@ void	free_fields(t_pfields *f)
 	free(f->normal_map);
 }
 
-t_parsetype	optional_check(t_list *tokens, t_pfields *f)
+t_parsetype	optional_check(t_list *tokens, t_pfields *f, t_type type)
 {
-	t_parsetype	rv;
-
-	rv = P_OBJECT;
 	while (tokens)
 	{
-		if (check_texture_and_normal(tokens, f) == EXIT_FAILURE)
+		if (check_texture_and_normal(tokens, f) == EXIT_FAILURE || \
+			(type != PLANE && type != SPHERE))
 		{
-			rv = P_ERROR;
-			break ;
+			if (type != PLANE && type != SPHERE)
+				printf("%sError: %s%s\n", RED, ERR_TXTNSUPPORTED, RESET);
+			return (P_ERROR);
 		}
 		else if (check_material(tokens, f) == EXIT_FAILURE)
-		{
-			rv = P_ERROR;
-			break ;
-		}
+			return (P_ERROR);
 		tokens = tokens->next;
 	}
-	return (rv);
+	return (P_OBJECT);
 }
 
 static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)

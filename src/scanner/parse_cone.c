@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:00 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/03 16:14:53 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:05:34 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*parse_cone(t_list *tokens, t_parsetype *pt)
 	f.height = ft_strdup(ft_lst_get_by_index(tokens, 4)->content);
 	f.rgb = tuple_split(ft_lst_get_by_index(tokens, 5)->content, ',', 3);
 	*pt = argument_check(&f);
-	*pt = optional_check(ft_lst_get_by_index(tokens, 6), &f);
+	*pt = optional_check(ft_lst_get_by_index(tokens, 6), &f, CONE);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);
 	free_fields(&f);

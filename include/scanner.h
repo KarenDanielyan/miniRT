@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/27 22:15:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:04:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		*parse_cone(t_list *tokens, t_parsetype *pt);
 
 /* Utility Functions */
 
-t_parsetype	optional_check(t_list *tokens, t_pfields *f);
+t_parsetype	optional_check(t_list *tokens, t_pfields *f, t_type type);
 
 bool		check_number(char *number);
 bool		check_tuple(char *tuple, int size);

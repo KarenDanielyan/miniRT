@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:30 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:02:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:04:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*parse_sphere(t_list *tokens, t_parsetype *pt)
 	f.diameter = ft_strdup(ft_lst_get_by_index(tokens, 2)->content);
 	*pt = argument_check(&f);
 	if (*pt == P_OBJECT)
-		*pt = optional_check(ft_lst_get_by_index(tokens, 4), &f);
+		*pt = optional_check(ft_lst_get_by_index(tokens, 4), &f, SPHERE);
 	if (*pt == P_OBJECT)
 		hittable = make(&f);
 	free_fields(&f);

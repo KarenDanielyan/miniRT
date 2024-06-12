@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 19:35:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:22:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected"
 # define ERR_INVALID "Invalid "
 # define ERR_ARGNUM "occured more than once"
+# define ERR_TXTNSUPPORTED \
+	"Passing a texture to an object that doesn't support it."
 
 # define WARN_NOMATERIAL "no material specified, assuming default"
 # define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"

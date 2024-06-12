@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   uv_compute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:26:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 17:09:59 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:54:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,11 @@ t_point2	compute_sphere_uv(t_hitrecord *hr)
 t_point2	compute_plane_uv(t_hitrecord *hr)
 {
 	t_point3	p;
-	t_vec3		x;
-	t_vec3		y;
 	t_point2	uv;
+	double		modfp;
 
-	x = vec3(1, 0, 0);
-	y = vec3(0, 1, 0);
 	p = apply_transform_to_point(&hr->hit->shape.pl.wtl_matrix, &hr->at);
-	uv.x = (vec3_dot(&p, &x) + 1.0) / 2.0;
-	uv.y = (vec3_dot(&p, &y) + 1.0) / 2.0;
+	uv.x = modf(get_x(&p), &modfp);
+	uv.y = modf(get_y(&p), &modfp);
 	return (uv);
 }

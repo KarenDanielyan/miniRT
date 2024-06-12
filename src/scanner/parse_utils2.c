@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/13 01:22:10 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:57:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ t_parsetype	optional_check(t_list *tokens, t_pfields *f, t_type type)
 {
 	while (tokens)
 	{
-		if (check_texture_and_normal(tokens, f) == EXIT_FAILURE || \
-			(type != PLANE && type != SPHERE))
+		if (check_material(tokens, f) == EXIT_FAILURE)
+			return (P_ERROR);
+		if (check_texture_and_normal(tokens, f) == EXIT_FAILURE)
+			return (P_ERROR);
+		if (type != PLANE && type != SPHERE && (f->texture || f->normal_map))
 		{
-			if (type != PLANE && type != SPHERE)
-				printf("%sError: %s%s\n", RED, ERR_TXTNSUPPORTED, RESET);
+			printf("%sError: %s%s\n", RED, ERR_TXTNSUPPORTED, RESET);
 			return (P_ERROR);
 		}
-		else if (check_material(tokens, f) == EXIT_FAILURE)
-			return (P_ERROR);
 		tokens = tokens->next;
 	}
 	return (P_OBJECT);

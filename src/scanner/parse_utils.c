@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 21:31:53 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 03:30:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,30 @@ char	**tuple_split(char *tuple, char c, int size)
 		i ++;
 	}
 	return (splitted);
+}
+
+void	check_for_warnings(t_pfields *f, const char *symb)
+{
+	t_vec3	normal;
+
+	if (f->normal)
+		normal = vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
+					ft_atof(f->normal[2]));
+	else
+		normal = vec3(0, 1, 0);
+	if (float_equal(vec3_length(&normal), 0.0))
+	{
+		printf("%s%s: %s%s\n", YELLOW, symb, WARN_ZEROVEC, RESET);
+		free(f->normal[0]);
+		free(f->normal[1]);
+		free(f->normal[2]);
+		f->normal[0] = ft_strdup("0.0");
+		f->normal[1] = ft_strdup("1.0");
+		f->normal[2] = ft_strdup("0.0");
+	}
+	if (!f->material)
+	{
+		printf("%s%s: %s.%s\n", YELLOW, symb, WARN_NOMATERIAL, RESET);
+		f->material = ft_strdup("m:default");
+	}
 }

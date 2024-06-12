@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 01:22:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:49:25 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 
 # define WARN_NOMATERIAL "no material specified, assuming default"
 # define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"
+# define WARN_ZEROVEC "Warning: Zero vector detected. Assuming default."
 
 /* Symbols */
 # define S_CAMERA "C"

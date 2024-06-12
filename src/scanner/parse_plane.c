@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:26:03 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/13 01:05:10 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 03:28:55 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,12 @@ static void	*make(t_pfields *f)
 	void	*plane;
 	void	*hittable;
 
+	check_for_warnings(f, S_PLANE);
 	plane = new_plane(vec3(ft_atof(f->coords[0]), ft_atof(f->coords[1]), \
 							ft_atof(f->coords[2])), \
 					vec3(ft_atof(f->normal[0]), ft_atof(f->normal[1]), \
 							ft_atof(f->normal[2])));
 	hittable = new_hittable(PLANE, &hit_plane, plane);
-	if (!f->material)
-	{
-		printf("%s%s: %s.%s\n", YELLOW, S_PLANE, WARN_NOMATERIAL, RESET);
-		f->material = ft_strdup("m:default");
-	}
 	set_material(&((t_hittable *)hittable)->material, \
 				vec3(ft_map(ft_atof(f->rgb[0])), \
 					ft_map(ft_atof(f->rgb[1])), \

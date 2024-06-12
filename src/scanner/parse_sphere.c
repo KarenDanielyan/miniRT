@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:30 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 01:04:58 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 03:28:30 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,12 @@ static void	*make(t_pfields *f)
 	void	*shape;
 	void	*hittable;
 
+	check_for_warnings(f, S_SPHERE);
 	shape = new_sphere(vec3(ft_atof(f->coords[0]), \
 						ft_atof(f->coords[1]), \
 						ft_atof(f->coords[2])), \
 					ft_atof(f->diameter) / 2);
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
-	if (!f->material)
-	{
-		printf("%s%s: %s.%s\n", YELLOW, S_SPHERE, WARN_NOMATERIAL, RESET);
-		f->material = ft_strdup("m:default");
-	}
 	set_material(&((t_hittable *)hittable)->material, \
 			vec3(ft_map(ft_atof(f->rgb[0])), ft_map(ft_atof(f->rgb[1])), \
 			ft_map(ft_atof(f->rgb[2]))), (f->material + 2));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:43:52 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/21 20:53:29 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:59:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static t_parsetype	argument_check(t_list *tokens, char **point_view, \
 	char **vector_orientation, float *h_fov);
+static void			make(t_camera *cam, char **pv, char **vo);
 
 void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 {
@@ -33,13 +34,7 @@ void	*parse_camera(t_control *ctl, t_list *tokens, t_parsetype *pt)
 		ft_lst_get_by_index(tokens, 2)->content, ',', 3);
 	*pt = argument_check(tokens, pv, vo, &ctl->cam.h_fov);
 	if (*pt == P_CAMERA)
-	{
-		new_vec3(&ctl->cam.center, \
-			ft_atof(pv[0]), ft_atof(pv[1]), ft_atof(pv[2]));
-		new_vec3(&ctl->cam.direction, \
-			ft_atof(vo[0]), ft_atof(vo[1]), ft_atof(vo[2]));
-		initialize_camera(&ctl->cam);
-	}
+		make(&ctl->cam, pv, vo);
 	free_2d(pv);
 	free_2d(vo);
 	return (NULL);
@@ -63,4 +58,18 @@ static t_parsetype	argument_check(t_list *tokens, char **point_view, \
 	else
 		rv = P_CAMERA;
 	return (rv);
+}
+
+static void	make(t_camera *cam, char **pv, char **vo)
+{
+	new_vec3(&cam->center, \
+		ft_atof(pv[0]), ft_atof(pv[1]), ft_atof(pv[2]));
+	new_vec3(&cam->direction, \
+		ft_atof(vo[0]), ft_atof(vo[1]), ft_atof(vo[2]));
+	if (float_equal(vec3_length(&cam->direction), 0.0))
+	{
+		printf("%s%s: %s%s\n", YELLOW, S_CAMERA, WARN_ZEROVEC, RESET);
+		cam->direction = vec3(0.0, 0.0, -1.0);
+	}
+	initialize_camera(cam);
 }

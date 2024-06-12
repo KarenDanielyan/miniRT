@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 01:04:40 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 03:30:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void		*parse_plane(t_list *tokens, t_parsetype *pt);
 void		*parse_cone(t_list *tokens, t_parsetype *pt);
 
 /* Utility Functions */
+
+void		check_for_warnings(t_pfields *f, const char *symb);
 
 t_parsetype	optional_check(t_list *tokens, t_pfields *f, t_type type);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_shader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:50:44 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:29:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:59:15 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ static t_color	checker_shader(t_hitrecord *hr)
 {
 	t_point2	uv;
 	t_point		c;
-
-	uv = compute_sphere_uv(hr);
+	
+	if (hr->hit->type == SPHERE)
+		uv = compute_sphere_uv(hr);
+	else
+		uv = compute_plane_uv(hr);
 	c.u = floor(uv.x * CHECKER_WIDTH);
 	c.v = floor(uv.y * CHECKER_HEIGHT);
 	if ((int)(c.u + c.v) % 2 == 0)

@@ -1,0 +1,8 @@
+C 0,0,1 0,0,-1 100
+
+
+sp 0,0,0 0.5 255,0,0 t:assets/textures/earth.bmp n:assets/textures/earth_normal.bmp m:plastic
+
+herhrththtrhrthrthtrhrt
+
+sp 1,2,0 0.5 255,0,0 t:assets/textures/earth.bmp n:assets/textures/earth_normal.bmp m:plastic

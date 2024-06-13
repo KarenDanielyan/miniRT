@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/10 18:58:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:36:55 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,13 @@ static bool	check_texture_and_normal(t_list *tokens, t_pfields *f)
 static bool	check_material(t_list *tokens, t_pfields *f)
 {
 	if (!ft_strncmp(tokens->content, "m:", 2))
+	{
+		if (f->material)
+		{
+			free(f->material);
+			printf("%s%s.%s\n", YELLOW, WARN_MANYMATERIAL, RESET);
+		}
 		f->material = ft_strdup(tokens->content);
+	}
 	return (EXIT_SUCCESS);
 }

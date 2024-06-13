@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 19:35:02 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:37:32 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define ERR_ARGNUM "occured more than once"
 
 # define WARN_NOMATERIAL "no material specified, assuming default"
+# define WARN_MANYMATERIAL "WARNING: materail specified more than once. Taking the last one"
 # define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"
 
 /* Symbols */

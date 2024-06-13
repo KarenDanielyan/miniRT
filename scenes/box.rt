@@ -6,12 +6,12 @@
 #    By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 03:48:10 by kdaniely          #+#    #+#              #
-#    Updated: 2024/06/13 05:04:01 by kdaniely         ###   ########.fr        #
+#    Updated: 2024/06/13 22:49:06 by kdaniely         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Camera
-C	0,0.5,1.5		0,0,-1		80
+C	0,0.5,1.5		0,0,0		80
 
 # Light
 A					0.3				255,255,255
@@ -19,7 +19,7 @@ l	0,1.4,-0.5		0.3				255,255,255
 l	0,1.4,0.5		0.3				255,255,255
 
 # World
-pl	0,0,0		0,1,0			255,0,0			m:plastic
+pl	0,0,0		0,1000,0			255,0,0			m:plastic
 pl	1,0,0		-1,0,0			0,255,0			m:metallic
 pl	-1,0,0		1,0,0			0,0,255
 pl 0,0,-1		0,0,1			240,240,240		m:metallic t:assets/textures/metal.bmp n:assets/textures/metal_normal.bmp

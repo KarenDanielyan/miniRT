@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 22:34:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:47:07 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	check_for_warnings(t_pfields *f, const char *symb)
 					ft_atof(f->normal[2]));
 	else
 		normal = vec3(0, 1, 0);
-	if (float_equal(vec3_length(&normal), 0.0))
+	if (vec3_length(&normal) > 1.0)
+		printf("%s%s: %s%s\n", YELLOW, symb, WARN_BIGVEC, RESET);
+	else if (float_equal(vec3_length(&normal), 0.0))
 	{
 		printf("%s%s: %s%s\n", YELLOW, symb, WARN_ZEROVEC, RESET);
 		free(f->normal[0]);

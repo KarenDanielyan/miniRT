@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 21:17:28 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:48:09 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@
 # define WARN_MANYMATERIAL "WARNING: materail specified more than once. \
 Taking the last one."
 # define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default."
-# define WARN_ZEROVEC "Warning: Zero vector detected. Assuming default."
+# define WARN_ZEROVEC "WARNING: Zero vector detected. Assuming default."
+# define WARN_BIGVEC "WARNINNG: Vector values are out of [-1, 1] range. \
+Normalizing."
+
 /* Symbols */
 # define S_CAMERA "C"
 # define S_AMBIENT "A"

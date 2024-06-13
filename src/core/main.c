@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 21:30:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:13:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 		mlx_loop(ctl.mlx_ptr);
 	}
 	ft_darray_free(&ctl.world, &clear_hittable);
-	ft_darray_free(&ctl.lights, &clear_hittable);
+	ft_darray_free(&ctl.lights, NULL);
 	system("leaks miniRT");
 	return (0);
 }

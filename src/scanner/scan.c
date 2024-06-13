@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 16:24:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:20:22 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	scan(t_control *ctl, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		printf(ERROR_MSG);
+		printf("%s%s%s", RED, ERROR_MSG, RESET);
 		return (EXIT_FAILURE);
 	}
 	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
@@ -136,7 +136,7 @@ static bool	check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt)
 		ft_darray_get_if(&ctl->lights, is_ambient) != NULL)
 	{
 		*pt = P_ERROR;
-		printf("%s%s: %s.%s\n", RED, S_AMBIENT, ERR_ARGNUM, RESET);
+		printf("%s%s: %s%s", RED, S_AMBIENT, ERR_ARGNUM, RESET);
 	}
 	else if (!ft_strcmp(tokens->content, S_CAMERA) && \
 		ctl->cam.is_active == 1)

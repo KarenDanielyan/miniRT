@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 00:40:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:06:00 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("Invalid number of arguments\n");
+		printf("%s%s%d.%s\n", RED, ERR_INVALID_ARGS, 2, RESET);
 		return (1);
 	}
 	env_init(&ctl);

@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:03:25 by armhakob          #+#    #+#             */
-/*   Updated: 2024/06/13 17:36:55 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:43:36 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static bool	check_material(t_list *tokens, t_pfields *f)
 		if (f->material)
 		{
 			free(f->material);
-			printf("%s%s.%s\n", YELLOW, WARN_MANYMATERIAL, RESET);
+			printf("%s%s%s\n", YELLOW, WARN_MANYMATERIAL, RESET);
 		}
 		f->material = ft_strdup(tokens->content);
 	}

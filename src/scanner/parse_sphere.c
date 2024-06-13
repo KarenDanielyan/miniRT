@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:44:30 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 18:02:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:43:19 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	*make(t_pfields *f)
 	hittable = new_hittable(SPHERE, &hit_sphere, shape);
 	if (!f->material)
 	{
-		printf("%s%s: %s.%s\n", YELLOW, S_SPHERE, WARN_NOMATERIAL, RESET);
+		printf("%s%s: %s%s\n", YELLOW, S_SPHERE, WARN_NOMATERIAL, RESET);
 		f->material = ft_strdup("m:default");
 	}
 	set_material(&((t_hittable *)hittable)->material, \

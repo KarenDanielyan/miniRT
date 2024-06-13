@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:42:47 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/28 19:44:51 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:08:19 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	*parse_ambient(t_list *tokens, t_parsetype *pt)
 	init_fields(&f);
 	if (ft_lstsize(tokens) != 3)
 	{
-		printf("%s%s: %s%s%d.%s\n", RED, \
-			S_AMBIENT, ERR_INVALID_ARGS, " ", 3, RESET);
+		printf("%s%s: %s%d.%s\n", RED, \
+			S_AMBIENT, ERR_INVALID_ARGS, 3, RESET);
 		*pt = P_ERROR;
 		return (rv);
 	}

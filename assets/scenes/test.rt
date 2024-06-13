@@ -24,4 +24,4 @@ cy 1,0,-2	0,1,0	1.0 1.0	255,255,255 m:metallic
 
 # Cone: apex x,y,z -> normal 3-tuple [-1; 1] -> \
 # radius -> height -> color 3-tuple [0; 255]
-cn -1,0.5,-1 0,1,0 0.5 1 255,0,255 m:plastic
+cn -1,0.5,-1 0,1,0 0.5 1 255,0,255

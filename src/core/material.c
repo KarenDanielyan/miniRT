@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 15:59:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:43:49 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_material(t_material *material, t_color color, char *type)
 	else
 	{
 		if (ft_strcmp(type, "default") != 0)
-			printf("%s%s.%s\n", YELLOW, WARN_INVMATERIAL, RESET);
+			printf("%s%s%s\n", YELLOW, WARN_INVMATERIAL, RESET);
 		material->properties |= DEFAULT;
 		material->shininess = 100;
 		material->specular = 0.0;

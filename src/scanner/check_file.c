@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 17:40:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:26:08 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ int	check_extension(char *name, char *extension)
 {
 	if (name)
 	{
-		if (*name == DOT && *(name + 1))
-		{
-			if (ft_strcmp(ft_strchr(name + 1, DOT), extension) == 0)
-				return (EXIT_SUCCESS);
-		}
-		else if (ft_strcmp(ft_strchr(name, DOT), extension) == 0)
+		if (ft_strncmp(ft_strrchr(name, DOT), \
+			extension, ft_strlen(extension)) == 0)
 			return (EXIT_SUCCESS);
 	}
 	printf("%s%s%s", RED, ERR_INVALID_EXT, RESET);

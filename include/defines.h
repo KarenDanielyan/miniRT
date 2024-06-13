@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 04:58:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:37:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected"
 # define ERR_INVALID "Invalid "
 # define ERR_ARGNUM "occured more than once"
+# define ERR_EMPTY "file is empty."
 # define ERR_TXTNSUPPORTED \
 	"Passing a texture to an object that doesn't support it."
 

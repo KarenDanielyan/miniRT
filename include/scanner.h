@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:10:54 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 03:30:58 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:47:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ bool		check_tuple(char *tuple, int size);
 bool		check_color(char **rgb);
 
 int			check_extension(char *name, char *extension);
+int			check_file(char *name, char *extension);
 
 char		**tuple_split(char *tuple, char c, int size);
 

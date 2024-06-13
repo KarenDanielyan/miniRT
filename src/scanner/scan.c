@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 16:24:59 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:48:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,9 @@ bool	scan(t_control *ctl, char *filename)
 	int		fd;
 	bool	rv;
 
-	if (check_extension(filename, EXTENSION) == EXIT_FAILURE)
+	fd = check_file(filename, EXTENSION);
+	if (fd == -1)
 		return (EXIT_FAILURE);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		printf(ERROR_MSG);
-		return (EXIT_FAILURE);
-	}
 	ft_darray_init(&ctl->world, sizeof(t_hittable), 5);
 	ft_darray_init(&ctl->lights, sizeof(t_light), 5);
 	rv = EXIT_FAILURE;

@@ -33,7 +33,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				fill_image.c get_time.c mapping.c \
 				progress_bar.c clamp.c darray_cmp.c) \
 				$(patsubst %.c, $(SRC)/scanner/%.c, \
-				check_extension.c scan.c parse_ambient.c \
+				check_file.c scan.c parse_ambient.c \
 				parse_light.c parse_camera.c parse_sphere.c \
 				parse_utils.c parse_cylinder.c \
 				parse_plane.c parse_cone.c parse_utils2.c) \

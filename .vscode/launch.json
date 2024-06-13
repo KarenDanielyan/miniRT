@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/miniRT",
-      "args": ["assets/scenes/cylinder.rt"],
+      "args": [".v.rt"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [{ "name": "config", "value": "debug" }],

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 20:50:37 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 03:30:43 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:34:15 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ bool	check_color(char **rgb)
 	return (EXIT_SUCCESS);
 }
 
-// TODO: Write Check number.
 bool	check_number(char *number)
 {
 	int	i;
@@ -57,7 +56,10 @@ bool	check_number(char *number)
 		if (i == 0 && (number[i] == '-' || number[i] == '+'))
 			i ++;
 		else if (flag_dot == 0 && number[i] == '.')
+		{
+			flag_dot = 1;
 			i ++;
+		}
 		else if (ft_isdigit(number[i]))
 			i ++;
 		else

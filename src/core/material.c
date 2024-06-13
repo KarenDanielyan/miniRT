@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 17:45:57 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/12 15:59:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 04:57:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	set_metallic(t_material *material)
 	material->properties |= METALLIC;
 	material->lambertian = 0.0;
 	material->glossiness = 1.0;
-	material->shininess = 20;
-	material->specular = 1.0;
+	material->shininess = 50;
+	material->specular = 0.2;
 }
 
 static void	set_dielectric(t_material *material)

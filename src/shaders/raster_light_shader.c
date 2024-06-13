@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 23:34:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/03 02:38:53 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 02:58:33 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	render_light(t_control *ctl, t_light *l)
 		(get_y(&p) + ctl->cam.canvas_height / 2.0f) / ctl->cam.canvas_height);
 	pixel.u = (int)(get_x(&p) * IMAGE_WIDTH);
 	pixel.v = (int)(get_y(&p) * IMAGE_HEIGHT);
+	if (pixel.u < 0 || pixel.u >= IMAGE_WIDTH || \
+		pixel.v < 0 || pixel.v >= IMAGE_HEIGHT)
+		return ;
 	mlx_put_image_to_window(ctl->mlx_ptr, ctl->win_ptr, \
 		ctl->light_icon.mlx_image, pixel.u, pixel.v);
 }

@@ -65,13 +65,13 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror -D BUFFER_SIZE=100000 # -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -D BUFFER_SIZE=100000 -g -fsanitize=address
 
 INVOKE		=	libft ft_bitmap mlx
 
-IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include -Ilib/ft_bitmap
+IFLAGS		=	-Iinclude -Ilib/libft -Ilib/ft_bitmap
 
-LFLAGS		=	-Llib/printf -lftprintf -lm -Llib/ft_bitmap -lftbitmap
+LFLAGS		=	-lm -Llib/ft_bitmap -lftbitmap
 
 ifeq ($(PLATFORM),Linux)
 	MLX		=	lib/mlx_linux

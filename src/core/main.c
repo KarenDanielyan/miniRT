@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/14 01:37:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 02:59:47 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("%s%s%d.%s\n", RED, ERR_INVALID_ARGS, 2, RESET);
+		printf("%s%s%d.%s\n", RED, ERR_INVALID_ARGS, 1, RESET);
 		return (EXIT_FAILURE);
 	}
 	ft_bzero(&ctl, sizeof(t_control));

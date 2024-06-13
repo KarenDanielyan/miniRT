@@ -6,7 +6,7 @@
 /*   By: armhakob <armhakob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 18:18:15 by armhakob         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:31:14 by armhakob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@
 # define ERR_ARGNUM "occured more than once.\n"
 
 # define WARN_NOMATERIAL "no material specified, assuming default."
-# define WARN_MANYMATERIAL "WARNING: materail specified more than once. Taking the last one."
+# define WARN_MANYMATERIAL "WARNING: materail specified more than once. \
+Taking the last one."
 # define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default."
 
 /* Symbols */

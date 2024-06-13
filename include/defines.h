@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 20:24:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:17:28 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 /* Error Messages */
 # define ERROR_MSG "Error: Invalid input file.\n"
 # define ERR_INVALID_EXT "Error: Invalid file extension.\n"
-# define ERR_BADARG "Error: Bad Argument.\n"
+# define ERR_BADARG "Error: Bad Argument."
 # define ERR_INVALID_ARGS "Invalid number of arguments, expected "
 # define ERR_INVALID "Invalid "
 # define ERR_ARGNUM "occured more than once.\n"

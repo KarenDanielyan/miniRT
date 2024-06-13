@@ -67,7 +67,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-fPIC -g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 -fsanitize=address
+CFLAGS		=	-g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 #-fsanitize=address
 
 INVOKE		=	libft printf ft_bitmap mlx
 

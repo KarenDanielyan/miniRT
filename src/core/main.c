@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 18:40:53 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:30:12 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ int	main(int ac, char **av)
 		printf("%s%s%d.%s\n", RED, ERR_INVALID_ARGS, 2, RESET);
 		return (EXIT_FAILURE);
 	}
+	ft_bzero(&ctl, sizeof(t_control));
 	printf("\033[32m%s\033[0m\n", HEADER);
 	scan_success = scan(&ctl, av[1]);
-	if (ctl.world.nmemb != 0 || ctl.lights.nmemb != 0 || \
-		ctl.cam.is_active == true)
+	if (scan_success == EXIT_SUCCESS)
 	{
 		env_init(&ctl);
-		if (scan_success == EXIT_SUCCESS)
-		{
-			generate_tasks(&ctl);
-			run(&ctl);
-		}
+		generate_tasks(&ctl);
+		run(&ctl);
 		mlx_hook(ctl.win_ptr, ON_DESTROY, 1L << 2, &on_destroy, &ctl);
 		mlx_hook(ctl.win_ptr, ON_KEYDOWN, 1 << 0L, &on_keypress, &ctl);
 		mlx_loop(ctl.mlx_ptr);
 	}
+	ft_darray_free(&ctl.world, &clear_hittable);
+	ft_darray_free(&ctl.lights, &clear_hittable);
+	system("leaks miniRT");
 	return (0);
 }
 

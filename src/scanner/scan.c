@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 18:44:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:17:38 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static void	*parse_object(t_control *ctl, t_list *tokens, t_parsetype *pt)
 		*pt = P_COMMENT;
 	else
 	{
-		printf("%s%s%s", RED, ERR_BADARG, RESET);
+		printf("%s%s%s\n", RED, ERR_BADARG, RESET);
 		*pt = P_ERROR;
 	}
 	return (NULL);

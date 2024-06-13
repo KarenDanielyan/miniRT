@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 18:40:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:24:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 10
+#  define SSAA 1
 # endif
 
 /* Miscellaneous Defines */

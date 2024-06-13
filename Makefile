@@ -1,10 +1,8 @@
 NAME		=	miniRT
 
-INCLUDE		=	./include
+INCLUDE		=	include
 
 LIBFT		=	lib/libft/libft.a
-
-PRINTF		=	lib/printf/libftprintf.a
 
 BITMAP		=	lib/ft_bitmap/libftbitmap.a
 
@@ -22,7 +20,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h, \
 				ray.h scanner.h shapes.h ui.h \
 				vec3.h) \
 				Makefile \
-				$(LIBFT) $(PRINTF) $(BITMAP)
+				$(LIBFT) $(BITMAP)
 
 SRCS		=	$(patsubst %.c, $(SRC)/core/%.c, \
 				main.c ray.c ui.c camera.c hit.c hit_2.c \
@@ -67,9 +65,9 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g3 -Wall -Wextra -Werror -D BUFFER_SIZE=100000 #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -D BUFFER_SIZE=100000 # -g -fsanitize=address
 
-INVOKE		=	libft printf ft_bitmap mlx
+INVOKE		=	libft ft_bitmap mlx
 
 IFLAGS		=	-Iinclude -Ilib/libft -Ilib/printf/include -Ilib/ft_bitmap
 
@@ -118,9 +116,6 @@ $(NAME):	$(BUILD) $(OBJS) $(LIBFT) $(PRINTF)
 libft:
 			@$(MAKE) $(MAKECMDGOALS) -C lib/libft
 
-printf:
-			@$(MAKE) $(MAKECMDGOALS) -C lib/printf
-
 ft_bitmap:
 			@$(MAKE) $(MAKECMDGOALS) -C lib/ft_bitmap
 
@@ -132,7 +127,7 @@ clean:		$(INVOKE)
 			@$(RM) $(BUILD)
 			@echo "${GREEN}Done.${RESET}"
 
-fclean:		libft printf ft_bitmap
+fclean:		libft ft_bitmap
 			@echo "${CYAN}Cleaning Everyting...${RESET}"
 			@$(MAKE) clean -C $(MLX)
 			@$(RM) $(BUILD)
@@ -144,4 +139,4 @@ mlx:
 
 re:			fclean all
 
-.PHONY:		all clean fclean re libft printf ft_bitmap mlx wait_msg
+.PHONY:		all clean fclean re libft ft_bitmap mlx wait_msg

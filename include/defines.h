@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 22:48:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:22:56 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define FOCAL_LENGTH	1.0f
 
 /* Ray Tracing Properties */
-# define MAX_BOUNCE 5
+# define MAX_BOUNCE 10
 
 /* Anti-alsiasing */
 # ifndef SSAA
-#  define SSAA 1
+#  define SSAA 10
 # endif
 
 /* Miscellaneous Defines */

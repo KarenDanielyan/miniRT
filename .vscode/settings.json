@@ -69,7 +69,6 @@
   "cmake.configureOnOpen": false,
   "files.associations": {
     "libft.h": "c",
-    "ft_printf.h": "c",
     "scanner.h": "c",
     "defines.h": "c",
     "unistd.h": "c",

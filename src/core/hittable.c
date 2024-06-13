@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:27:09 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/10 17:51:01 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:43:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*new_hittable(t_type type, t_hit hit, void *shape)
 	obj = ft_calloc(1, sizeof(t_hittable));
 	if (obj == NULL)
 	{
-		ft_printf("Fatal Error: Cannot allocate an object.\n");
+		printf("Fatal Error: Cannot allocate an object.\n");
 		exit(EXIT_FAILURE);
 	}
 	obj->type = type;

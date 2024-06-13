@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:08:59 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/11 19:31:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:43:25 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 # include <libft.h>
-# include <ft_printf.h>
 # include <mlx.h>
 # include <stdio.h>
 # include <sys/errno.h>

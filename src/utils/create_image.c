@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 12:46:05 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/05/31 03:20:33 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:44:29 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_image(char *name, int *pixels, int w, int h)
 	bitmap = ft_create_bitmap_from_data(w, h, (uint8_t *)pixels);
 	if (!bitmap)
 	{
-		ft_printf("Failed to create bitmap\n");
+		printf("Failed to create bitmap\n");
 		return ;
 	}
 	ft_save_bitmap(bitmap, name);

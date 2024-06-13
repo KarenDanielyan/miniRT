@@ -1,13 +1,11 @@
 miniRT
 miniRT_old
-Images/*.ppm
 build
 lib/libft/build
 lib/ft_bitmap/build
 lib/ft_bitmap/libftbitmap.a
-lib/libft/libft.*
-lib/printf/build
-lib/printf/libftprintf.a
+lib/libft/libft.a
+lib/libft/libft.so
 lib/mlx_linux/obj
 lib/mlx_mac/obj
 lib/mlx_linux/test/*

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:09:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 15:37:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:40:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,21 @@
 # define CHECKER_HEIGHT 20
 
 /* Error Messages */
-# define ERROR_MSG "Error\n"
+# define ERROR_MSG "Error: Invalid input file.\n"
 # define ERR_INVALID_EXT "Error: Invalid file extension.\n"
 # define ERR_BADARG "Error: Bad Argument.\n"
-# define ERR_INVALID_ARGS "Invalid number of arguments, expected"
+# define ERR_INVALID_ARGS "Invalid number of arguments, expected "
 # define ERR_INVALID "Invalid "
-# define ERR_ARGNUM "occured more than once"
+# define ERR_ARGNUM "occured more than once.\n"
 # define ERR_EMPTY "file is empty."
 # define ERR_TXTNSUPPORTED \
 	"Passing a texture to an object that doesn't support it."
 
-# define WARN_NOMATERIAL "no material specified, assuming default"
-# define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default"
+# define WARN_NOMATERIAL "no material specified, assuming default."
+# define WARN_MANYMATERIAL "WARNING: materail specified more than once. \
+Taking the last one."
+# define WARN_INVMATERIAL "WARNING: Invalid material type. Assuming default."
 # define WARN_ZEROVEC "Warning: Zero vector detected. Assuming default."
-
 /* Symbols */
 # define S_CAMERA "C"
 # define S_AMBIENT "A"

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:05:43 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 15:48:38 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:44:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ static bool	check_repition(t_control *ctl, t_list *tokens, t_parsetype *pt)
 		ft_darray_get_if(&ctl->lights, is_ambient) != NULL)
 	{
 		*pt = P_ERROR;
-		printf("%s%s: %s.%s\n", RED, S_AMBIENT, ERR_ARGNUM, RESET);
+		printf("%s%s: %s%s", RED, S_AMBIENT, ERR_ARGNUM, RESET);
 	}
 	else if (!ft_strcmp(tokens->content, S_CAMERA) && \
 		ctl->cam.is_active == 1)

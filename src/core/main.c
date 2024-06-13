@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:04:46 by kdaniely          #+#    #+#             */
-/*   Updated: 2024/06/13 22:13:46 by kdaniely         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:29:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	env_init(t_control *ctl);
 int	main(int ac, char **av)
 {
 	t_control	ctl;
-	bool		scan_success;
 
 	if (ac != 2)
 	{
@@ -44,8 +43,7 @@ int	main(int ac, char **av)
 	}
 	ft_bzero(&ctl, sizeof(t_control));
 	printf("\033[32m%s\033[0m\n", HEADER);
-	scan_success = scan(&ctl, av[1]);
-	if (scan_success == EXIT_SUCCESS)
+	if (scan(&ctl, av[1]) == EXIT_SUCCESS)
 	{
 		env_init(&ctl);
 		generate_tasks(&ctl);
@@ -56,7 +54,6 @@ int	main(int ac, char **av)
 	}
 	ft_darray_free(&ctl.world, &clear_hittable);
 	ft_darray_free(&ctl.lights, NULL);
-	system("leaks miniRT");
 	return (0);
 }
 

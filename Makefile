@@ -117,6 +117,7 @@ libft:
 			@$(MAKE) $(MAKECMDGOALS) -C lib/libft
 
 ft_bitmap:
+			@git submodule update --init --recursive
 			@$(MAKE) $(MAKECMDGOALS) -C lib/ft_bitmap
 
 wait_msg:
